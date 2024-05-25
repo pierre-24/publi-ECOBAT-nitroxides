@@ -167,7 +167,7 @@ in which $\kappa$ is the inverse of the Debye screening length, defined from:\be
 where $n_i$ is the number density ($n_i = N_i / V = c_i\,\mathcal{N}_a$ where $\mathcal{N}_a$ is the Avogadro number and $c_i$ is the concentration in ion $i$) of ion of type $i$, $k_B$ is the Boltzmann constant, and $T$ is the temperature.  $\kappa$ is  proportional to the ionic strength of the solution, $I = \frac{1}{2}\sum_i c_i\,z_i^2$. 
 
 In the limit of $\kappa\to 0$,  $\Delta G^\star_{DH} = 0$ and thus $\Delta G^\star_S \approx \Delta G^\star_{born} = \Delta G_d + \Delta G_c$.  Therefore, by combining Eqs.~\eqref{eq:scrf} and \eqref{eq:adh}, one defines:\begin{equation}
-	G^\star(X^z) = G^\star_{SCRF}(X^z) + \Delta G^\star_{DH}(X^z),
+	G^\star(X^z) = G^\star_{SCRF}(X^z) + \Delta G^\star_{DH}(X^z), \label{eq:gtot}
 \end{equation}
 to be used in Eq.~\eqref{eq:nernst}. It should provide similar results to the approach developed by Cossi \emph{et al.} in Ref.~\citenum{cossiInitioStudyIonic1998}.
 
@@ -221,6 +221,7 @@ xxx Nernst:\begin{align}
 	E^f_{abs}(\ce{N+|N^.}) &= E^0_ {abs}(\ce{N+|N^.})+\frac{RT}{F}\,\ln\left[\frac{1+K_{12}\,[X]^2}{1+K_{01}\,[X]+K_{02}\,[X]^2}\right]\\
 	E^f_{abs}(\ce{N^.|N-}) &= E^0_ {abs}(\ce{N^.|N-})+\frac{RT}{F}\,\ln\left[\frac{1+K_{21}\,[X]+K_{22}\,[X]^2}{1+K_{12}\,[X]^2}\right]
 \end{align}
+$K_{ij}= e^{-\frac{\Delta G_{ij}^\star}{RT}}$, where $\Delta G_{ij}^\star$ is the free Gibbs energy [computed with Eq.~\eqref{eq:gtot}] change for a given complexation reaction.
 
 \section{Methodology}
 
@@ -246,8 +247,8 @@ In this work, a value of $\varepsilon_r=80$ ($\varepsilon_r=35$ ) is used for wa
 \section{Results and discussion}
 
 \begin{itemize}
-	\item Structure-activity relationships, on simple results (Fig.~\ref{fig:family}), if possible (see Hodgson et al \cite{hodgsonOneElectronOxidationReduction2007}). Also, comparing water and acetonitrile (Fig.~\ref{fig:watvsac}).
-	\item low-concentration limit: DH corrections
+	\item Structure-activity relationships, on simple results (Figs.~\ref{fig:family}, \ref{fig:corr}), if possible (see Hodgson et al \cite{hodgsonOneElectronOxidationReduction2007}). Also, comparing water and acetonitrile (Fig.~\ref{fig:watvsac}).
+	\item low-concentration limit: DH corrections (Fig.~\ref{fig:DH}).
 	\item High-concentration limit: CIP (also, structure-activity relationship for CIP!) and Matsui.
 	\item Comparison to experiment
 \end{itemize}
