@@ -31,7 +31,7 @@ def plot_solv(ax, data: pandas.DataFrame, column: str, family: str, color: str):
         LABELS_KWARGS[column].append(dict(color=color, ha='center', va='center'))
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-i', '--input', default='Data_pot.csv')
+parser.add_argument('-i', '--input', default='../data/Data_pot.csv')
 parser.add_argument('-r', '--reposition-labels', action='store_true')
 parser.add_argument('-o', '--output', default='Data_pot_solv.pdf')
 

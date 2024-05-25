@@ -45,7 +45,7 @@ def plot_corr_hammet(ax, data: pandas.DataFrame, column: str):
     ax.text(-.7, -result.slope + result.intercept, '$R^2$={:.3f}'.format(result.rvalue **2))
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-i', '--input', default='Data_pot.csv')
+parser.add_argument('-i', '--input', default='../data/Data_pot.csv')
 parser.add_argument('-r', '--reposition-labels', action='store_true')
 parser.add_argument('-o', '--output', default='Data_pot_hammet.pdf')
 

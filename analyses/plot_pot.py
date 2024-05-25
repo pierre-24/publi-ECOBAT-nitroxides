@@ -38,7 +38,7 @@ def plot_family(ax, data: pandas.DataFrame, family: str, color: str):
     ax.add_artist(Ellipse((m_ox, m_red), 2 * std_ox, 2 * std_red, alpha=0.25, facecolor=color))
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-i', '--input', default='Data_pot.csv')
+parser.add_argument('-i', '--input', default='../data/Data_pot.csv')
 parser.add_argument('-r', '--reposition-labels', action='store_true')
 parser.add_argument('-o', '--output', default='Data_pot_{}.pdf'.format(SOLVENT))
 
