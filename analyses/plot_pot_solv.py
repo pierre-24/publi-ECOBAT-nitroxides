@@ -5,7 +5,7 @@ import sys
 import pathlib
 import argparse
 
-from nitroxides.commons import dG_DH, AU_TO_M, LabelPositioner
+from nitroxides.commons import dG_DH, AU_TO_M, LabelPositioner, AU_TO_EV
 
 LABELS = {'E_ox': [], 'E_red': []}
 POINTS_POSITION ={'E_ox': [], 'E_red': []}
@@ -16,11 +16,11 @@ def plot_solv(ax, data: pandas.DataFrame, column: str, family: str, color: str):
     subdata = data[numpy.logical_and(data['solvent'] == 'water', data['family'] == family)].join(data[numpy.logical_and(data['solvent'] == 'acetonitrile', data['family'] == family)].set_index('name'), on='name', lsuffix='wa', rsuffix='ac', how='inner')
     
     if column == 'E_ox':
-        dG_DH_wa = dG_DH(subdata['zwa'] + 1, subdata['zwa'], subdata['r_oxwa'] / AU_TO_M * 1e-10, subdata['r_radwa'] / AU_TO_M * 1e-10, 80, 0)
-        dG_DH_ac = dG_DH(subdata['zac'] + 1, subdata['zac'], subdata['r_oxac'] / AU_TO_M * 1e-10, subdata['r_radac'] / AU_TO_M * 1e-10, 35, 0)
+        dG_DH_wa = dG_DH(subdata['zwa'] + 1, subdata['zwa'], subdata['r_oxwa'] / AU_TO_M * 1e-10, subdata['r_radwa'] / AU_TO_M * 1e-10, 80, 0) * AU_TO_EV
+        dG_DH_ac = dG_DH(subdata['zac'] + 1, subdata['zac'], subdata['r_oxac'] / AU_TO_M * 1e-10, subdata['r_radac'] / AU_TO_M * 1e-10, 35, 0) * AU_TO_EV
     else:
-        dG_DH_wa = dG_DH(subdata['zwa'], subdata['zwa'] - 1, subdata['r_radwa'] / AU_TO_M * 1e-10,  subdata['r_redwa'] / AU_TO_M * 1e-10, 80, 0)
-        dG_DH_ac = dG_DH(subdata['zac'], subdata['zac'] - 1, subdata['r_radac'] / AU_TO_M * 1e-10,  subdata['r_redac'] / AU_TO_M * 1e-10, 35, 0)
+        dG_DH_wa = dG_DH(subdata['zwa'], subdata['zwa'] - 1, subdata['r_radwa'] / AU_TO_M * 1e-10,  subdata['r_redwa'] / AU_TO_M * 1e-10, 80, 0) * AU_TO_EV
+        dG_DH_ac = dG_DH(subdata['zac'], subdata['zac'] - 1, subdata['r_radac'] / AU_TO_M * 1e-10,  subdata['r_redac'] / AU_TO_M * 1e-10, 35, 0) * AU_TO_EV
     
     ax.plot(subdata['{}wa'.format(column)] - dG_DH_wa, subdata['{}ac'.format(column)] - dG_DH_ac, 'o', color=color, label=family.replace('Family.', ''))
     

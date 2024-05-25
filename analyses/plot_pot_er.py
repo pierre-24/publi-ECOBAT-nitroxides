@@ -7,7 +7,7 @@ import scipy
 import argparse
 
 from scipy.spatial import distance_matrix
-from nitroxides.commons import dG_DH, AU_TO_M, LabelPositioner
+from nitroxides.commons import dG_DH, AU_TO_M, LabelPositioner, AU_TO_EV
 
 LABELS = {'E_ox': [], 'E_red': []}
 POINTS_POSITION ={'E_ox': [], 'E_red': []}
@@ -18,9 +18,9 @@ def plot_Er(ax, data: pandas.DataFrame, column: str, family: str, color: str):
     subdata = data[(data['solvent'] == 'water') &  (data['family'] == family) & data['px'].notnull()]
     
     if column == 'E_ox':
-        dG_DH_ = dG_DH(subdata['z'] + 1, subdata['z'], subdata['r_ox'] / AU_TO_M * 1e-10, subdata['r_rad'] / AU_TO_M * 1e-10, 80, 0)
+        dG_DH_ = dG_DH(subdata['z'] + 1, subdata['z'], subdata['r_ox'] / AU_TO_M * 1e-10, subdata['r_rad'] / AU_TO_M * 1e-10, 80, 0) * AU_TO_EV
     else:
-        dG_DH_ = dG_DH(subdata['z'], subdata['z'] - 1, subdata['r_rad'] / AU_TO_M * 1e-10,  subdata['r_red'] / AU_TO_M * 1e-10, 80, 0)
+        dG_DH_ = dG_DH(subdata['z'], subdata['z'] - 1, subdata['r_rad'] / AU_TO_M * 1e-10,  subdata['r_red'] / AU_TO_M * 1e-10, 80, 0) * AU_TO_EV
     
     Er = subdata['px'] / subdata['r'] ** 2 + subdata['Qxx'] / subdata['r'] ** 3
     ax.plot(Er, subdata[column]  - dG_DH_, 'o', color=color, label=family.replace('Family.', ''))
@@ -35,9 +35,9 @@ def plot_corr_Er(ax, data: pandas.DataFrame, column: str):
     subdata = data[(data['solvent'] == 'water') & data['px'].notnull()]
     
     if column == 'E_ox':
-        dG_DH_ = dG_DH(subdata['z'] + 1, subdata['z'], subdata['r_ox'] / AU_TO_M * 1e-10, subdata['r_rad'] / AU_TO_M * 1e-10, 80, 0)
+        dG_DH_ = dG_DH(subdata['z'] + 1, subdata['z'], subdata['r_ox'] / AU_TO_M * 1e-10, subdata['r_rad'] / AU_TO_M * 1e-10, 80, 0) * AU_TO_EV
     else:
-        dG_DH_ = dG_DH(subdata['z'], subdata['z'] - 1, subdata['r_rad'] / AU_TO_M * 1e-10,  subdata['r_red'] / AU_TO_M * 1e-10, 80, 0)
+        dG_DH_ = dG_DH(subdata['z'], subdata['z'] - 1, subdata['r_rad'] / AU_TO_M * 1e-10,  subdata['r_red'] / AU_TO_M * 1e-10, 80, 0) * AU_TO_EV
         
     result = scipy.stats.linregress(subdata['px'] / subdata['r'] ** 2 + subdata['Qxx'] / subdata['r'] ** 3, subdata[column]  - dG_DH_)
     

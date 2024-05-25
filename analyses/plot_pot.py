@@ -6,7 +6,7 @@ import pathlib
 import argparse
 from scipy.spatial import distance_matrix
 from matplotlib.patches import Ellipse
-from nitroxides.commons import dG_DH, AU_TO_M, LabelPositioner
+from nitroxides.commons import dG_DH, AU_TO_M, LabelPositioner, AU_TO_EV
 
 SOLVENT = 'water'
 
@@ -19,8 +19,8 @@ def plot_family(ax, data: pandas.DataFrame, family: str, color: str):
     subdata = data[numpy.logical_and(data['family'] == family, data['solvent'] == SOLVENT)]
     epsilon_r = 80 if SOLVENT == 'water' else 35
     
-    dG_DH_ox0 = dG_DH(subdata['z'] + 1, subdata['z'], subdata['r_ox'] / AU_TO_M * 1e-10, subdata['r_rad'] / AU_TO_M * 1e-10, epsilon_r, 0)
-    dG_DH_red0 = dG_DH(subdata['z'], subdata['z'] - 1, subdata['r_rad'] / AU_TO_M * 1e-10,  subdata['r_red'] / AU_TO_M * 1e-10, epsilon_r, 0)
+    dG_DH_ox0 = dG_DH(subdata['z'] + 1, subdata['z'], subdata['r_ox'] / AU_TO_M * 1e-10, subdata['r_rad'] / AU_TO_M * 1e-10, epsilon_r, 0) * AU_TO_EV
+    dG_DH_red0 = dG_DH(subdata['z'], subdata['z'] - 1, subdata['r_rad'] / AU_TO_M * 1e-10,  subdata['r_red'] / AU_TO_M * 1e-10, epsilon_r, 0) * AU_TO_EV
     
     ax.plot(subdata['E_ox'] - dG_DH_ox0, subdata['E_red'] - dG_DH_red0, 'o', color=color, label=family.replace('Family.', ''))
     

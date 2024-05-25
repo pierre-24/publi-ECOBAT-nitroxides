@@ -9,6 +9,9 @@ AU_TO_M = 5.291772e-11  # m
 KB = 3.166811563e-6  # Eh / K
 AVOGADRO = 6.02214076e23  # mol⁻¹
 
+AU_TO_EV = 27.212
+AU_TO_KJMOL = 2625.5
+
 
 def kappa2(C: float, z: int, eps_r: float, T: float = 298.15) -> float:
     # n = N / V
@@ -20,7 +23,7 @@ def kappa2(C: float, z: int, eps_r: float, T: float = 298.15) -> float:
     return k2
 
 def G_DH(z: float, kappa: float, epsilon_r: float, a: float) -> float:
-    G = -27.212 * z **2 / epsilon_r * kappa / (kappa * a) ** 3 * (numpy.log(1 +  kappa * a) - kappa * a + .5 * (kappa * a) ** 2)  # in eV
+    G = -1 * z **2 / epsilon_r * kappa / (kappa * a) ** 3 * (numpy.log(1 +  kappa * a) - kappa * a + .5 * (kappa * a) ** 2)  # in Ha
     G[kappa < 1e-5] = 0
     
     return G
@@ -30,7 +33,7 @@ def dG_DH(z_reac: int, z_prod: int, a_reac: float, a_prod: float, epsilon_r: flo
     kappa_reac = numpy.sqrt(kappa2(c_act, z_reac, epsilon_r) + kappa2(c_act, -z_reac, epsilon_r) + kappa2(c_elt, z_elt, epsilon_r) + kappa2(c_elt, -z_elt, epsilon_r))  # in bohr⁻¹
     kappa_prod = numpy.sqrt(kappa2(c_act, z_prod, epsilon_r) + kappa2(c_act, -z_prod, epsilon_r) + kappa2(c_elt, z_elt, epsilon_r) + kappa2(c_elt, -z_elt, epsilon_r))  # in bohr⁻¹
     
-    dG = G_DH(z_prod, kappa_prod, epsilon_r, a_prod) - G_DH(z_reac, kappa_reac, epsilon_r, a_reac)
+    dG = G_DH(z_prod, kappa_prod, epsilon_r, a_prod) - G_DH(z_reac, kappa_reac, epsilon_r, a_reac)  # in Ha
     
     return dG
     
