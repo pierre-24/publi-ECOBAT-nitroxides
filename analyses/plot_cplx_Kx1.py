@@ -5,13 +5,7 @@ import sys
 import argparse
 
 from matplotlib.ticker import AutoMinorLocator, MultipleLocator
-from nitroxides.commons import G_DH, AU_TO_M, AU_TO_KJMOL, kappa2
-
-# from wB97X-D/6-311+G(d)
-G_NME4 = {'water': -214.096721, 'acetonitrile': -214.104109}
-G_BF4 = {'water': -424.654435, 'acetonitrile': -424.656267}
-RADII_NME4 = {'water': 2.108130614275878, 'acetonitrile': 2.098320849223868}
-RADII_BF4 = {'water': 1.151806660832909, 'acetonitrile': 1.1520489206428235}
+from nitroxides.commons import G_DH, AU_TO_M, AU_TO_KJMOL, kappa2, G_NME4, G_BF4, RADII_BF4, RADII_NME4
 
 T = 298.15
 R = 8.3145e-3 # kJ mol⁻¹
@@ -93,7 +87,7 @@ ax2.xaxis.set_minor_locator(MultipleLocator(2))
 ax2.grid(which='both', axis='x')
 ax2.plot([0, 62], [0, 0], '-', color='grey')
 
-[ax.set_ylabel('-log(K)') for ax in [ax1, ax2]]
+[ax.set_ylabel('log(K)') for ax in [ax1, ax2]]
 
 plt.tight_layout()
 figure.savefig(args.output)
