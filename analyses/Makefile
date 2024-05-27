@@ -5,4 +5,5 @@ all:
 	python plot_pot_DH.py -o ../Figure8.pdf
 	python  plot_cplx_Kx1.py -o ../Figure9.pdf
 	python  plot_cplx_Kx2.py -o ../Figure10.pdf
-	python plot_pot_hammet.py -o ../FigureS1.pdf
+	python plot_DH.py -o ../FigureS1.pdf
+	python plot_pot_hammet.py -o ../FigureS2.pdf
