@@ -14,6 +14,11 @@ POINTS_POSITION ={'E_ox': [], 'E_red': []}
 LABELS_KWARGS = {'E_ox': [], 'E_red': []}
 LABELS_PATH = {'E_ox': pathlib.Path('pot_er_ox.pos'), 'E_red': pathlib.Path('pot_er_red.pos')}
 
+EXCLUDE = [
+    7, 19, 28, # ethyls
+    9, 10, 20, 30, 31, 32, 33, 40, 41, 42, 43, 44, 45, 46, 47, 48, 55, # di-substituted
+]
+
 def plot_Er(ax, data: pandas.DataFrame, column: str, family: str, color: str):
     subdata = data[(data['solvent'] == 'water') &  (data['family'] == family) & data['px'].notnull()]
     
@@ -23,7 +28,12 @@ def plot_Er(ax, data: pandas.DataFrame, column: str, family: str, color: str):
         dG_DH_ = dG_DH(subdata['z'], subdata['z'] - 1, subdata['r_rad'] / AU_TO_M * 1e-10,  subdata['r_red'] / AU_TO_M * 1e-10, 80, 0) * AU_TO_EV
     
     Er = subdata['px'] / subdata['r'] ** 2 + subdata['Qxx'] / subdata['r'] ** 3
-    ax.plot(Er, subdata[column]  - dG_DH_, 'o', color=color, label=family.replace('Family.', ''))
+    
+    excluded_ = [int(x.replace('mol_', '')) in EXCLUDE for x in subdata['name']]
+    not_excluded_ = [not x for x in excluded_]
+    
+    ax.plot(Er[not_excluded_], subdata[not_excluded_][column]  - dG_DH_[not_excluded_], 'o', color=color, label=family.replace('Family.', ''))
+    ax.plot(Er[excluded_], subdata[excluded_][column]  - dG_DH_[excluded_], '^', color=color)
 
     for name, er, e in zip(subdata['name'], Er, subdata[column]  - dG_DH_):
         name = name.replace('mol_', '')
@@ -33,6 +43,7 @@ def plot_Er(ax, data: pandas.DataFrame, column: str, family: str, color: str):
 
 def plot_corr_Er(ax, data: pandas.DataFrame, column: str):
     subdata = data[(data['solvent'] == 'water') & data['px'].notnull()]
+    subdata = subdata[[int(x.replace('mol_', '')) not in EXCLUDE for x in subdata['name']]]
     
     if column == 'E_ox':
         dG_DH_ = dG_DH(subdata['z'] + 1, subdata['z'], subdata['r_ox'] / AU_TO_M * 1e-10, subdata['r_rad'] / AU_TO_M * 1e-10, 80, 0) * AU_TO_EV
@@ -43,7 +54,7 @@ def plot_corr_Er(ax, data: pandas.DataFrame, column: str):
     
     x = numpy.array([-.2, 1.2])
     ax.plot(x, result.slope*x + result.intercept, 'k--')
-    ax.text(1,  result.slope+result.intercept+.05, '$R^2$={:.3f}'.format(result.rvalue **2))
+    ax.text(.95,  .95*result.slope+result.intercept+.05, '$R^2$={:.3f}'.format(result.rvalue **2))
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', default='../data/Data_pot.csv')
