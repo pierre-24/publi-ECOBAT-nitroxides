@@ -87,7 +87,7 @@ ax2.xaxis.set_minor_locator(MultipleLocator(2))
 ax2.grid(which='both', axis='x')
 ax2.plot([0, 62], [0, 0], '-', color='grey')
 
-[ax.set_ylabel('log(K)') for ax in [ax1, ax2]]
+[ax.set_ylabel('log$_{10}$(K)') for ax in [ax1, ax2]]
 
 plt.tight_layout()
 figure.savefig(args.output)
