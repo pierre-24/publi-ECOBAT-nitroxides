@@ -17,6 +17,7 @@ LABELS_PATH = {'E_ox': pathlib.Path('pot_er_ox.pos'), 'E_red': pathlib.Path('pot
 EXCLUDE = [
     7, 19, 28, # ethyls
     9, 10, 20, 30, 31, 32, 33, 40, 41, 42, 43, 44, 45, 46, 47, 48, 55, # di-substituted
+    56, 58, # ?!?
 ]
 
 def plot_Er(ax, data: pandas.DataFrame, column: str, family: str, color: str):
@@ -52,9 +53,9 @@ def plot_corr_Er(ax, data: pandas.DataFrame, column: str):
         
     result = scipy.stats.linregress(subdata['px'] / subdata['r'] ** 2 + subdata['Qxx'] / subdata['r'] ** 3, subdata[column]  - dG_DH_)
     
-    x = numpy.array([-.2, 1.2])
+    x = numpy.array([-.2, 1.5])
     ax.plot(x, result.slope*x + result.intercept, 'k--')
-    ax.text(.95,  .95*result.slope+result.intercept+.05, '$R^2$={:.3f}'.format(result.rvalue **2))
+    ax.text(1.2,  1.2*result.slope+result.intercept+.05, '$R^2$={:.3f}'.format(result.rvalue **2))
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', default='../data/Data_pot.csv')
@@ -84,7 +85,7 @@ positioner = LabelPositioner.from_file(
 )
 
 if args.reposition_labels: 
-    positioner.optimize(dx=1e-4, beta=1e4, krep=1, kspring=10000, c=0.02, b0=0.015, scale=(.3, 1))
+    positioner.optimize(dx=1e-3, beta=1e4, krep=1, kspring=10000, c=0.02, b0=0.015, scale=(.2, 1))
     positioner.save(LABELS_PATH['E_ox'])
 
 positioner.add_labels(ax3)
@@ -103,7 +104,7 @@ positioner = LabelPositioner.from_file(
 )
 
 if args.reposition_labels:
-    positioner.optimize(dx=1e-3, beta=1e4,  krep=1, kspring=10000, c=0.02, b0=0.015, scale=(.3, 1))
+    positioner.optimize(dx=1e-3, beta=1e4,  krep=1, kspring=10000, c=0.02, b0=0.015, scale=(.2, 1))
     positioner.save(LABELS_PATH['E_red'])
 
 positioner.add_labels(ax4)

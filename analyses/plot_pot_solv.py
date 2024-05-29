@@ -60,7 +60,7 @@ positioner = LabelPositioner.from_file(
 )
 
 if args.reposition_labels:
-    positioner.optimize(dx=1e-3, beta=1e6, krep=1, kspring=1000, c=0.05, b0=0.015)
+    positioner.optimize(dx=1e-3, beta=1e5, krep=1, kspring=1000, c=0.05, b0=0.015)
     positioner.save(LABELS_PATH['E_ox'])
 
 positioner.add_labels(ax1)
@@ -82,7 +82,7 @@ positioner = LabelPositioner.from_file(
 )
 
 if args.reposition_labels:
-    positioner.optimize(dx=1e-3, beta=1e4, krep=1, kspring=1000, c=0.3, b0=0.05)
+    positioner.optimize(dx=1e-2, beta=1e4, krep=1, kspring=1000, c=0.3, b0=0.05)
     positioner.save(LABELS_PATH['E_red'])
 
 positioner.add_labels(ax2)
