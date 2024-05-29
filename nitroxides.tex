@@ -287,7 +287,7 @@ While this model fails to account for the effect of the substitution of methyls 
 
 \subsection{Impact of the solvent}
 
-Before turning to the impact of electrolytes solution, the difference between potentials computed in water and acetonitrile is reported in Fig.~\ref{fig:watvsac}: except for compound \textbf{12}, the oxidation potential is only slightly affected, while there is a difference of $>$\SI{0.5}{\volt} for the reduction potentials. As a first approximation, the Born model [Eq.~\eqref{eq:born}] can explain these results: for the oxidation, the change in potentials in the two solvent, $E^0_{ac} - E^0_{wa}$, is proportional to $ \varepsilon_{r,ac}^{-1}-\varepsilon_{r,wa}^{-1}$, which is positive (assuming that \ce{N^.} is neutral, which is the case for the subset of compounds considered here), while for the reduction, it is proportional to $ \varepsilon_{r,wa}^{-1}-\varepsilon_{r,ac}^{-1}$, which is negative.
+Before turning to the impact of electrolytes solution, the difference between redox potentials computed in water and acetonitrile is reported in Fig.~\ref{fig:watvsac}: except for compound \textbf{12}, the oxidation potential is only slightly affected, while there is a difference of $>$\SI{0.5}{\volt} for the reduction potentials. As a first approximation, the Born model [Eq.~\eqref{eq:born}] can explain these results: for the oxidation, the change in potentials in the two solvent, $E^0_{ac} - E^0_{wa}$, is proportional to $ \varepsilon_{r,ac}^{-1}-\varepsilon_{r,wa}^{-1}$, which is positive (assuming that \ce{N^.} is neutral, which is the case for the subset of compounds considered here), while for the reduction, it is proportional to $ \varepsilon_{r,wa}^{-1}-\varepsilon_{r,ac}^{-1}$, which is negative.  Since this impact is systematic, similar trends between redox potentials in water and acetonitrile are expected.
 
 \begin{figure}[!h]
 	\centering
@@ -295,6 +295,10 @@ Before turning to the impact of electrolytes solution, the difference between po
 	\caption{Comparison between absolute oxidation (left) and reduction (right) potentials of nitroxides as computed at the $\omega$B97X-D/6-311+G(d) level in water and acetonitrile (SMD), with $[\ce{X}]=\SI{0}{\mole\per\liter}$. The dashed line represents no change. }
 	\label{fig:watvsac}
 \end{figure}
+
+\subsection{Impact of the electrolytes}
+
+So far, the concentration in electrolyte, $[X]$, was set to zero. To assess its impact on the redox potentials, the DH correction is first scrutinized in Fig.~\ref{fig:DH}. As expected, it is small in the range of concentration considered here (a few hundredth of \si{\volt} for $[X] \leq \SI{1}{\mole\per\liter}$ and larger in acetonitrile) and it increases with $[X]$. Its sign is different for oxidation and reduction potential. It is also smaller for compounds belonging to the IIO and APO family (being larger molecules with larger $a$), but larger for species with a net positive charge (\textbf{11}, \textbf{21}, \textbf{35}) for which the correction for oxidation and reduction are negative. 
 
 
 \begin{figure}[!h]
@@ -320,6 +324,7 @@ Before turning to the impact of electrolytes solution, the difference between po
 \label{fig:Kx2}
 \end{figure}
 
+\clearpage
 \section{Conclusion}
 
 Well.
