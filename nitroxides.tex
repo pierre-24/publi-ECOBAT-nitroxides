@@ -175,10 +175,18 @@ to be used in Eq.~\eqref{eq:nernst}. It should provide similar results to the ap
 
 \subsection{Model for the impact of the substituent}
 
-In 2018, a simple model have been proposed by Zhang \textit{et al} \cite{zhangEffectHeteroatomFunctionality2018} in which change in oxidation potential in nitroxide compounds is explained by the electrostatic interaction between the substituent(s) and the charge formed upon oxidation ($>$\ce{N+=O}). Said interaction may be written as a  multipole expansion, which they proposed to truncated after third order:\begin{equation}
+In 2018, a simple model have been proposed by Zhang \textit{et al} \cite{zhangEffectHeteroatomFunctionality2018} in which change in oxidation potential in nitroxide compounds is explained by the electrostatic interaction between the substituent(s) and the charge formed upon oxidation or reduction.  In first approximation, charge-dipole interactions are stabilizing the oxiamonium ( $>$\ce{N+=O}) if the dipole is aligned with the charge, while this destabilize the hydroxylamine ( $>$\ce{N-O-}), both resulting in a decrease of the redox potential (Fig.~\ref{fig:dipole}).
+The electrostatic interaction may be further expanded as a  multipole expansion, which they proposed to truncated after third order, to include the large quadrupole moment of aromatic compounds:\begin{equation}
 	U_q(r) = \frac{\mu_x}{r^2} + \frac{Q_{xx}}{r^3}, \label{eq:Er}
 \end{equation}
-assuming a non-charged substituent. The different quantities (dipole moment, $\mu_x$, and traceless quadrupole moment, $Q_{xx}$) are evaluated through a single point calculation in gas phase on a simplified structure, using the geometry of the radical but where the $>$\ce{N-O^.} moiety is substituted by \ce{CH_2} (the rest of the geometry is kept fixed). This geometry is oriented so that the $x$ axis pass through the nitrogen and the carbon bearing the substituent (placed at the origin), $r$ being the distance between these two points. Note that this definition for the origin is different from the original model, since  Zhang and co-workers did not consider multiple positions for a given substituent. 
+assuming a non-charged substituent. The different quantities (dipole moment, $\mu_x$, and traceless quadrupole moment, $Q_{xx}$) are evaluated through a single point calculation in gas phase on a simplified structure, using the geometry of the radical but where the $>$\ce{N-O^.} moiety is substituted by \ce{CH_2} (the rest of the geometry is kept fixed).  Since the alignment of the dipole with the charge need to be evaluated, this geometry is oriented so that the $x$ axis pass through origin and the nitrogen, the origin being placed at the carbon bearing the substituent. $r$ is the origin-nitrogen distance. Note that this definition for the origin is different from the original model, since  Zhang and co-workers did not consider multiple positions for a given substituent. 
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=.7\linewidth]{Figure2}
+	\caption{Impact of the dipole orientation of the substituent on the redox potential when the dipole is oriented in  the positive $x$ direction (red) or not (blue). Adapted from Ref.~\citenum{zhangEffectHeteroatomFunctionality2018}.}
+	\label{fig:dipole}
+\end{figure}
 
 
 \subsection{Impact of ion-pair formation on redox potentials}
@@ -214,7 +222,7 @@ To model the impact of the electrolyte on the redox potential, the formation of 
 		\node[below of=N2cc] (N3cc) {\ce{NAC-}};
 		\arrwy{N3cc.east}{N3.west}{$K_{22}$}
 	\end{tikzpicture}
-	\caption{Scheme illustrating the different possible reactions: \ce{N+} and \ce{N-} are the oxidized and reduced forms of a given nitroxide, \ce{N^.}, and \ce{C+} and \ce{A-} are the countercation and anion coming from electrolyte, respectively. Horizontal arrows are ion-pairing reactions (with the i\ce{AC} pair in left, with a single counterion in right), while vertical arrows are electrochemical reactions.}
+	\caption{Scheme illustrating the different possible reactions: \ce{N+} and \ce{N-} are the oxidized and reduced forms of a given nitroxide, \ce{N^.}, and \ce{C+} and \ce{A-} are the countercation and anion coming from electrolyte, respectively. Horizontal arrows are ion-pairing reactions (with the \ce{AC} pair in left, with a single counterion in right), while vertical arrows are electrochemical reactions.}
 	\label{fig:cip}
 \end{figure}
 
@@ -295,12 +303,12 @@ This latter parameter only has a minor influence, but pair formation is favored 
 \begin{itemize}
 	\item the systems (Fig.~\ref{fig:nitroxides}), plus the electrolytes that were considered.
 	\item $a$ computed as the largest distance between two atoms in the system
-	\item Absolute to relative potentials
+	\item Absolute to relative potentials (?)
 \end{itemize}
 
 \begin{figure}[!p]
 \centering
-\includegraphics[width=\linewidth]{Figure5}
+\includegraphics[width=\linewidth]{Figure6}
 \caption{The different nitroxides considered in this work, sorted by families. Compounds \textbf{1}-\textbf{54} are from Ref.~\citenum{hodgsonOneElectronOxidationReduction2007}, while compounds \textbf{55}-\textbf{61} where considered for completeness. Experimental (reduction or oxidation) potentials are available in water if the number is written in red, while they are available in acetonitrile if the number is underlined.}
 \label{fig:nitroxides}
 \end{figure}
@@ -324,7 +332,7 @@ Oxidation and reduction potentials of the nitroxide radicals in water, grouped b
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=.9\linewidth]{Figure6}
+	\includegraphics[width=.9\linewidth]{Figure7}
 	\caption{Relationship between absolute oxidation and reduction potentials of nitroxides, as computed at the $\omega$B97X-D/6-311+G(d) level in water (SMD), with $[\ce{X}]=\SI{0}{\mole\per\liter}$. The color indicate the family (Fig.~\ref{fig:nitroxides}). For each of them, an ellipse is drawn, centered on the mean potential value among the family, and which width and height are given by the standard deviations.}
 	\label{fig:family}
 \end{figure}
@@ -341,7 +349,7 @@ To explain these effects, correlation of both potentials with Hammet constants h
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=\linewidth]{Figure7}
+\includegraphics[width=\linewidth]{Figure8}
 \caption{Relationship between absolute oxidation (top) and reduction (bottom) potentials of nitroxides and the electrostatic potential between the redox center ($>$\ce{N-O^.}) and the substituent, as computed at the $\omega$B97X-D/6-311+G(d) level in water (SMD), with $[\ce{X}]=\SI{0}{\mole\per\liter}$. Triangular marker ($\blacktriangle$) indicates results that are excluded from the correlation (see text).}
 \label{fig:corr} 
 \end{figure}
@@ -352,7 +360,7 @@ The difference between redox potentials computed in water and acetonitrile is re
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=\linewidth]{Figure8}
+	\includegraphics[width=\linewidth]{Figure9}
 	\caption{Comparison between absolute oxidation (left) and reduction (right) potentials of nitroxides as computed at the $\omega$B97X-D/6-311+G(d) level in water and acetonitrile (SMD), with $[\ce{X}]=\SI{0}{\mole\per\liter}$. The dashed line represents no change. }
 	\label{fig:watvsac}
 \end{figure}
@@ -364,7 +372,7 @@ So far, the concentration in electrolyte, $[X]$, was set to zero. To assess its 
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=\linewidth]{Figure9}
+	\includegraphics[width=\linewidth]{Figure10}
 	\caption{Impact of the Debye-Huckel correction, as $\Delta E^0 = -\frac{\Delta \Delta G_{DH}^\star}{F}$ for $[X]=\SI{1}{\mole\per\liter}$ (round markers), $[X]=\SI{0.1}{\mole\per\liter}$ (triangular markers, $\blacktriangle$)  and $[\ce{X}]=\SI{0}{\mole\per\liter}$ (square markers, $\blacksquare$), as computed at the $\omega$B97X-D/6-311+G(d) level in water (top) and acetonitrile (bottom) using SMD. Filled (empty) markers represent the correction to the oxidation (reduction) potential. }
 	\label{fig:DH}
 \end{figure}
@@ -372,7 +380,7 @@ So far, the concentration in electrolyte, $[X]$, was set to zero. To assess its 
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=\linewidth]{Figure10}
+\includegraphics[width=\linewidth]{Figure11}
 \caption{Value of the complexation equilibrium constants $K_{01}$ (round markers, $\bullet$) and $K_{21}$ (square markers, $\blacksquare$) for the 3 oxidation state of nitroxides, as computed at the $\omega$B97X-D/6-311+G(d) level in water (top) and acetonitrile (bottom) using SMD and $[X]=\SI{1}{\mole\per\liter}$.  The dashed line is there to help visualization. }
 \label{fig:Kx1}
 \end{figure}
@@ -380,7 +388,7 @@ So far, the concentration in electrolyte, $[X]$, was set to zero. To assess its 
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=\linewidth]{Figure11}
+\includegraphics[width=\linewidth]{Figure12}
 \caption{Value of the complexation equilibrium constants $K_{02}$ (round markers, $\bullet$), $K_{12}$ (triangular markers, $\blacktriangle$) and $K_{22}$ (square markers, $\blacksquare$) for the 3 oxidation state of nitroxides, as computed at the $\omega$B97X-D/6-311+G(d) level in water (top) and acetonitrile (bottom) using SMD and $[X]=\SI{1}{\mole\per\liter}$.  The dashed line is there to help visualization. }
 \label{fig:Kx2}
 \end{figure}

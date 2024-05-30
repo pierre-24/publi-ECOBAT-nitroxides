@@ -1,10 +1,10 @@
 all:
-	python plot_pot.py -o ../Figure6.pdf
-	python plot_pot_er.py -o ../Figure7.pdf
-	python plot_pot_solv.py -o ../Figure8.pdf
-	python plot_pot_DH.py -o ../Figure9.pdf
-	python  plot_cplx_Kx1.py -o ../Figure10.pdf
-	python  plot_cplx_Kx2.py -o ../Figure11.pdf
+	python plot_pot.py -o ../Figure7.pdf
+	python plot_pot_er.py -o ../Figure8.pdf
+	python plot_pot_solv.py -o ../Figure9.pdf
+	python plot_pot_DH.py -o ../Figure10.pdf
+	python  plot_cplx_Kx1.py -o ../Figure11.pdf
+	python  plot_cplx_Kx2.py -o ../Figure12.pdf
 	python plot_DH.py -o ../FigureS1.pdf
 	python plot_CIP.py -o ../FigureS2.pdf
 	python plot_pairs.py -o ../FigureS3.pdf
