@@ -5,12 +5,12 @@ import sys
 import argparse
 
 from matplotlib.ticker import AutoMinorLocator, MultipleLocator
-from nitroxides.commons import G_DH, AU_TO_M, AU_TO_KJMOL, kappa2, G_NME4, G_BF4, RADII_BF4, RADII_NME4
+from nitroxides.commons import G_DH, AU_TO_M, AU_TO_KJMOL, kappa2, G_NME4, G_BF4, RADII_BF4, RADII_NME4, C_NITROXIDE
 
 T = 298.15
 R = 8.3145e-3 # kJ mol⁻¹
 
-def dG_DH_cplx(z_reac: int, z_prod: int, z_ct: int, a_reac: float, a_prod: float, a_ct1: float, a_ct2: float, epsilon_r: float, c_act: float = 0.1, c_elt: float = 1, z_elt: float = 1):
+def dG_DH_cplx(z_reac: int, z_prod: int, z_ct: int, a_reac: float, a_prod: float, a_ct1: float, a_ct2: float, epsilon_r: float, c_act: float = C_NITROXIDE, c_elt: float = 1, z_elt: float = 1):
     # complexation reaction correction!
     kappa_reac = numpy.sqrt(kappa2(c_act, z_reac, epsilon_r) + kappa2(c_act, -z_reac, epsilon_r) + kappa2(c_elt, z_elt, epsilon_r) + kappa2(c_elt, -z_elt, epsilon_r))  # in bohr⁻¹
     kappa_prod = numpy.sqrt(kappa2(c_act, z_prod, epsilon_r) + kappa2(c_act, -z_prod, epsilon_r) + kappa2(c_elt, z_elt, epsilon_r) + kappa2(c_elt, -z_elt, epsilon_r))  # in bohr⁻¹
@@ -19,7 +19,7 @@ def dG_DH_cplx(z_reac: int, z_prod: int, z_ct: int, a_reac: float, a_prod: float
     
     return dG
 
-def plot_Kx2(ax, data: pandas.DataFrame, family: str, solvent: str, epsilon_r: float, color: str, c_act:float = 0.1, c_elt: float = 1, z_elt: float = 1):
+def plot_Kx2(ax, data: pandas.DataFrame, family: str, solvent: str, epsilon_r: float, color: str):
     subdata = data[(data['family'] == family) & (data['solvent'] == solvent)]
     
     dG_DH_k02 = dG_DH_cplx(subdata['z'] + 1, subdata['z'] + 1, 1, subdata['r_A_ox'], subdata['r_AX_ox'], RADII_NME4[solvent], RADII_BF4[solvent], epsilon_r)
@@ -38,7 +38,7 @@ def plot_Kx2(ax, data: pandas.DataFrame, family: str, solvent: str, epsilon_r: f
     ax.plot([int(x.replace('mol_', '')) for x in subdata['name']], numpy.log10(k12), '^', color=color)
     ax.plot([int(x.replace('mol_', '')) for x in subdata['name']], numpy.log10(k22), 's', color=color)
 
-def helpline_K02(ax, data: pandas.DataFrame, solvent: str, epsilon_r: float, color: str = 'black', c_act:float = 0.1, c_elt: float = 1, z_elt: float = 1):
+def helpline_K02(ax, data: pandas.DataFrame, solvent: str, epsilon_r: float, color: str = 'black'):
     subdata = data[data['solvent'] == solvent]
     
     dG_DH_k12 = dG_DH_cplx(subdata['z'], subdata['z'], 1, subdata['r_A_rad'], subdata['r_AX_rad'], RADII_NME4[solvent], RADII_BF4[solvent], epsilon_r)

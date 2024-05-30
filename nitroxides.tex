@@ -100,7 +100,9 @@ This is an introduction. It will contain:\begin{itemize}
 
 \section{Theory}
 
-\subsection{Redox potential of an ion in solution}
+In this section, different qualitative and quantitative models used in the analysis of the results are reviewed.
+
+\subsection{Redox potentials in solution}
 
 According to Ref.~\cite{marenichComputationalElectrochemistryPrediction2014}, the absolute reduction potential $E_{abs}^0$ (in \si{\volt}) of the half-reaction of reduction of $X^z$, $X^{z} + n_e\,e^- \rightarrow X^{z-n_e}$, reads: \begin{equation}
 	E_{abs}^0(X^{z}|X^{z-n_e}) = -\frac{\Delta G_{r}^\star}{n_e\,F}, \text{ with } \Delta G_{r}^\star = G^\star(X^{z-n_e}) - G^\star(X^z), \label{eq:nernst}
@@ -175,11 +177,7 @@ to be used in Eq.~\eqref{eq:nernst}. It should provide similar results to the ap
 
 \subsection{Model for the impact of the substituent}
 
-In 2018, a simple model have been proposed by Zhang \textit{et al} \cite{zhangEffectHeteroatomFunctionality2018} in which change in oxidation potential in nitroxide compounds is explained by the electrostatic interaction between the substituent(s) and the charge formed upon oxidation or reduction.  In first approximation, charge-dipole interactions are stabilizing the oxiamonium ( $>$\ce{N+=O}) if the dipole is aligned with the charge, while this destabilize the hydroxylamine ( $>$\ce{N-O-}), both resulting in a decrease of the redox potential (Fig.~\ref{fig:dipole}).
-The electrostatic interaction may be further expanded as a  multipole expansion, which they proposed to truncated after third order, to include the large quadrupole moment of aromatic compounds:\begin{equation}
-	U_q(r) = \frac{\mu_x}{r^2} + \frac{Q_{xx}}{r^3}, \label{eq:Er}
-\end{equation}
-assuming a non-charged substituent. The different quantities (dipole moment, $\mu_x$, and traceless quadrupole moment, $Q_{xx}$) are evaluated through a single point calculation in gas phase on a simplified structure, using the geometry of the radical but where the $>$\ce{N-O^.} moiety is substituted by \ce{CH_2} (the rest of the geometry is kept fixed).  Since the alignment of the dipole with the charge need to be evaluated, this geometry is oriented so that the $x$ axis pass through origin and the nitrogen, the origin being placed at the carbon bearing the substituent. $r$ is the origin-nitrogen distance. Note that this definition for the origin is different from the original model, since  Zhang and co-workers did not consider multiple positions for a given substituent. 
+In first approximation, the electrostatic interaction between the substituent(s) and the charge formed upon oxidation or reduction affects the redox potential of nitroxides. In particular, assuming a non-charged substituent, charge-dipole interactions are stabilizing the oxiamonium ( $>$\ce{N+=O}) if the dipole is aligned with the charge, while this destabilize the hydroxylamine ( $>$\ce{N-O-}), both resulting in a decrease of the redox potential (Fig.~\ref{fig:dipole}). Within this framework, it is therefore expected that donor substituent have lower redox potential than acceptor.
 
 \begin{figure}[!h]
 	\centering
@@ -188,10 +186,19 @@ assuming a non-charged substituent. The different quantities (dipole moment, $\m
 	\label{fig:dipole}
 \end{figure}
 
+In 2018, this model has been extended and applied by Zhang \textit{et al} \cite{zhangEffectHeteroatomFunctionality2018} to the oxidation potential. They further expanded the electrostatic interaction as  multipoles, truncated after third order, to include the large quadrupole moment of aromatic compounds:\begin{equation}
+	U_q(r) = \frac{\mu_x}{r^2} + \frac{Q_{xx}}{r^3}, \label{eq:Er}
+\end{equation}
+assuming a non-charged substituent. The different quantities (dipole moment, $\mu_x$, and traceless quadrupole moment, $Q_{xx}$) are evaluated through a single point calculation on a simplified structure, using the geometry of the radical where the $>$\ce{N-O^.} moiety is substituted by \ce{CH_2}.  In this contribution, since the alignment of the dipole with the charge need to be accounted for, this geometry is oriented so that the $x$ axis pass through origin and the nitrogen, the origin being placed at the carbon bearing the substituent. $r$ is the origin-nitrogen distance. This definition for the origin is different from the original model, since  Zhang and co-workers did not consider multiple positions for a given substituent. 
+
 
 \subsection{Impact of ion-pair formation on redox potentials}
 
-To model the impact of the electrolyte on the redox potential, the formation of ion pairs is considered (Fig.~\ref{fig:cip}).  Here, the electrolyte is composed of a pair \ce{AC}, where \ce{A-} and \ce{C+} are a cation and an ion, respectively.  Being favored by electrostatic interactions, the close-contact pairing of the oxidized (\ce{N+}) and reduced (\ce{N-}) state of nitroxide (\ce{N^.}) with its corresponding counterion (\ce{A-} and  \ce{C+},  respectively) is first considered. Then, further complexion with the \ce{AC} pair in close contact is considered  \cite{wylieImprovedPerformanceAllOrganic2019a}.
+At large concentration in electrolyte, one expect the formation of ions pairs in solution (insights are provided in the next subsection).  In this paper, the electrolyte is a pair, \ce{AC}, of counterions, where \ce{A-} and \ce{C+} are the cation and the ion, respectively. Furthermore, two state of complexation  are considered: \begin{inparaenum}[(i)]
+	\item the pairs NA and NC between the oxidized (\ce{N+}) and reduced (\ce{N-}) state of nitroxide, with its corresponding counterion (\ce{A-} and  \ce{C+},  respectively (with a complexation constant $K_{x1}$) and then
+	\item complexation with the \ce{AC} pair (with a complexation constant $K_{x2}$) , which is seen when concentration in electrolyte becomes large  \cite{wylieImprovedPerformanceAllOrganic2019a}.
+\end{inparaenum}
+The different equilibrium constants are defined in Fig.~\ref{fig:cip}.
 
 \begin{figure}[!h]
 	\centering
@@ -226,24 +233,23 @@ To model the impact of the electrolyte on the redox potential, the formation of 
 	\label{fig:cip}
 \end{figure}
 
-Assumptions:\begin{itemize}
-	\item Redox process for ion pair is negligible (to be checked).
-	\item $C_{\ce{N+}} = [\ce{N+}]+[\ce{NA}] + [\ce{NAC+}]$, etc.
-	\item At equilibrium, $C_{\ce{N+}} = C_{\ce{N^.}}$, etc.
-	\item at all time, $[\ce{A-}] = [\ce{C+}] = \ce[X]$ (electroneutrality)
-\end{itemize}
-
-xxx Nernst:\begin{align}
-	E^f_{abs}(\ce{N+|N^.}) &= E^0_ {abs}(\ce{N+|N^.})+\frac{RT}{F}\,\ln\left[\frac{1+K_{12}\,[X]^2}{1+K_{01}\,[X]+K_{02}\,[X]^2}\right]\\
-	E^f_{abs}(\ce{N^.|N-}) &= E^0_ {abs}(\ce{N^.|N-})+\frac{RT}{F}\,\ln\left[\frac{1+K_{21}\,[X]+K_{22}\,[X]^2}{1+K_{12}\,[X]^2}\right]
+Following Mugisa and co-workers \cite{mugisaEffectIonparingKinetics2024}, a quantitative model is derived from Fig.~\ref{fig:cip}, owing that:  \begin{inparaenum}[(i)]
+	\item the total concentration in redox active species is given by $c_{ox} = [\ce{N+}]+[\ce{NA}] + [\ce{NAC+}]$, $c_{rad} = [\ce{N^.}] + [\ce{NAC^.}]$ and $c_{red} =  [\ce{N-}]+[\ce{NC}] + [\ce{NAC-}]$, 
+	\item given electroneutrality, $ [\ce{C+}] = [\ce{A-}] $,
+	\item the electrolyte is in large amount with respect to redox active species, and thus $[X] = [\ce{C+}] = [\ce{A-}] $ is a constant ($[X]$ is the electrolyte concentration), and
+	\item at the equilibrium of redox redaction, $c_{ox} = c_{rad}$ ($K_1$) and $c_{red} = c_{rad}$ ($K_2$).
+\end{inparaenum}
+Within these assumption, the following electrolyte concentration-dependent (formal) redox potentials are obtained:\begin{align}
+	E^f_{abs}(\ce{N+|N^.}) &= E^0_ {abs}(\ce{N+|N^.})+\frac{RT}{F}\,\ln\left[\frac{1+K_{12}\,[X]^2}{1+K_{01}\,[X]+K_{02}\,[X]^2}\right],\\
+	E^f_{abs}(\ce{N^.|N-}) &= E^0_ {abs}(\ce{N^.|N-})+\frac{RT}{F}\,\ln\left[\frac{1+K_{21}\,[X]+K_{22}\,[X]^2}{1+K_{12}\,[X]^2}\right],
 \end{align}
-$K_{ij}= e^{-\frac{\Delta G_{ij}^\star}{RT}}$, where $\Delta G_{ij}^\star$ is the free Gibbs energy [computed with Eq.~\eqref{eq:gtot}] change for a given complexation reaction.
+in which $K_{ij}= e^{-\frac{\Delta G_{ij}^\star}{RT}}$, where $\Delta G_{ij}^\star$ is the free Gibbs energy change [computed with Eq.~\eqref{eq:gtot}] for a given complexation reaction.
 
-xxx Fig.~S2, but $K_{x1}$ has more impact than $K_{x2}$ (behavior at $[X]\to\infty$? Ratio between the two?).
+An example is provided in Fig.~S2: while $K_{x1}$ dictates the behavior at low $[X]$, but the trend at large $[X]$ is given by $K_{12} / K_{02}$ (oxidation) and $K_{22} / K_{12}$ (reduction).
 
 \subsection{Model for the ion-pair formation}
 
-Insight in the formation of ion pairs of opposite charges ($K_{01}$ and $K_{21}$ in Fig.~\ref{fig:cip}) is provided by a simple model proposed by Lund et al. \cite{lundDielectricInterpretationSpecificity2010}. It is based on the balance between the solvatation of the individual charges [described by the Born model, Eq.~\eqref{eq:born}] and the formation of a dipole when the two charges are in interaction. From the thermodynamic cycle given in Fig.~\ref{fig:ionpair}:\begin{equation}
+Insight in the formation of ion pairs ($K_{01}$ and $K_{21}$ in Fig.~\ref{fig:cip}) is provided by a simple model proposed by Lund et al. \cite{lundDielectricInterpretationSpecificity2010}. It is based on the balance between the solvatation of the individual charges [described by the Born model, Eq.~\eqref{eq:born}] and the formation of a dipole when the two charges are in interaction, leading to the famous Onsager model \cite{onsagerElectricMomentsMolecules1936,aubretUnderstandingLocalField2019}. From the thermodynamic cycle given in Fig.~\ref{fig:ionpair}, one derive the \begin{equation}
 	\Delta G_{pair}^\star = \frac{1}{4\pi\varepsilon_0}\,\left\{\left[\frac{q_1^2}{2a_1}+\frac{q_2^2}{2a_2}\right]\,\left[1-\frac{1}{\varepsilon_r}\right]+\frac{q_1\,q_2}{a_1+a_2}-\frac{\varepsilon_r-1}{2\varepsilon_r+1}\,\frac{\mu^2}{a^3}\right\},
 \end{equation}
 where $a_1$, $a_2$ and $a$ are the radius of the solvatation shells for $q_1$, $q_2$, and the dipole, respectively, defined as $\mu = \frac{1}{2}\,|q_2-q_1|\,(a_1+a_2)$. It is assumed that$a=s\,( a_1^3+a_2^3)^{1/3}$ where $s$ is a scaling factor, which accounts from the fact that the shell might not be spherical ($s\geq 1$).
@@ -296,15 +302,11 @@ This qualitative model (Fig.~S3) shows that the pairing depends on three variabl
 	\item the shape of the final cavity (pairing energy increases with $s$), and
 	\item the dielectric constant $\varepsilon_r$.
 \end{inparaenum}
-This latter parameter only has a minor influence, but pair formation is favored in less polar solvents, as expected.\todo{Le modele est intéréssant pour les liquides ioniques, soit dit en passant}
+While this latter parameter only has a minor influence, the formation of a pair of ions is favored in less polar solvents, as expected.\todo{Le modele est intéréssant pour les liquides ioniques, soit dit en passant}
 
 \section{Methodology}
 
-\begin{itemize}
-	\item the systems (Fig.~\ref{fig:nitroxides}), plus the electrolytes that were considered.
-	\item $a$ computed as the largest distance between two atoms in the system
-	\item Absolute to relative potentials (?)
-\end{itemize}
+In this contribution, the set of nitroxides considered by Hogsdon \textit{et al.} (compounds \textbf{1}-\textbf{54}) is considered, with a few extra compounds for completeness (\textbf{55}-\textbf{61}). All structures are provided in Fig.~\ref{fig:nitroxides}. The \ce{AC} pair formed by \ce{BF4^-} (\ce{A-}) and \ce{NMe4^+} (\ce{C+}) is used as electrolyte.
 
 \begin{figure}[!p]
 \centering
@@ -313,15 +315,16 @@ This latter parameter only has a minor influence, but pair formation is favored 
 \label{fig:nitroxides}
 \end{figure}
 
-Geometry optimizations and subsequent vibrational frequency calculations were performed at the $\omega$B97X-D/6-311+G(d) level in water (described using the SMD \cite{marenichUniversalSolvationModel2009} approach) with Gaussian 16 C02 \cite{g16}. For compound \textbf{1}-\textbf{54}, the geometries obtained by Hodgson et al. \cite{hodgsonOneElectronOxidationReduction2007} have been used as a starting point, taking advantage of their extensive conformational search. All radical forms are considered to have a doublet ground state. Then, the compounds for which there are experimental redox potentials available in acetonitrile (see Figure \ref{fig:nitroxides}), geometry optimization and vibrational frequency calculations were also performed in this solvent. 
+Geometry optimizations and subsequent vibrational frequency calculations were performed at the $\omega$B97X-D/6-311+G(d) level in water and acetonitrile (described using the SMD \cite{marenichUniversalSolvationModel2009} approach) with Gaussian 16 C02 \cite{g16}. For compound \textbf{1}-\textbf{54}, the geometries obtained by Hodgson et al. \cite{hodgsonOneElectronOxidationReduction2007} have been used as a starting point, taking advantage of their extensive conformational search. All radical forms are considered to have a doublet ground state. Then, the same calculations were preformed in acetonitrile for the subset of compounds for which experimental redox potentials are available (listed in Fig.~\ref{fig:nitroxides}). Finally, to study the influence of the substituent on the redox potential, following Zhang and co-workers \cite{zhangEffectHeteroatomFunctionality2018}, single point calculation are performed at the $\omega$B97X-D/6-311+G(d) level in gas phase, using the optimized geometries of  the radical states of each nitroxides (in water) in which $>$\ce{N-O^.} moiety is substituted by \ce{CH_2} (the rest of the geometry is kept fixed).
 
-In this work, a value of $\varepsilon_{r,wa}=80$ ($\varepsilon_{r,ac}=35$ ) is used for water (acetonitrile). These relative permitivities are the one of pure solvent, and are known to be lower in corresponding electrolytes \cite{silvaTrueHuckelEquation2022}. These variations can be, indeed, quite substantial (for example, $\varepsilon_r\approx 70$ for a solution containing \SI{1}{\mol\per\kilo\gram} of \ce{NaCl} in water \cite{kontogeorgisDebyeHuckelTheoryIts2018,silvaTrueHuckelEquation2022}), but they are also strongly dependent on the nature of the electrolyte.
+Since all thermochmical quantities are $\kappa$-dependent, analysis was performed thanks to the help of homemade Python scripts. When required [\textit{i.e.}, in Eq.~\eqref{eq:dh}], the value of $a$ (radius of the solute cavity) is taken as half the largest distance between two atoms in the molecule. Furthermore, a value of $\varepsilon_{r,wa}=80$ ($\varepsilon_{r,ac}=35$ ) is used for water (acetonitrile). These relative permitivities are the one of pure solvent, and are known to be lower in corresponding electrolytes \cite{silvaTrueHuckelEquation2022}. These variations can be, indeed, quite substantial (for example, $\varepsilon_r\approx 70$ for a solution containing \SI{1}{\mol\per\kilo\gram} of \ce{NaCl} in water \cite{kontogeorgisDebyeHuckelTheoryIts2018,silvaTrueHuckelEquation2022}), but depends on the nature of the electrolyte.
+The value of $\kappa^2$ is obtained assuming  $c_{ox} = c_{rad} = c_ {red} = \SI{1e-3}{\mole\per\liter}$, a prototypical for measurements.
+
+\clearpage
 
 \section{Results and discussion}
 
 \begin{itemize}
-	\item Structure-activity relationships, on simple results (Figs.~\ref{fig:family}, \ref{fig:corr}), if possible (see Hodgson et al \cite{hodgsonOneElectronOxidationReduction2007}). Also, comparing water and acetonitrile (Fig.~\ref{fig:watvsac}).
-	\item low-concentration limit: DH corrections (Fig.~\ref{fig:DH}).
 	\item High-concentration limit: CIP (also, structure-activity relationship for CIP!, see Figs.~\ref{fig:Kx1} and \ref{fig:Kx2}) and Matsui.
 	\item Comparison to experiment
 \end{itemize}
@@ -353,6 +356,8 @@ To explain these effects, correlation of both potentials with Hammet constants h
 \caption{Relationship between absolute oxidation (top) and reduction (bottom) potentials of nitroxides and the electrostatic potential between the redox center ($>$\ce{N-O^.}) and the substituent, as computed at the $\omega$B97X-D/6-311+G(d) level in water (SMD), with $[\ce{X}]=\SI{0}{\mole\per\liter}$. Triangular marker ($\blacktriangle$) indicates results that are excluded from the correlation (see text).}
 \label{fig:corr} 
 \end{figure}
+
+\clearpage
 
 \subsection{Impact of the solvent}
 

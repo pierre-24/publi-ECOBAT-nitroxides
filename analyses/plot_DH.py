@@ -14,7 +14,7 @@ args = parser.parse_args()
 figure = plt.figure(figsize=(10, 5))
 ax2, ax1 = figure.subplots(1, 2)
 
-X = numpy.linspace(-2, 1, 31)
+X = numpy.linspace(-3, 1, 31)
 for r, c in [(3, 'tab:blue'), (5, 'tab:orange'), (10, 'tab:green')]:
     ax1.plot(10 ** X, dG_DH(0, 1, r / AU_TO_M * 1e-10, r / AU_TO_M * 1e-10, 80, 10 ** X) * AU_TO_EV, '--', color=c, label='water' if r == 3 else None)
     ax1.plot(10 ** X, dG_DH(0, 1, r / AU_TO_M * 1e-10, r / AU_TO_M * 1e-10, 35, 10 ** X) * AU_TO_EV, label='acetonitrile' if r == 3 else None)

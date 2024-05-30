@@ -9,6 +9,11 @@ G_BF4 = {'water': -424.654435, 'acetonitrile': -424.656267}
 RADII_NME4 = {'water': 2.108130614275878, 'acetonitrile': 2.098320849223868}
 RADII_BF4 = {'water': 1.151806660832909, 'acetonitrile': 1.1520489206428235}
 
+
+# -- CST
+
+C_NITROXIDE = 1e-3 # mol L-1
+
 # -- Debye-Huckel theory
 
 AU_TO_M = 5.291772e-11  # m
@@ -34,7 +39,7 @@ def G_DH(z: float, kappa: float, epsilon_r: float, a: float) -> float:
     
     return G
 
-def dG_DH(z_reac: int, z_prod: int, a_reac: float, a_prod: float, epsilon_r: float, c_elt: float, z_elt: int = 1, c_act: float = 0.1):
+def dG_DH(z_reac: int, z_prod: int, a_reac: float, a_prod: float, epsilon_r: float, c_elt: float, z_elt: int = 1, c_act: float = C_NITROXIDE):
     # Note: assume charge compensation
     kappa_reac = numpy.sqrt(kappa2(c_act, z_reac, epsilon_r) + kappa2(c_act, -z_reac, epsilon_r) + kappa2(c_elt, z_elt, epsilon_r) + kappa2(c_elt, -z_elt, epsilon_r))  # in bohr⁻¹
     kappa_prod = numpy.sqrt(kappa2(c_act, z_prod, epsilon_r) + kappa2(c_act, -z_prod, epsilon_r) + kappa2(c_elt, z_elt, epsilon_r) + kappa2(c_elt, -z_elt, epsilon_r))  # in bohr⁻¹
