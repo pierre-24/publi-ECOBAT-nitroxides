@@ -52,7 +52,7 @@ jobs:
           asset_name: Main_Text.pdf
           tag: ${{ env.REF }}
           overwrite: true
-      - name: Upload main text
+      - name: Upload SI
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}

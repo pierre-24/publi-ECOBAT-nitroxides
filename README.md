@@ -4,4 +4,4 @@ A publication about nitroxides (aminoxyls) and their redox potential in solution
 
 This repository contains the [data](./data), the [analysis scripts](./analyses) and the text.
 
-**Latest PDFs:** [main text](./releases/download/latest/Main_Text.pdf), [supporting info](./releases/download/latest/Supporting_Info.pdf).
+**Latest PDFs:** [main text](https://github.com/pierre-24/publi-nitroxides/releases/download/latest/Main_Text.pdf), [supporting info](https://github.com/pierre-24/publi-nitroxides/releases/download/latest/Supporting_Info.pdf).
