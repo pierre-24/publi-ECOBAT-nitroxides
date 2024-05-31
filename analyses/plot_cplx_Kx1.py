@@ -5,26 +5,17 @@ import sys
 import argparse
 
 from matplotlib.ticker import AutoMinorLocator, MultipleLocator
-from nitroxides.commons import G_DH, AU_TO_M, AU_TO_KJMOL, kappa2, G_NME4, G_BF4, RADII_BF4, RADII_NME4, C_NITROXIDE
+from nitroxides.commons import G_DH, AU_TO_ANG, AU_TO_KJMOL, kappa2, G_NME4, G_BF4, RADII_BF4, RADII_NME4, C_NITROXIDE, dG_DH_cplx_Kx1
 
 T = 298.15
 R = 8.3145e-3 # kJ mol⁻¹
-
-def dG_DH_cplx(z_reac: int, z_prod: int, z_ct: int, a_reac: float, a_prod: float, a_ct: float, epsilon_r: float, c_act: float = C_NITROXIDE, c_elt: float = 1, z_elt: float = 1):
-    # complexation reaction correction!
-    kappa_reac = numpy.sqrt(kappa2(c_act, z_reac, epsilon_r) + kappa2(c_act, -z_reac, epsilon_r) + kappa2(c_elt, z_elt, epsilon_r) + kappa2(c_elt, -z_elt, epsilon_r))  # in bohr⁻¹
-    kappa_prod = numpy.sqrt(kappa2(c_act, z_prod, epsilon_r) + kappa2(c_act, -z_prod, epsilon_r) + kappa2(c_elt, z_elt, epsilon_r) + kappa2(c_elt, -z_elt, epsilon_r))  # in bohr⁻¹
-    
-    dG = G_DH(z_prod, kappa_prod, epsilon_r, a_prod) - G_DH(z_reac, kappa_reac, epsilon_r, a_reac) -  G_DH(z_ct, kappa_reac, epsilon_r, a_ct) # in au
-    
-    return dG
 
 def plot_Kx1(ax, data: pandas.DataFrame, family: str, solvent: str, epsilon_r: float, color: str):
     subdata_k01 = data[(data['family'] == family) & (data['solvent'] == solvent) & (data['has_anion'] == True)] # K_01 → N+ + A-
     subdata_k21 = data[(data['family'] == family) & (data['solvent'] == solvent) & (data['has_cation'] == True)] # K_21 → N- + C+
     
-    dG_DH_k01 = dG_DH_cplx(subdata_k01['z'] + 1, subdata_k01['z'], -1, subdata_k01['r_A'], subdata_k01['r_AX'], RADII_BF4[solvent], epsilon_r)
-    dG_DH_k21 = dG_DH_cplx(subdata_k21['z'] - 1, subdata_k21['z'], 1, subdata_k21['r_A'], subdata_k21['r_AX'], RADII_NME4[solvent], epsilon_r)
+    dG_DH_k01 = dG_DH_cplx_Kx1(subdata_k01['z'] + 1, subdata_k01['z'], -1, subdata_k01['r_A'] / AU_TO_ANG, subdata_k01['r_AX'] / AU_TO_ANG, RADII_BF4[solvent] / AU_TO_ANG, epsilon_r)
+    dG_DH_k21 = dG_DH_cplx_Kx1(subdata_k21['z'] - 1, subdata_k21['z'], 1, subdata_k21['r_A'] / AU_TO_ANG, subdata_k21['r_AX'] / AU_TO_ANG, RADII_NME4[solvent] / AU_TO_ANG, epsilon_r)
     
     dG_k01 = (subdata_k01['G_cplx'] - G_BF4[solvent] + dG_DH_k01) * AU_TO_KJMOL
     dG_k21 = (subdata_k21['G_cplx'] - G_NME4[solvent] + dG_DH_k21) * AU_TO_KJMOL
@@ -38,7 +29,7 @@ def plot_Kx1(ax, data: pandas.DataFrame, family: str, solvent: str, epsilon_r: f
 def helpline_K01(ax, data: pandas.DataFrame, solvent: str, epsilon_r: float, color: str = 'black'):
     subdata_k01 = data[(data['solvent'] == solvent) & (data['has_anion'] == True)] # K_01 → N+ + A-
     
-    dG_DH_k01 = dG_DH_cplx(subdata_k01['z'] + 1, subdata_k01['z'], -1, subdata_k01['r_A'], subdata_k01['r_AX'], RADII_BF4[solvent], epsilon_r)
+    dG_DH_k01 = dG_DH_cplx_Kx1(subdata_k01['z'] + 1, subdata_k01['z'], -1, subdata_k01['r_A'] / AU_TO_ANG, subdata_k01['r_AX'] / AU_TO_ANG, RADII_BF4[solvent] / AU_TO_ANG, epsilon_r)
     
     dG_k01 = (subdata_k01['G_cplx'] - G_BF4[solvent]+ dG_DH_k01) * AU_TO_KJMOL
     

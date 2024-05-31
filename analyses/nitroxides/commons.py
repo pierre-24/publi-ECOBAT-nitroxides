@@ -17,6 +17,7 @@ C_NITROXIDE = 1e-3 # mol L-1
 # -- Debye-Huckel theory
 
 AU_TO_M = 5.291772e-11  # m
+AU_TO_ANG = 5.291772e-1  # m
 KB = 3.166811563e-6  # Eh / K
 AVOGADRO = 6.02214076e23  # mol⁻¹
 
@@ -48,6 +49,24 @@ def dG_DH(z_reac: int, z_prod: int, a_reac: float, a_prod: float, epsilon_r: flo
     
     return dG
     
+# -- cplx
+def dG_DH_cplx_Kx1(z_reac: int, z_prod: int, z_ct: int, a_reac: float, a_prod: float, a_ct: float, epsilon_r: float, c_act: float = C_NITROXIDE, c_elt: float = 1, z_elt: float = 1):
+    # complexation reaction correction!
+    kappa_reac = numpy.sqrt(kappa2(c_act, z_reac, epsilon_r) + kappa2(c_act, -z_reac, epsilon_r) + kappa2(c_elt, z_elt, epsilon_r) + kappa2(c_elt, -z_elt, epsilon_r))  # in bohr⁻¹
+    kappa_prod = numpy.sqrt(kappa2(c_act, z_prod, epsilon_r) + kappa2(c_act, -z_prod, epsilon_r) + kappa2(c_elt, z_elt, epsilon_r) + kappa2(c_elt, -z_elt, epsilon_r))  # in bohr⁻¹
+    
+    dG = G_DH(z_prod, kappa_prod, epsilon_r, a_prod) - G_DH(z_reac, kappa_reac, epsilon_r, a_reac) -  G_DH(z_ct, kappa_reac, epsilon_r, a_ct) # in au
+    
+    return dG
+
+def dG_DH_cplx_Kx2(z_reac: int, z_prod: int, z_ct: int, a_reac: float, a_prod: float, a_ct1: float, a_ct2: float, epsilon_r: float, c_act: float = C_NITROXIDE, c_elt: float = 1, z_elt: float = 1):
+    # complexation reaction correction!
+    kappa_reac = numpy.sqrt(kappa2(c_act, z_reac, epsilon_r) + kappa2(c_act, -z_reac, epsilon_r) + kappa2(c_elt, z_elt, epsilon_r) + kappa2(c_elt, -z_elt, epsilon_r))  # in bohr⁻¹
+    kappa_prod = numpy.sqrt(kappa2(c_act, z_prod, epsilon_r) + kappa2(c_act, -z_prod, epsilon_r) + kappa2(c_elt, z_elt, epsilon_r) + kappa2(c_elt, -z_elt, epsilon_r))  # in bohr⁻¹
+    
+    dG = G_DH(z_prod, kappa_prod, epsilon_r, a_prod) - G_DH(z_reac, kappa_reac, epsilon_r, a_reac) -  G_DH(z_ct, kappa_reac, epsilon_r, a_ct1) -  G_DH(-z_ct, kappa_reac, epsilon_r, a_ct2) # in au
+    
+    return dG
 
 # -- Position labels on graph (using a monte-carlo metropolis approach)
 class LabelPositioner:

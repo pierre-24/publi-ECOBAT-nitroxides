@@ -53,3 +53,4 @@ ax2.plot([0, 62], [0, 0], '-', color='grey')
 
 plt.tight_layout()
 figure.savefig(args.output)
+
