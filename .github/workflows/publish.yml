@@ -1,0 +1,58 @@
+name: Publish latest PDFs
+
+on:
+  push:
+    branches: [ master ]
+    tags: [ 'v*' ]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Publish
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    env:
+      REF: 'latest'
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'
+      - name: Install LaTeX
+        run: |
+          sudo apt-get -y install texlive-full
+      - name: Change ref (tag)
+        if: contains(github.ref, 'tags')
+        run: |
+            echo "REF=${{ github.ref_name }}" >> "$GITHUB_ENV"
+      - name: Generate images
+        run: |
+           cd analyses
+           pip install -r requirements.txt
+           make
+      - name: build PDFs
+        run: |
+           lualatex nitroxides.tex
+           lualatex nitroxides_SI.tex
+      - name: Upload main text
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: nitroxides.pdf
+          asset_name: Main_Text.pdf
+          tag: ${{ env.REF }}
+          overwrite: true
+      - name: Upload main text
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: nitroxides_SI.pdf
+          asset_name: Supporting_Info.pdf
+          tag: ${{ env.REF }}
+          overwrite: true
+
