@@ -48,7 +48,7 @@ args = parser.parse_args()
 data = pandas.read_csv(args.input)
 
 figure = plt.figure(figsize=(10, 8))
-ax1, ax2 = figure.subplots(2, 1, sharey=True)
+ax1, ax2 = figure.subplots(2, 1, sharey=True, sharex=True)
 
 helpline_K02(ax1, data, 'water', 80, 'black')
 
