@@ -26,7 +26,7 @@ def plot_Kx1(ax, data: pandas.DataFrame, family: str, solvent: str, epsilon_r: f
     dG_DH_k01 = dG_DH_cplx(subdata_k01['z'] + 1, subdata_k01['z'], -1, subdata_k01['r_A'], subdata_k01['r_AX'], RADII_BF4[solvent], epsilon_r)
     dG_DH_k21 = dG_DH_cplx(subdata_k21['z'] - 1, subdata_k21['z'], 1, subdata_k21['r_A'], subdata_k21['r_AX'], RADII_NME4[solvent], epsilon_r)
     
-    dG_k01 = (subdata_k01['G_cplx'] - G_BF4[solvent]+ dG_DH_k01) * AU_TO_KJMOL
+    dG_k01 = (subdata_k01['G_cplx'] - G_BF4[solvent] + dG_DH_k01) * AU_TO_KJMOL
     dG_k21 = (subdata_k21['G_cplx'] - G_NME4[solvent] + dG_DH_k21) * AU_TO_KJMOL
     
     k01 = numpy.exp(-dG_k01 / (R * T))
