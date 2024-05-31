@@ -5,14 +5,14 @@ from nitroxides.commons import AU_TO_EV, AU_TO_M, AU_TO_KJMOL
 import matplotlib.pyplot as plt
 
 class System:
-    def __init__(self, q: float, a1: float, a2: float, s: float = 1.0):
+    def __init__(self, q: float, a1: float, a2: float, s1: float = 1.0, s2: float = 1.0):
         self.q = q
         self.a1 = a1
         self.a2 = a2
         self.s = s
         
-        self.mu = q * (a1 + a2)
-        self.a = (a1**3 + a2**3)**(1/3) * s
+        self.mu = q * (a1 + a2) * s1
+        self.a = (a1**3 + a2**3)**(1/3) * s2
     
     @staticmethod
     def _e_born_solvation(q: float, a: float, epsr: float, epsi: float = 1.0) -> float:
@@ -47,7 +47,7 @@ class System:
         return System._e_dipole_onsager(self.mu, self.a, epsr, epsi)
     
     def e_pair(self, epsr: float, epsi: float = 1.0) -> float:
-        return self.e_coulomb(epsi) + self.e_dipole_onsager(epsr, epsi) - self.e_born_solvation(epsr, epsi)
+        return self.e_coulomb2(epsi) + self.e_dipole_onsager(epsr, epsi) - self.e_born_solvation(epsr, epsi)
         
 a = 3.0 / AU_TO_M * 1e-10
 MI = 0.75
@@ -60,14 +60,14 @@ parser.add_argument('-o', '--output', default='pair.pdf')
 
 args = parser.parse_args()
 
-fig = plt.figure(figsize=(5, 5))
-ax = fig.add_subplot()
+fig = plt.figure(figsize=(8, 5))
+ax1, ax2 = fig.subplots(1, 2, sharey=True)
 
 xi = numpy.linspace(MI, MX, N)
 a1 = numpy.repeat(a, N)
 a2 = xi * a1
 
-ax.plot([MI,MX], [0, 0], color='grey')
+[ax.plot([MI,MX], [0, 0], color='grey') for ax in (ax1, ax2)]
 
 R = 8.3145e-3
 T=298.15
@@ -76,13 +76,19 @@ def logK(dG: float):
     return  numpy.log10(numpy.exp(-dG * AU_TO_KJMOL / (R * T)))
 
 for s, color in [(1.0, 'tab:blue'), (1.2, 'tab:orange'), (1.4, 'tab:green')]:
-    ax.plot(xi, logK(System(1, a1, a2, s = s).e_pair(35)), label='s={}'.format(s), color=color)
-    ax.plot(xi, logK(System(1, a1, a2, s = s).e_pair(80)), '--', color=color)
+    ax1.plot(xi, logK(System(1, a1, a2, s1 = 1.0, s2 = s).e_pair(35)), label='$s_2$={}'.format(s), color=color)
+    ax1.plot(xi, logK(System(1, a1, a2, s1= 1.0, s2 = s).e_pair(80)), '--', color=color)
+    ax2.plot(xi, logK(System(1, a1, a2, s1 = 0.7, s2 = s).e_pair(35)), label='$s_2$={}'.format(s), color=color)
+    ax2.plot(xi, logK(System(1, a1, a2, s1= 0.7, s2 = s).e_pair(80)), '--', color=color)
 
-ax.set_xlabel('$\\chi = a_1$ / $a_2$')
-ax.set_ylabel('log$_{10}$($K_{pair}$)')
-ax.set_xlim(MI, MX)
-ax.legend()
+[ax.set_xlabel('$\\chi = a_1$ / $a_2$') for ax in (ax1, ax2)]
+[ax.set_xlim(MI, MX) for ax in (ax1, ax2)]
+ax1.set_ylabel('log$_{10}$($K_{pair}$)')
+
+ax1.legend()
+
+ax1.text(2, 10, '$s_1$=1', fontsize=14)
+ax2.text(2, 10, '$s_1$=0.7', fontsize=14)
 
 plt.tight_layout()
 fig.savefig(args.output)
