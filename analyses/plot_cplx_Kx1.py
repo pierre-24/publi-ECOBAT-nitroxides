@@ -56,7 +56,7 @@ args = parser.parse_args()
 data = pandas.read_csv(args.input)
 
 figure = plt.figure(figsize=(10, 8))
-ax1, ax2 = figure.subplots(2, 1)
+ax1, ax2 = figure.subplots(2, 1, sharey=True)
 
 helpline_K01(ax1, data, 'water', 80, 'black')
 
@@ -68,7 +68,7 @@ plot_Kx1(ax1, data, 'Family.APO', 'water', 80., 'tab:red')
 
 ax1.legend(ncols=5)
 ax1.set_xlim(0.5,61.5)
-ax1.text(38, 1, "Water", fontsize=18)
+ax1.text(38, -2, "Water", fontsize=18)
 ax1.xaxis.set_minor_locator(MultipleLocator(2))
 ax1.grid(which='both', axis='x')
 ax1.plot([0, 62], [0, 0], '-', color='grey')
