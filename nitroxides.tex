@@ -86,7 +86,7 @@
 
 This is an introduction. It will contain:\begin{itemize}
 	\item Batteries
-	\item Nitroxides \cite{souleChemistryBiologyNitroxide2007}, Fig.~\ref{fig:states}
+	\item Nitroxides \cite{souleChemistryBiologyNitroxide2007}, Fig.~\ref{fig:states} \todo{introduce the notation \ce{N+}, \ce{N^.}, and \ce{N-}.}
 	\item Prediction of redox potential, and \textbf{the needs for a correct description of solvent-solute interactions}
 	\item So: SMD, then Debye-Huckel, then CIP (or Matsui)
 \end{itemize}
@@ -107,7 +107,7 @@ In this section, different qualitative and quantitative models used in the analy
 According to Ref.~\cite{marenichComputationalElectrochemistryPrediction2014}, the absolute reduction potential $E_{abs}^0$ (in \si{\volt}) of the half-reaction of reduction of $X^z$, $X^{z} + n_e\,e^- \rightarrow X^{z-n_e}$, reads: \begin{equation}
 	E_{abs}^0(X^{z}|X^{z-n_e}) = -\frac{\Delta G_{r}^\star}{n_e\,F}, \text{ with } \Delta G_{r}^\star = G^\star(X^{z-n_e}) - G^\star(X^z), \label{eq:nernst}
 \end{equation}
-where $\Delta G_{r}^\star$ is the free Gibbs energy of the reduction reaction in solution, $F$ is the Faraday constant and $n_e$ the number of electrons involved in the reduction process. Last but not least, $G^\star(X^z)$ is the Gibbs free energy of $X^z$ in solution.  In the rest of this article, it is considered that $G^\star(e^-) = 0$.
+where $\Delta G_{r}^\star$ is the free Gibbs energy of the reduction reaction in solution, $F$ is the Faraday constant (\SI{9.648533e4}{\coulomb\per\mole}) and $n_e$ the number of electrons involved in the reduction process. Last but not least, $G^\star(X^z)$ is the Gibbs free energy of $X^z$ in solution.  In the rest of this article, it is considered that $G^\star(e^-) = 0$.
 
 From a phenomenological point of view, such energy is the sum of the one of the system in vacuum, plus the change in (free) energy resulting from its transfer to an electrolytic solution, \textit{i.e.}, $G^\star(X^z) = G^0(X^z)+ \Delta G_S^\star(X^z)$. The latter may be further decomposed using the thermodynamic cycle presented in Figure \ref{fig:th}. There are four steps: $\Delta G_d + \Delta G_s$ (discharge of a sphere in gas phase followed by charge in a dielectric) is a purely electrostatic processes, while $\Delta G_s$ is due, in most part, to non-electrostatic contributions (cavitation, vdW, etc). Finally, $\Delta G^\star_{DH}$ adds the effect of surrounding ions, and is therefore important to treat electrolytes \cite{silvaImprovingBornEquation2024}.
 
@@ -168,7 +168,7 @@ and,
 in which $\kappa$ is the inverse of the Debye screening length, defined from:\begin{equation}
 	\kappa^2 = \sum_i \frac{n_i\,q_i^2}{\varepsilon_0\varepsilon_r\,k_B\,T}, \label{eq:kappa2}
 \end{equation}
-where $n_i$ is the number density ($n_i = N_i / V = c_i\,\mathcal{N}_a$ where $\mathcal{N}_a$ is the Avogadro number and $c_i$ is the concentration in ion $i$) of ion of type $i$, $k_B$ is the Boltzmann constant, and $T$ is the temperature.  $\kappa$ is  proportional to the ionic strength of the solution, $I = \frac{1}{2}\sum_i c_i\,z_i^2$.  The Born part is generally dominant in solvatation energies predicted by this model (Fig.~S1).
+where $n_i$ is the number density ($n_i = N_i / V = c_i\,\mathcal{N}_a$ where $\mathcal{N}_a$ is the Avogadro number and $c_i$ is the concentration in ion $i$) of ion of type $i$, $k_B$ is the Boltzmann constant (\SI{1.380649e-23}{\joule\per\kelvin}), and $T$ is the temperature (assumed to be \SI{298.15}{\kelvin}).  $\kappa$ is  proportional to the ionic strength of the solution, $I = \frac{1}{2}\sum_i c_i\,z_i^2$.  The Born part is generally dominant in solvatation energies predicted by this model (Fig.~S1).
 
 In the limit of $\kappa\to 0$,  $\Delta G^\star_{DH} = 0$ and thus $\Delta G^\star_S \approx \Delta G^\star_{born} = \Delta G_d + \Delta G_c$.  Therefore, by combining Eqs.~\eqref{eq:scrf} and \eqref{eq:adh}, one defines:\begin{equation}
 	G^\star(X^z) = G^\star_{SCRF}(X^z) + \Delta G^\star_{DH}(X^z), \label{eq:gtot}
@@ -187,7 +187,7 @@ In first approximation, the electrostatic interaction between the substituent(s)
 \end{figure}
 
 In 2018, this model has been extended and applied by Zhang \textit{et al} \cite{zhangEffectHeteroatomFunctionality2018} to the oxidation potential. They further expanded the electrostatic interaction as  multipoles, truncated after third order, to include the large quadrupole moment of aromatic compounds:\begin{equation}
-	U_q(r) = \frac{\mu_x}{r^2} + \frac{Q_{xx}}{r^3}, \label{eq:Er}
+	U_q(r) =\frac{1}{4\pi\varepsilon_0} \left[\frac{\mu_x}{r^2} + \frac{Q_{xx}}{r^3}\right], \label{eq:Er}
 \end{equation}
 assuming a non-charged substituent. The different quantities (dipole moment, $\mu_x$, and traceless quadrupole moment, $Q_{xx}$) are evaluated through a single point calculation on a simplified structure, using the geometry of the radical where the $>$\ce{N-O^.} moiety is substituted by \ce{CH_2}.  In this contribution, since the alignment of the dipole with the charge need to be accounted for, this geometry is oriented so that the $x$ axis pass through origin and the nitrogen, the origin being placed at the carbon bearing the substituent. $r$ is the origin-nitrogen distance. This definition for the origin is different from the original model, since  Zhang and co-workers did not consider multiple positions for a given substituent. 
 
@@ -195,8 +195,8 @@ assuming a non-charged substituent. The different quantities (dipole moment, $\m
 \subsection{Impact of ion-pair formation on redox potentials}
 
 At large concentration in electrolyte, one expect the formation of ions pairs in solution (insights are provided in the next subsection).  In this paper, the electrolyte is a pair, \ce{AC}, of counterions, where \ce{A-} and \ce{C+} are the cation and the ion, respectively. Furthermore, two state of complexation  are considered: \begin{inparaenum}[(i)]
-	\item the pairs NA and NC between the oxidized (\ce{N+}) and reduced (\ce{N-}) state of nitroxide, with its corresponding counterion (\ce{A-} and  \ce{C+},  respectively (with a complexation constant $K_{x1}$) and then
-	\item complexation with the \ce{AC} pair (with a complexation constant $K_{x2}$) , which is seen when concentration in electrolyte becomes large  \cite{wylieImprovedPerformanceAllOrganic2019a}.
+	\item the pairs NA and NC between the oxidized (\ce{N+}) and reduced (\ce{N-}) state of nitroxide, with its corresponding counterion (\ce{A-} and  \ce{C+},  respectively (with a complexation equilibrium constant $K_{x1}$) and then
+	\item complexation with the \ce{AC} pair (with an equilibrium constant $K_{x2}$) , which is seen when concentration in electrolyte becomes large  \cite{wylieImprovedPerformanceAllOrganic2019a}.
 \end{inparaenum}
 The different equilibrium constants are defined in Fig.~\ref{fig:cip}.
 
@@ -239,6 +239,7 @@ Following Mugisa and co-workers \cite{mugisaEffectIonparingKinetics2024}, a quan
 	\item the electrolyte is in large amount with respect to redox active species, and thus $[X] = [\ce{C+}] = [\ce{A-}] $ is a constant ($[X]$ is the electrolyte concentration), and
 	\item at the equilibrium of redox redaction, $c_{ox} = c_{rad}$ ($K_1$) and $c_{red} = c_{rad}$ ($K_2$).
 \end{inparaenum}
+\todo{Et le fait que le potentiel du complexe soit inférieur (donc l'énergie supérieure)?}
 Within these assumption, the following electrolyte concentration-dependent (formal) redox potentials are obtained:\begin{align}
 	E^f_{abs}(\ce{N+|N^.}) &= E^0_ {abs}(\ce{N+|N^.})+\frac{RT}{F}\,\ln\left[\frac{1+K_{12}\,[X]^2}{1+K_{01}\,[X]+K_{02}\,[X]^2}\right],\\
 	E^f_{abs}(\ce{N^.|N-}) &= E^0_ {abs}(\ce{N^.|N-})+\frac{RT}{F}\,\ln\left[\frac{1+K_{21}\,[X]+K_{22}\,[X]^2}{1+K_{12}\,[X]^2}\right],
@@ -250,7 +251,7 @@ An example is provided in Fig.~S2: while $K_{x1}$ dictates the behavior at low $
 \subsection{Model for the ion-pair formation}
 
 Insight in the formation of ion pairs ($K_{01}$ and $K_{21}$ in Fig.~\ref{fig:cip}) is provided by a simple model proposed by Lund et al. \cite{lundDielectricInterpretationSpecificity2010}. It is based on the balance between the solvatation of the individual charges [described by the Born model, Eq.~\eqref{eq:born}] and the formation of a dipole when the two charges are in interaction, leading to the famous Onsager model \cite{onsagerElectricMomentsMolecules1936,aubretUnderstandingLocalField2019}. From the thermodynamic cycle given in Fig.~\ref{fig:ionpair}, one derive the following expression:\begin{equation}
-	\Delta G_{pair}^\star = \frac{1}{4\pi\varepsilon_0}\,\left\{\left[\frac{q_1^2}{2a_1}+\frac{q_2^2}{2a_2}\right]\,\left[1-\frac{1}{\varepsilon_r}\right]+\frac{q_1\,q_2\,|q_1-q_2|}{2\,\mu}-\frac{\varepsilon_r-1}{2\varepsilon_r+1}\,\frac{\mu^2}{a^3}\right\},
+	\Delta G_{pair}^\star = \frac{1}{4\pi\varepsilon_0}\,\left\{\left[\frac{q_1^2}{2a_1}+\frac{q_2^2}{2a_2}\right]\,\left[1-\frac{1}{\varepsilon_r}\right]+\frac{q_1\,q_2\,|q_1-q_2|}{2\,\mu}-\frac{\varepsilon_r-1}{2\varepsilon_r+1}\,\frac{\mu^2}{a^3}\right\},\label{eq:pair}
 \end{equation}
 where $a_1$, $a_2$ and $a=s_2\,( a_1^3+a_2^3)^{1/3}$ are the radii of the cavity corresponding to $q_1$, $q_2$, and the dipole, respectively, defined as $\mu = \frac{s_1}{2}\,|q_2-q_1|\,(a_1+a_2)$.  $s_1$ and $s_2$ are scaling factors, which accounts for the electrostatic attraction between the two charge forming the dipole ($s_1\leq 1$) and the fact that the cavity might not be spherical ($s_2\geq 1$).
 
@@ -303,7 +304,7 @@ This qualitative model (Fig.~S3) shows that ion-pairing depends on: \begin{inpar
 	\item the shape of the final cavity (pairing energy increases with $s_2$), and
 	\item the dielectric constant $\varepsilon_r$.
 \end{inparaenum}
-While this latter parameter only has a minor influence (but the difference increases with $s_1$), the formation of a pair of ions is favored in less polar solvents, as expected.\todo{Le modele est intéréssant pour les liquides ioniques, soit dit en passant}
+While this latter parameter only has a minor influence (but the difference increases with $s_1$), the formation of a pair of ions is favored in less polar solvents, as expected.\todo{Le modele est intéréssant pour les liquides ioniques, soit dit en passant. D'ailleurs, est ce que c'est en ligne avec ce que le papier de 2019 dit?}
 
 \section{Methodology}
 
@@ -363,7 +364,7 @@ To explain these effects, correlation of both potentials with Hammet constants h
 
 \subsection{Impact of the solvent}
 
-The difference between redox potentials computed in water and acetonitrile is reported in Fig.~\ref{fig:watvsac}: except for compound \textbf{12}, the oxidation potential is only slightly affected, while there is a difference of $>$\SI{0.5}{\volt} for the reduction potentials. As a first approximation, the Born model [Eq.~\eqref{eq:born}] can explain these results: for the oxidation, the change in potentials in the two solvent, $E^0_{ac} - E^0_{wa}$, is proportional to $ \varepsilon_{r,ac}^{-1}-\varepsilon_{r,wa}^{-1}$, which is positive (assuming that \ce{N^.} is neutral, which is the case for the subset of compounds considered here), while for the reduction, it is proportional to $ \varepsilon_{r,wa}^{-1}-\varepsilon_{r,ac}^{-1}$, which is negative.  Since this impact is systematic, similar trends between redox potentials in water and acetonitrile are expected.
+The difference between redox potentials computed in water and acetonitrile is reported in Fig.~\ref{fig:watvsac}: except for compound \textbf{12}, the oxidation potential is only slightly affected, while there is a difference of $>$\SI{0.5}{\volt} for the reduction potentials. As a first approximation, the Born model [Eq.~\eqref{eq:born}] can explain these results: for the oxidation, the change in potentials in the two solvent, $E^0_{ac} - E^0_{wa}$, is proportional to $ \varepsilon_{r,ac}^{-1}-\varepsilon_{r,wa}^{-1}$, which is positive (assuming that \ce{N^.} is neutral, which is the case for the subset of compounds considered here), while for the reduction, it is proportional to $ \varepsilon_{r,wa}^{-1}-\varepsilon_{r,ac}^{-1}$, which is negative.  Since this impact is systematic, similar trends (int term of the impact of substituents) between redox potentials in water and acetonitrile are observed.
 
 \begin{figure}[!h]
 	\centering
@@ -374,7 +375,7 @@ The difference between redox potentials computed in water and acetonitrile is re
 
 \subsection{Impact of the electrolytes}
 
-So far, the concentration in electrolyte, $[X]$, was set to zero. To assess its impact on the redox potentials, the DH correction is first scrutinized in Fig.~\ref{fig:DH}. As expected, it is small in the range of concentration considered here (a few hundredth of \si{\volt} for $[X] \leq \SI{1}{\mole\per\liter}$ and larger in acetonitrile) and it increases with $[X]$. Its sign is different for oxidation and reduction potential. It is also smaller for compounds belonging to the IIO and APO family (being larger molecules with larger $a$), but larger for species with a net positive charge (\textbf{11}, \textbf{21}, \textbf{35}) for which the correction for oxidation and reduction are negative. 
+So far, the concentration in electrolyte, $[X]$, was set to zero. To assess its impact on the redox potentials, the DH correction itself is first scrutinized in Fig.~\ref{fig:DH}. As expected, it is small in the range of concentration considered here (a few hundredth of \si{\volt} for $[X] \leq \SI{1}{\mole\per\liter}$ and larger in acetonitrile) and it increases with $[X]$. Its sign is different for oxidation and reduction potential. It is also smaller for compounds belonging to the IIO and APO family (being larger molecules with larger $a$), but larger for species with a net positive charge (\textbf{11}, \textbf{21}, \textbf{35}) for which the correction for oxidation and reduction are negative. 
 
 
 \begin{figure}[!h]
@@ -384,6 +385,8 @@ So far, the concentration in electrolyte, $[X]$, was set to zero. To assess its 
 	\label{fig:DH}
 \end{figure}
 
+Then, the formation of ion pairs is considered. First, the complexation equilibrium constants between with the oxidized and reduced states (which bears a formal charge, except for \textbf{11}, \textbf{21}, and \textbf{35}) and a counterion is reported in Fig.~\ref{fig:Kx1}. On the one hand, in water, the equilibrium constant $K_{01}$ (between \ce{N+} and $\ce{A-}$) amounts to about \num{e-4} ($\Delta G^\star_{pair} \sim \SI{25}{\kilo\joule\per\mole}$, see Fig.~S6), so it is not favorable. Second, $K_{21}$ (between \ce{N-} and $\ce{C+}$) is generally smaller (especially for members of P6O), except in a few cases.  This is not in line with the electrostatic model for ion-pair formation model [Eq.~\eqref{eq:pair}]  which predicts  $K_{21} >K_{01}$, since it favors pair composed of ion of similar size. In this study, \ce{NMe4+} has a larger radius (\SI{2.1}{\angstrom}) than \ce{BF4-} (\SI{1.5}{\angstrom}), the former being closer to the one of nitroxides ($>$\SI{3}{\angstrom}).  On the other hand, the results in acetonitrile follows this prediction, with $K_{21}\sim\num{e-2}$.
+
 
 \begin{figure}[!h]
 \centering
@@ -392,10 +395,20 @@ So far, the concentration in electrolyte, $[X]$, was set to zero. To assess its 
 \label{fig:Kx1}
 \end{figure}
 
+This is however explained by a closer look at the geometries of the ion-pair. Taking \textbf{3} as an example (Fig.~\ref{fig:pos-anion}), it is observed that they are two possible position for the anion: near the cation ($>$\ce{N+=O}), ``in front'' of the methyls, and near the substituent, ``behind'' the methyls. While the later leads to a larger distance between the charge of the nitroxide and the one of the counterion, it is actually favored, due to the non-covalent interactions with the cycle and its substituent. \todo{what about the cation? And what about Fig. S5? Is there preferential positions? And trend amongs families?} Furthermore, these distances are smaller in acetonitrile, leading to a decrease of the interaction energy.
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=.7\linewidth]{Figure12}
+	\caption{Impact of the position of the counterion on the distance between it and the redox center, and on $\Delta G^\star_{pair}$ , using compound \textbf{4} as an example, as computed at the $\omega$B97X-D/6-311+G(d) level in water (black) and acetontrile (blue).  }
+	\label{fig:pos-anion}
+\end{figure}
+
+Then, complexation to the \c{AC} pair is considered (Fig.~\ref{fig:Kx2}). As expected, the equilibrium constants are smaller (by about four order of magnitude) than the ones that were previously discussed.
+
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=\linewidth]{Figure12}
+\includegraphics[width=\linewidth]{Figure13}
 \caption{Value of the complexation equilibrium constants $K_{02}$ (round markers, $\bullet$), $K_{12}$ (triangular markers, $\blacktriangle$) and $K_{22}$ (square markers, $\blacksquare$) for the 3 oxidation state of nitroxides, as computed at the $\omega$B97X-D/6-311+G(d) level in water (top) and acetonitrile (bottom) using SMD and $[X]=\SI{1}{\mole\per\liter}$.  The dashed line is there to help visualization. }
 \label{fig:Kx2}
 \end{figure}

@@ -484,4 +484,5 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/latex,python
 
-analyses/*.pdf
+# avoid any PDFs (they are generated)
+*.pdf

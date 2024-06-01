@@ -20,7 +20,7 @@ def plot_DH(ax, data: pandas.DataFrame, family: str, solvent: str, epsilon_r: fl
     ax.plot([int(x.replace('mol_', '')) for x in subdata['name']], -dG_DH_ox1, 'o', color=color, label=family.replace('Family.', ''))
     ax.plot([int(x.replace('mol_', '')) for x in subdata['name']], -dG_DH_red1, 'o', fillstyle='none', mec=color)
     ax.plot([int(x.replace('mol_', '')) for x in subdata['name']], -dG_DH_ox01, 'v', color=color)
-    ax.plot([int(x.replace('mol_', '')) for x in subdata['name']], -dG_DH_red01, 'v', fillstyle='none', mec=color)
+    ax.plot([int(x.replace('mol_', '')) for x in subdata['name']], -dG_DH_red01, '^', fillstyle='none', mec=color)
     ax.plot([int(x.replace('mol_', '')) for x in subdata['name']], -dG_DH_ox0, 's', color=color)
     ax.plot([int(x.replace('mol_', '')) for x in subdata['name']], -dG_DH_red0, 's', fillstyle='none', mec=color)
 
