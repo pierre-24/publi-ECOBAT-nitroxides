@@ -6,7 +6,8 @@ import pathlib
 import argparse
 from scipy.spatial import distance_matrix
 from matplotlib.patches import Ellipse
-from nitroxides.commons import dG_DH, AU_TO_M, LabelPositioner, AU_TO_EV
+from nitroxides.commons import dG_DH, AU_TO_ANG, LabelPositioner, AU_TO_EV, EPSILON_R
+from nitroxides.tex import format_longtable
 
 SOLVENT = 'water'
 
@@ -16,11 +17,10 @@ LABELS_KWARGS = []
 LABELS_PATH = pathlib.Path('pot_{}.pos'.format(SOLVENT))
 
 def plot_family(ax, data: pandas.DataFrame, family: str, color: str):
-    subdata = data[numpy.logical_and(data['family'] == family, data['solvent'] == SOLVENT)]
-    epsilon_r = 80 if SOLVENT == 'water' else 35
+    subdata = data[(data['family'] == family) & (data['solvent'] == SOLVENT)]
     
-    dG_DH_ox0 = dG_DH(subdata['z'] + 1, subdata['z'], subdata['r_ox'] / AU_TO_M * 1e-10, subdata['r_rad'] / AU_TO_M * 1e-10, epsilon_r, 0) * AU_TO_EV
-    dG_DH_red0 = dG_DH(subdata['z'], subdata['z'] - 1, subdata['r_rad'] / AU_TO_M * 1e-10,  subdata['r_red'] / AU_TO_M * 1e-10, epsilon_r, 0) * AU_TO_EV
+    dG_DH_ox0 = dG_DH(subdata['z'] + 1, subdata['z'], subdata['r_ox'] / AU_TO_ANG, subdata['r_rad'] / AU_TO_ANG, EPSILON_R[SOLVENT], 0) * AU_TO_EV
+    dG_DH_red0 = dG_DH(subdata['z'], subdata['z'] - 1, subdata['r_rad'] / AU_TO_ANG,  subdata['r_red'] / AU_TO_ANG, EPSILON_R[SOLVENT], 0) * AU_TO_EV
     
     ax.plot(subdata['E_ox'] - dG_DH_ox0, subdata['E_red'] - dG_DH_red0, 'o', color=color, label=family.replace('Family.', ''))
     
@@ -37,10 +37,30 @@ def plot_family(ax, data: pandas.DataFrame, family: str, color: str):
     
     ax.add_artist(Ellipse((m_ox, m_red), 2 * std_ox, 2 * std_red, alpha=0.25, facecolor=color))
 
+def make_table(f, data: pandas.DataFrame, solvent: str):
+    subdata = data[data['solvent'] == solvent]
+    subdata.insert(1, 'dG_DH_ox', dG_DH(subdata['z'] + 1, subdata['z'], subdata['r_ox'] / AU_TO_ANG, subdata['r_rad'] / AU_TO_ANG, EPSILON_R[SOLVENT], 0) * AU_TO_EV)
+    subdata.insert(2, 'dG_DH_red', dG_DH(subdata['z'], subdata['z'] - 1, subdata['r_rad'] / AU_TO_ANG,  subdata['r_red'] / AU_TO_ANG, EPSILON_R[SOLVENT], 0) * AU_TO_EV)
+    
+    
+    f.write(format_longtable(
+        subdata, 
+        titles=['', '$a_{\\ce{N+}}$', '$a_{\\ce{N^.}}$', '$a_{\\ce{N-}}$', '$E^0_{abs}(\\ce{N+}|\\ce{N^.})$', '$E^0_{abs}(\\ce{N^.}|\\ce{N-})$'], 
+        line_maker=lambda r: [
+            r['name'].replace('mol_', ''), 
+            '{:.2f}'.format(r['r_ox']), 
+            '{:.2f}'.format(r['r_rad']), 
+            '{:.2f}'.format(r['r_red']),
+            '{:.2f}'.format(r['E_ox'] - r['dG_DH_ox']), 
+            '{:.2f}'.format(r['E_red'] - r['dG_DH_red']),
+        ]
+    ))
+
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', default='../data/Data_pot.csv')
 parser.add_argument('-r', '--reposition-labels', action='store_true')
 parser.add_argument('-o', '--output', default='Data_pot_{}.pdf'.format(SOLVENT))
+parser.add_argument('-t', '--table')
 
 args = parser.parse_args()
 
@@ -74,3 +94,8 @@ ax1.set_ylabel('$E^0_{abs}(N^\\bullet|N^-)$ (V)')
 plt.tight_layout()
 plt.legend()
 figure.savefig(args.output)
+
+if args.table:
+    with pathlib.Path(args.table).open('w') as f:
+        make_table(f, data, 'water')
+        make_table(f, data, 'acetonitrile')
