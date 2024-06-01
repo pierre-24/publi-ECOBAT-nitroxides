@@ -24,6 +24,8 @@
 \usepackage{paralist}
 \usepackage{todonotes}
 
+\DeclareMathOperator{\erf}{erf}
+
 %% The lineno packages adds line numbers. Start line numbering with
 %% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
 %% for the whole article with \linenumbers.
@@ -108,8 +110,12 @@ According to Ref.~\cite{marenichComputationalElectrochemistryPrediction2014}, th
 	E_{abs}^0(X^{z}|X^{z-n_e}) = -\frac{\Delta G_{r}^\star}{n_e\,F}, \text{ with } \Delta G_{r}^\star = G^\star(X^{z-n_e}) - G^\star(X^z), \label{eq:nernst}
 \end{equation}
 where $\Delta G_{r}^\star$ is the free Gibbs energy of the reduction reaction in solution, $F$ is the Faraday constant (\SI{9.648533e4}{\coulomb\per\mole}) and $n_e$ the number of electrons involved in the reduction process. Last but not least, $G^\star(X^z)$ is the Gibbs free energy of $X^z$ in solution.  In the rest of this article, it is considered that $G^\star(e^-) = 0$.
+The comparison between relative (vs SHE) experimental and calculated oxidation potential is performed using a common reference:\begin{equation}
+	E^0_{rel}(X^z|X^{z-n_e})  = E^0_{abs}(X^z|X^{z-n_e}) - E^{0}_{abs}(\text{SHE}), \label{eq:ecalc}
+\end{equation}
+with $E^0_{abs}(\text{SHE}) = \SI{4.28}{\volt}$ in water or \SI{4.52}{\volt} in acetonitrile \cite{marenichComputationalElectrochemistryPrediction2014}.
 
-From a phenomenological point of view, such energy is the sum of the one of the system in vacuum, plus the change in (free) energy resulting from its transfer to an electrolytic solution, \textit{i.e.}, $G^\star(X^z) = G^0(X^z)+ \Delta G_S^\star(X^z)$. The latter may be further decomposed using the thermodynamic cycle presented in Figure \ref{fig:th}. There are four steps: $\Delta G_d + \Delta G_s$ (discharge of a sphere in gas phase followed by charge in a dielectric) is a purely electrostatic processes, while $\Delta G_s$ is due, in most part, to non-electrostatic contributions (cavitation, vdW, etc). Finally, $\Delta G^\star_{DH}$ adds the effect of surrounding ions, and is therefore important to treat electrolytes \cite{silvaImprovingBornEquation2024}.
+From a phenomenological point of view, such $G^\star(X^z)$ are the sum of the one of the system in vacuum, $G^0(X^z)$, plus the change in (free) energy resulting from its transfer to an electrolytic solution, $\Delta G_S^\star(X^z)$. The latter may be further decomposed using the thermodynamic cycle presented in Figure \ref{fig:th}. There are four steps: $\Delta G_d + \Delta G_s$ (discharge of a sphere in gas phase followed by charge in a dielectric) is a purely electrostatic processes, while $\Delta G_s$ is due, in most part, to non-electrostatic contributions (cavitation, vdW, etc). Finally, $\Delta G^\star_{DH}$ adds the effect of surrounding ions, and is therefore important to treat electrolytes \cite{silvaImprovingBornEquation2024}.
 
 \begin{figure}[!h]
 	\centering
@@ -175,6 +181,8 @@ In the limit of $\kappa\to 0$,  $\Delta G^\star_{DH} = 0$ and thus $\Delta G^\st
 \end{equation}
 to be used in Eq.~\eqref{eq:nernst}. It should provide similar results to the approach developed by Cossi \emph{et al.} in Ref.~\citenum{cossiInitioStudyIonic1998}.
 
+%Note that this model is based on a monopole (ion-charges) interaction: while modifications have been proposed first \cite{krishtalikElectrostaticIonSolvent1991}, extension to further multipoles moments \cite{silvaImprovingBornEquation2024,lahiriDeterminationGibbsEnergies2003,duignanContinuumSolventModel2013}, especially dipole \cite{silvaImprovingBornEquation2024} and quadrupole \cite{slavchovQuadrupoleTermsMaxwell2014,slavchovQuadrupoleTermsMaxwell2014a,coxQuadrupolemediatedDielectricResponse2021}, now exists. They, however, generally focuses on simple ions and not ionic molecules.
+
 \subsection{Model for the impact of the substituent}
 
 In first approximation, the electrostatic interaction between the substituent(s) and the charge formed upon oxidation or reduction affects the redox potential of nitroxides. In particular, assuming a non-charged substituent, charge-dipole interactions are stabilizing the oxiamonium ( $>$\ce{N+=O}) if the dipole is aligned with the charge, while this destabilize the hydroxylamine ( $>$\ce{N-O-}), both resulting in a decrease of the redox potential (Fig.~\ref{fig:dipole}). Within this framework, it is therefore expected that donor substituent have lower redox potential than acceptor.
@@ -186,7 +194,7 @@ In first approximation, the electrostatic interaction between the substituent(s)
 	\label{fig:dipole}
 \end{figure}
 
-In 2018, this model has been extended and applied by Zhang \textit{et al} \cite{zhangEffectHeteroatomFunctionality2018} to the oxidation potential. They further expanded the electrostatic interaction as  multipoles, truncated after third order, to include the large quadrupole moment of aromatic compounds:\begin{equation}
+In 2018, based on previous article by Gryn'ova et al. \cite{grynovaOriginScopeLongRange2013,grynovaSwitchingRadicalStability2013}, this model has been extended and applied by Zhang \textit{et al} \cite{zhangEffectHeteroatomFunctionality2018} to the oxidation potential. They further expanded the electrostatic interaction as  multipoles, truncated after third order, to include the large quadrupole moment of aromatic compounds:\begin{equation}
 	U_q(r) =\frac{1}{4\pi\varepsilon_0} \left[\frac{\mu_x}{r^2} + \frac{Q_{xx}}{r^3}\right], \label{eq:Er}
 \end{equation}
 assuming a non-charged substituent. The different quantities (dipole moment, $\mu_x$, and traceless quadrupole moment, $Q_{xx}$) are evaluated through a single point calculation on a simplified structure, using the geometry of the radical where the $>$\ce{N-O^.} moiety is substituted by \ce{CH_2}.  In this contribution, since the alignment of the dipole with the charge need to be accounted for, this geometry is oriented so that the $x$ axis pass through origin and the nitrogen, the origin being placed at the carbon bearing the substituent. $r$ is the origin-nitrogen distance. This definition for the origin is different from the original model, since  Zhang and co-workers did not consider multiple positions for a given substituent. 
@@ -306,6 +314,31 @@ This qualitative model (Fig.~S3) shows that ion-pairing depends on: \begin{inpar
 \end{inparaenum}
 While this latter parameter only has a minor influence (but the difference increases with $s_1$), the formation of a pair of ions is favored in less polar solvents, as expected.\todo{Le modele est intéréssant pour les liquides ioniques, soit dit en passant. D'ailleurs, est ce que c'est en ligne avec ce que le papier de 2019 dit?}
 
+\subsection{Counterion as a fictitious particle}
+
+Alternatively, Matsui et al. \cite{matsuiDensityFunctionalTheory2013} considered that the impact of counterions on the redox potential of $X^z$ could be described using a single fictitious particle, $P^{-z}$, with a radius $a=fa_0$ proportional to the one of the redox species, $a_0$  (considered to be constant for all oxidation states of $X$), and bearing the appropriate counter-charge, $-z$. They proposed to evaluate the energy of this particle using a modified Born [Eq.~\eqref{eq:born}] approach:\begin{align}
+	&\Delta G^\star_{P}(P^z) = \frac{1}{4\pi\epsilon_0}\, \frac{q^2}{2fa_0}\,\left[\frac{1}{\varepsilon_r}-1\right]\,\erf(\mu\,a_0\,|q|),
+\end{align}
+where  $f$ and $\mu$ are method-dependent factors, the latter being described in Ref.~\cite{matsuiDensityFunctionalTheory2013} as a screening factor. 
+
+In the presence of this fictitious particle, the reduction of $X^z$ becomes:\begin{equation}
+	\begin{array}{rl}
+		X^z + n_e\,e^- &\rightarrow X^{z-n_e} \\
+		P^{-z} \phantom{ + n_e\,e^-} &\rightarrow P^{n_e-z} + n_e\,e^- \\
+		\hline
+		X^z + P^{-z}&\rightarrow X^{z-n_e} +P^{n_e-z}\\
+	\end{array}  \label{eq:corr}
+\end{equation}
+and therefore,\begin{align}
+	E^p_{abs}(X^z|X^{z-n_e}) &= 	E_{abs}^0(X^{z}|X^{z-n_e}) -\frac{1}{n_e\,F}\,[\Delta G^\star_{P}(P^{n_e-z}) - \Delta G^\star_{P}(P^{-z})] \nonumber\\
+	&= 	E_{abs}^0(X^{z}|X^{z-n_e}) -\frac{\Delta\Delta G^\star_P}{n_e\,F}, \label{eq:matsui} 
+\end{align}
+where:\begin{align}
+	\Delta\Delta G^\star_P&=\frac{1}{4\pi\epsilon_0}\frac{1}{2fa_0}\,\left[\frac{1}{\varepsilon_r}-1\right]\times\nonumber\\
+	&\left[ (n_e-q)^2\,\erf(\mu\,a_0\,|n_e-q|)-q^2\,\erf(\mu\,a_0\,|q|)\right].
+\end{align}
+Matsui and co-workers propose to  find the parameter $f$ and $\mu$ that minimize the difference between $E^p_{rel}(X^z|X^{z-n_e})$  [from Eq.~\eqref{eq:ecalc}] and the experimental $E^0_{rel}(X^z|X^{z-n_e})$.  Note that they therefore considers that $ E^{0}_{abs}(\text{SHE})$ is a third fitting parameter.
+
 \section{Methodology}
 
 In this contribution, the set of nitroxides considered by Hogsdon \textit{et al.} (compounds \textbf{1}-\textbf{54}) is considered, with a few extra compounds for completeness (\textbf{55}-\textbf{61}). All structures are provided in Fig.~\ref{fig:nitroxides}. The \ce{AC} pair formed by \ce{BF4^-} (\ce{A-}) and \ce{NMe4^+} (\ce{C+}) is used as electrolyte.
@@ -320,7 +353,7 @@ In this contribution, the set of nitroxides considered by Hogsdon \textit{et al.
 Geometry optimizations and subsequent vibrational frequency calculations were performed at the $\omega$B97X-D/6-311+G(d) level in water and acetonitrile (described using the SMD \cite{marenichUniversalSolvationModel2009} approach) with Gaussian 16 C02 \cite{g16}. For compound \textbf{1}-\textbf{54}, the geometries obtained by Hodgson et al. \cite{hodgsonOneElectronOxidationReduction2007} have been used as a starting point, taking advantage of their extensive conformational search. All radical forms are considered to have a doublet ground state. Then, the same calculations were preformed in acetonitrile for the subset of compounds for which experimental redox potentials are available (listed in Fig.~\ref{fig:nitroxides}). Finally, to study the influence of the substituent on the redox potential, following Zhang and co-workers \cite{zhangEffectHeteroatomFunctionality2018}, single point calculation are performed at the $\omega$B97X-D/6-311+G(d) level in gas phase, using the optimized geometries of  the radical states of each nitroxides (in water) in which $>$\ce{N-O^.} moiety is substituted by \ce{CH_2} (the rest of the geometry is kept fixed).
 
 Since all thermochmical quantities are $\kappa$-dependent, analyses were performed thanks to the help of homemade Python scripts. When required [\textit{i.e.}, in Eq.~\eqref{eq:dh}], the value of $a$ (radius of the solute cavity) is taken as half the largest distance between two atoms in the molecule. Furthermore, a value of $\varepsilon_{r,wa}=80$ ($\varepsilon_{r,ac}=35$ ) is used for water (acetonitrile). These relative permitivities are the one of pure solvent, and are known to be lower in corresponding electrolytes \cite{silvaTrueHuckelEquation2022}. These variations can be, indeed, quite substantial (for example, $\varepsilon_r\approx 70$ for a solution containing \SI{1}{\mol\per\kilo\gram} of \ce{NaCl} in water \cite{kontogeorgisDebyeHuckelTheoryIts2018,silvaTrueHuckelEquation2022}), but depends on the nature of the electrolyte.
-The value of $\kappa^2$ is obtained assuming  $c_{ox} = c_{rad} = c_ {red} = \SI{1e-3}{\mole\per\liter}$, a prototypical concentration in measurements.
+Unless otherwise mentioned, the value of $\kappa^2$ is obtained assuming  $c_{ox} = c_{rad} = c_ {red} = \SI{1e-3}{\mole\per\liter}$, a prototypical concentration in measurements.
 
 \clearpage
 
@@ -403,7 +436,7 @@ This is explained by a closer look at the geometries of the ion-pair. Taking \te
 	\label{fig:pos-anion}
 \end{figure}
 
-Then, complexation to the \c{AC} pair is considered (Fig.~\ref{fig:Kx2}, Tables S6-S7). As expected, the equilibrium constants are smaller (by about four order of magnitude, $\Delta G^\star \sim \SI{50}{\kilo\joule\per\mole}$) than the ones that were previously discussed.\todo{How does that compares to \citenum{wylieImprovedPerformanceAllOrganic2019a}?}
+Then, complexation to the \c{AC} pair is considered (Fig.~\ref{fig:Kx2}, Tables S6-S7). As expected, the equilibrium constants are smaller (by about four order of magnitude, $\Delta G^\star \sim \SI{50}{\kilo\joule\per\mole}$) than the ones that were previously discussed.\todo{How does that compares to \citenum{wylieImprovedPerformanceAllOrganic2019a}? Structure-activity relationships?}
 
 
 \begin{figure}[!h]
