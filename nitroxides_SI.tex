@@ -8,6 +8,7 @@
 \usepackage{siunitx}
 \usepackage[version=4]{mhchem}
 \usepackage{tabularray}
+\usepackage{natbib}
 
 \title{xxx: Supporting information}
 \author{Pierre Beaujean}
@@ -401,5 +402,39 @@
 	60 & 6.17 & 69.9 &  & 6.20 & 71.0 &  & 6.15 & 39.1\\
 	\hline
 \end{longtblr}
+
+
+\clearpage
+\begin{longtblr}[caption={Experimental $E^0_{rel}(\ce{N+}|\ce{N^.})$ (in \si{\milli\volt} vs SHE) found in the litterature for some compounds, measured in water and acetonitrile. When there are two values reported, the first one is used in the text.},
+		note{a} = {From Ref.~\citenum{goldsteinStructureActivityRelationship2006}.},
+		note{b} = {From Ref.~\citenum{morrisChemicalElectrochemicalReduction1991}, converted from SCE to SHE with +\SI{244}{\milli\volt} \cite{pavlishchukConversionConstantsRedox2000}.},
+		note{c}={From Ref.~\citenum{blincoExperimentalTheoreticalStudies2008}.},
+		note{d}={From Ref.~\citenum{zhangEffectHeteroatomFunctionality2018}, converted from Fc to SHE with +\SI{624}{\milli\volt} \cite{pavlishchukConversionConstantsRedox2000}.}
+	]{colspec={>{\bfseries}lX[c]X[c]c>{\bfseries}lX[c]X[c]}, width = 0.85\linewidth,rowhead=1}
+	\hline
+	& Water & Acetonitrile  & & & Water & Acetonitrile\\
+	\hline
+		2 & 740\TblrNote{a} & 850\TblrNote{c}, 858\TblrNote{d} &  & 33 & --- & 1123\TblrNote{c} \\
+		3 & 805\TblrNote{a}, 774\TblrNote{b} & 924\TblrNote{c}, 939\TblrNote{d} &  & 36 & --- & 1010\TblrNote{c} \\
+		4 & 817\TblrNote{a}, 874\TblrNote{b} & 1063\TblrNote{c} &  & 51 & --- & 1102\TblrNote{c} \\
+		6 & 825\TblrNote{a}, 724\TblrNote{b} & 877\TblrNote{c}, 908\TblrNote{d} &  & 54 & --- & 1096\TblrNote{c} \\
+		11 & 892\TblrNote{a} & --- &  & 55 & --- & 1175\TblrNote{c} \\
+		12 & 918\TblrNote{a}, 914\TblrNote{b} & 1034\TblrNote{d} &  & 56 & 867\TblrNote{a}, 874\TblrNote{b} & --- \\
+		13 & 795\TblrNote{a} & --- &  & 57 & 853\TblrNote{a} & --- \\
+		15 & 870\TblrNote{a}, 784\TblrNote{b} & 976\TblrNote{c} &  & 58 & 955\TblrNote{a}, 974\TblrNote{b} & 1073\TblrNote{d} \\
+		18 & 814\TblrNote{b} & --- &  & 59 & --- & 1109\TblrNote{d} \\
+		23 & --- & 1045\TblrNote{c} &  & 60 & --- & 1099\TblrNote{c} \\
+		24 & --- & 1095\TblrNote{c} &  & 61 & --- & 996\TblrNote{d} \\
+		25 & --- & 990\TblrNote{c} &   \\
+		26 & --- & 1030\TblrNote{c} & \\
+		27 & --- & 1023\TblrNote{c} &  &  &  &  \\
+	\hline
+\end{longtblr}
+
+\clearpage
+
+
+\bibliographystyle{unsrt} 
+\bibliography{biblio}
 	
 \end{document}
