@@ -213,10 +213,10 @@ assuming a non-charged substituent. The different quantities (dipole moment, $\m
 \subsection{Impact of ion-pair formation on redox potentials}
 
 At high concentrations of electrolyte, the formation of ion pairs in solution is expected (further insights are provided in the subsequent subsection). In this study, the electrolyte consists of a pair, \ce{AC}, of counterions, where \ce{A-} and \ce{C+} represent the anion and cation, respectively. Furthermore, two states of complexation are considered: \begin{inparaenum}[(i)]
-	\item the pairs \ce{NA} and \ce{NC} between the oxidized (\ce{N+}) and reduced (\ce{N-}) states of the nitroxide, with their corresponding counterions (\ce{A-} and \ce{C+}, respectively) (with a complexation equilibrium constant $K_{x1}$), and then
+	\item the pairs \ce{NA}, \ce{NC^.+}, and \ce{NC} between the oxidized, neutral and reduced states of the nitroxide  (with a complexation equilibrium constant $K_{x1}$), with their corresponding counterions (\ce{A-} and \ce{C+}, respectively), and then
 	\item complexation with the \ce{AC} pair (with an equilibrium constant $K_{x2}$), which occurs when the concentration of electrolyte becomes large \cite{wylieImprovedPerformanceAllOrganic2019a}.
 \end{inparaenum}
-The various equilibrium constants are defined in Fig.~\ref{fig:cip}.
+The various equilibrium constants are defined in Fig.~\ref{fig:cip}. Note that only the complexation between the radical species and the cation is considered here, following previous investigations by Zhang \textit{et al.} \cite{zhangInteractionsImidazoliumBasedIonic2016}.\todo{there are others.}
 
 
 \begin{figure}[!h]
@@ -240,6 +240,8 @@ The various equilibrium constants are defined in Fig.~\ref{fig:cip}.
 		\arrwx{N1.south}{N2.north}{$K_{1}$}
 		\node[below of=N1cc] (N2cc) {\ce{NAC^. + e-}};
 		\arrwy{N2cc.east}{N2.west}{$K_{12}$}
+		\node[below of=N1c] (N2c) {\ce{NC^.+ + A- + e-}};
+		\arrwy{N2.east}{N2c.west}{$K_{11}$}
 		
 		\node[below of=N2] (N3) {\ce{N- + A- + C+}};
 		\arrwx{N2.south}{N3.north}{$K_2$}
@@ -260,12 +262,12 @@ Following Mugisa and co-workers \cite{mugisaEffectIonparingKinetics2024}, a quan
 	\item the redox potentials of the ion-pair complexes are smaller than the one of the free species.
 \end{inparaenum}
 Within these assumption, the following electrolyte concentration-dependent (formal) redox potentials are obtained:\begin{align}
-	E^f_{abs}(\ce{N+|N^.}) &= E^0_ {abs}(\ce{N+|N^.})+\frac{RT}{F}\,\ln\left[\frac{1+K_{12}\,[X]^2}{1+K_{01}\,[X]+K_{02}\,[X]^2}\right],\\
-	E^f_{abs}(\ce{N^.|N-}) &= E^0_ {abs}(\ce{N^.|N-})+\frac{RT}{F}\,\ln\left[\frac{1+K_{21}\,[X]+K_{22}\,[X]^2}{1+K_{12}\,[X]^2}\right],
+	E^f_{abs}(\ce{N+|N^.}) &= E^0_ {abs}(\ce{N+|N^.})+\frac{RT}{F}\,\ln\left[\frac{1+K_{11}\,[X]+K_{12}\,[X]^2}{1+K_{01}\,[X]+K_{02}\,[X]^2}\right],\\
+	E^f_{abs}(\ce{N^.|N-}) &= E^0_ {abs}(\ce{N^.|N-})+\frac{RT}{F}\,\ln\left[\frac{1+K_{21}\,[X]+K_{22}\,[X]^2}{1+K_{11}\,[X]+K_{12}\,[X]^2}\right],
 \end{align}
 in which $K_{ij}= \exp\left[-\frac{\Delta G_{cplx}^\star}{RT}\right]$, where $\Delta G_{cplx}^\star$ is the free Gibbs energy change [computed with Eq.~\eqref{eq:gtot}] for a given complexation reaction.
 
-An example is provided in Fig.~S2: while $K_{x1}$ governs the behavior at low $[X]$, the trend at high $[X]$ is determined by $K_{12} / K_{02}$ for oxidation and $K_{22} / K_{12}$ for reduction.
+An example is provided in Fig.~S2: while $K_{(i+1)1} / K_{i1}$ ($i\in[0,1]$) governs the behavior at low $[X]$, the trend at high $[X]$ is determined by $K_{(i+1)2} / K_{i2}$.
 
 \subsection{Model for the ion-pair formation}
 
