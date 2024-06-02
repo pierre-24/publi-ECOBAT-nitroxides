@@ -86,12 +86,10 @@
 %% main text
 \section{Introduction}
 
-This is an introduction. It will contain:\begin{itemize}
-	\item Batteries
-	\item Nitroxides \cite{souleChemistryBiologyNitroxide2007}, Fig.~\ref{fig:states} \todo{introduce the notation \ce{N+}, \ce{N^.}, and \ce{N-}.}
-	\item Prediction of redox potential, and \textbf{the needs for a correct description of solvent-solute interactions}
-	\item So: SMD, then Debye-Huckel, then CIP (or Matsui)
-\end{itemize}
+
+The quest for efficient and sustainable energy storage solutions has intensified research into various battery chemistries. Among these, nitroxide-based batteries have attracted significant attention due to their high theoretical capacity and stability.\todo{more!}
+
+Nitroxides are organic compounds containing the nitroxyl/aminoxyl radical functional group \cite{berlinerHistoryUseNitroxides2012}. This group can exist in three redox states: the nitroxide radical ($>$\ce{N-O^.}, also shortened in \ce{N^.} in this article), which can be oxidized to the oxammonium cation ($>$\ce{N+=O}, abbreviated \ce{N+}) or reduced to the hydroxylamine anion ($>$\ce{N-O-}, abbreviated \ce{N-}), as depicted in Fig.~\ref{fig:states}\todo{add he notation \ce{N+}, \ce{N^.}, and \ce{N-}. Also, oxa\textbf{m}monium!}. The remarkable stability of the nitroxide radical arises from the delocalization of the unpaired electron over the nitrogen and oxygen atoms, combined with the steric protection provided by the substituents. Beyond their application in batteries, nitroxides have been extensively studied and utilized in various fields. They serve as spin labels in electron paramagnetic resonance (EPR) spectroscopy, as mediators for controlled radical polymerizations in polymer chemistry, and as antioxidants in biological systems  \cite{souleChemistryBiologyNitroxide2007,lewandowskiNitroxidesAntioxidantsAnticancer2017}.\todo{And \cite{jiAirStableOrganicRadicals2020}.}
 
 \begin{figure}[!h]
 	\centering
@@ -100,9 +98,18 @@ This is an introduction. It will contain:\begin{itemize}
 	\label{fig:states}
 \end{figure}
 
-\section{Theory}
+The performance of nitroxide-based batteries is influenced by solvation and the nature of the electrolytes used. Solvation effects can alter the electronic environment of nitroxide radicals, thereby affecting their redox potentials and reactivity. Additionally, the choice of electrolyte impacts ion transport, redox stability, and the overall efficiency of the battery. Understanding the interplay between nitroxides, solvents, and electrolytes is therefore crucial for the rational design of high-performance batteries. Computational studies using quantum chemical methods provide valuable insights into solvation effects, allowing for the prediction and tuning of redox properties.\todo{more!}
 
-In this section, different qualitative and quantitative models used in the analysis of the results are reviewed.
+
+Missing:\begin{itemize}
+	\item Prediction of redox potential (generally, only AIP!), and \textbf{the needs for a correct description of solvent-solute interactions}
+	\item So: SMD, then Debye-Huckel, then CIP (or Matsui). For that, it could be nice to do an "historic overview".
+	\item Motivate the choice of water and acetonitrile and not ionic liquids (\textit{e.g.}, absence of experimental data?).
+\end{itemize}
+
+This paper is organized as follows: Section \ref{sec:theory} introduces key concepts and various simplified models that aid in the interpretation of the results. The methodology employed in this study is detailed in Section \ref{sec:methodo}. The results are then presented in four parts: the impact of substituents on the redox properties is discussed in Section \ref{sec:sar}, followed by an analysis of the effects of solvents in Section \ref{sec:solv}, and the influence of electrolytes in Section \ref{sec:elect}. Finally, a comparison between theoretical predictions and experimental results is provided in Section \ref{sec:exp}. Conclusions and future outlooks are presented in Section \ref{sec:conclusion}.
+
+\section{Theory}\label{sec:theory}
 
 \subsection{Redox potentials in solution}
 
@@ -248,17 +255,17 @@ The various equilibrium constants are defined in Fig.~\ref{fig:cip}.
 Following Mugisa and co-workers \cite{mugisaEffectIonparingKinetics2024}, a quantitative model is derived from Fig.~\ref{fig:cip}, owing that: \begin{inparaenum}[(i)]
 	\item the total concentration of redox-active species is given by $c_{ox} = [\ce{N+}] + [\ce{NA}] + [\ce{NAC+}]$, $c_{rad} = [\ce{N^.}] + [\ce{NAC^.}]$, and $c_{red} =  [\ce{N-}] + [\ce{NC}] + [\ce{NAC-}]$,
 	\item due to electroneutrality, $ [\ce{C+}] = [\ce{A-}] $,
-	\item the electrolyte is present in large amounts compared to redox-active species, hence $[X] = [\ce{C+}] = [\ce{A-}] $ is constant ($[X]$ represents the electrolyte concentration), and
-	\item at the equilibrium of redox reactions, $c_{ox} = c_{rad}$ ($K_1$) and $c_{red} = c_{rad}$ ($K_2$).
+	\item the electrolyte is present in large amounts compared to redox-active species, hence $[X] = [\ce{C+}] = [\ce{A-}] $ is constant ($[X]$ represents the electrolyte concentration),
+	\item at the equilibrium of redox reactions, $c_{ox} = c_{rad}$ ($K_1$) and $c_{red} = c_{rad}$ ($K_2$), and
+	\item the redox potentials of the ion-pair complexes are smaller than the one of the free species.
 \end{inparaenum}
-\todo{Et le fait que le potentiel du complexe soit inférieur (donc l'énergie supérieure)?}
 Within these assumption, the following electrolyte concentration-dependent (formal) redox potentials are obtained:\begin{align}
 	E^f_{abs}(\ce{N+|N^.}) &= E^0_ {abs}(\ce{N+|N^.})+\frac{RT}{F}\,\ln\left[\frac{1+K_{12}\,[X]^2}{1+K_{01}\,[X]+K_{02}\,[X]^2}\right],\\
 	E^f_{abs}(\ce{N^.|N-}) &= E^0_ {abs}(\ce{N^.|N-})+\frac{RT}{F}\,\ln\left[\frac{1+K_{21}\,[X]+K_{22}\,[X]^2}{1+K_{12}\,[X]^2}\right],
 \end{align}
-in which $K_{ij}= e^{-\frac{\Delta G_{ij}^\star}{RT}}$, where $\Delta G_{ij}^\star$ is the free Gibbs energy change [computed with Eq.~\eqref{eq:gtot}] for a given complexation reaction.
+in which $K_{ij}= \exp\left[-\frac{\Delta G_{cplx}^\star}{RT}\right]$, where $\Delta G_{cplx}^\star$ is the free Gibbs energy change [computed with Eq.~\eqref{eq:gtot}] for a given complexation reaction.
 
-An example is provided in Fig.~S2: while $K_{x1}$ dictates the behavior at low $[X]$, the trend at large $[X]$ is given by $K_{12} / K_{02}$ (oxidation) and $K_{22} / K_{12}$ (reduction).
+An example is provided in Fig.~S2: while $K_{x1}$ governs the behavior at low $[X]$, the trend at high $[X]$ is determined by $K_{12} / K_{02}$ for oxidation and $K_{22} / K_{12}$ for reduction.
 
 \subsection{Model for the ion-pair formation}
 
@@ -345,7 +352,7 @@ where:\begin{align*}
 \end{align*}
 Matsui and co-workers propose to  find the parameter $f$ and $\mu$ that minimize the difference between $E^p_{rel}(X^z|X^{z-n_e})$  [from Eq.~\eqref{eq:ecalc}] and the experimental $E^0_{rel}(X^z|X^{z-n_e})$.  Note that they therefore considers that $ E^{0}_{abs}(\text{SHE})$ is a third fitting parameter.
 
-\section{Methodology}
+\section{Methodology} \label{sec:methodo}
 
 In this study, the set of nitroxides considered by Hogsdon \textit{et al.} (compounds \textbf{1}-\textbf{54}) is examined, supplemented with a few additional compounds for completeness (\textbf{55}-\textbf{61}). All structures are depicted in Fig.~\ref{fig:nitroxides}. The \ce{AC} pair, consisting of \ce{BF4^-} (\ce{A-}) and \ce{NMe4^+} (\ce{C+}), is used as the electrolyte.
 
@@ -364,14 +371,9 @@ Unless otherwise mentioned, the value of $\kappa^2$ is obtained assuming  $c_{ox
 
 \clearpage
 
-\section{Results and discussion}
+\section{Results and discussion} \label{sec:results}
 
-\begin{itemize}
-	\item High-concentration limit: CIP (also, structure-activity relationship for CIP!, see Figs.~\ref{fig:Kx1} and \ref{fig:Kx2}) and Matsui.
-	\item Comparison to experiment
-\end{itemize}
-
-\subsection{Structure-activity relationships}
+\subsection{Structure-activity relationships} \label{sec:sar}
 
 
 Oxidation and reduction potentials of nitroxide radicals in water, grouped by family, are plotted in Fig.~\ref{fig:family} (see also Table S1). Compared to \textbf{1}, modifying the molecular structure or adding substituents generally increases both the oxidation and reduction potentials. Regarding structural impacts, six-membered ring compounds (P6O and APO) exhibit higher reduction potentials than their five-membered ring counterparts (P5O and IIO). Additionally, the incorporation of one or two aromatic rings (IIO and APO) enhances both the oxidation and reduction potentials.
@@ -395,7 +397,7 @@ As a consequence, \textbf{55} exhibits the highest oxidation and reduction poten
 
 
 To elucidate these effects, attempts were made to correlate both potentials with Hammett constants for P5O and P6O, but the correlations were found to be very weak, especially for reduction (see Fig.~S4). The electrostatic interaction model [Eq.~\eqref{eq:Er}] provides more insights. Results are presented in Fig.~\ref{fig:corr} (see also Table S3). However, this model fails to account for the effect of substituting methyl groups with ethyl groups. Moreover, including the disubstituted compounds (e.g., \textbf{9}) worsens the correlation ($R^2 \sim 0.5$ and 0.3 for oxidation and reduction, respectively). Compounds \textbf{56} and \textbf{58} remain outliers for reduction. Therefore, all three sets of compounds were treated as outliers.
-On the positive side, this model helps explain some of the effects mentioned above: the increase in oxidation (and reduction) potential for aromatic compounds correlates with an increase in quadrupole moment, while the modification due to donor/acceptor substituents is linked to changes in the dipole moment. It also accounts for some effects due to the position of the substituent (see, e.g., \textbf{49}-\textbf{51}), which was not the case with the original model by Zhang and co-workers (resulting in weak correlations, $R^2 \leq 0.3$).
+On the positive side, this model helps explain some of the effects mentioned above: the increase in oxidation (and reduction) potential for aromatic compounds correlates with an increase in quadrupole moment ($Q_{xx} > \SI{5}{\elementarycharge\bohr\squared}$ for most member of IIO or APO), while the modification due to donor/acceptor substituents is linked to changes in the dipole moment. For example, aromatic compounds that have \ce{NH2} has substituent (\textit{e.g.}, \textbf{51}) are characterized by  $\mu_{x} < 0$, which gets larger for coumpounds have \ce{COOH} (\textit{e.g.}, \textbf{39}) or \ce{NO2} (\textit{e.g.}, \textbf{54}). It also accounts for some effects due to the position of the substituent (see, e.g., \textbf{49}-\textbf{51}), which was not the case with the original model by Zhang and co-workers (resulting in weak correlations, $R^2 \leq 0.3$).
 Finally, although it is not directly applicable to charged substituents (\textbf{11}, \textbf{21}, and \textbf{35}), for which the multipole moments are ill-defined, the leading term $q/r$ would result in a positive contribution to $E_r$, which correlates well with the increase in oxidation and reduction potential for these compounds.
 
 
@@ -408,7 +410,7 @@ Finally, although it is not directly applicable to charged substituents (\textbf
 
 \clearpage
 
-\subsection{Impact of the solvent}
+\subsection{Impact of the solvent} \label{sec:solv}
 
 The difference between redox potentials computed in water and acetonitrile is illustrated in Fig.~\ref{fig:watvsac} (see also Table S2): except for compound \textbf{12}, the oxidation potential is only minimally affected, while there is a disparity of greater than \SI{0.5}{\volt} for the reduction potentials. In first approximation, the Born model [Eq.~\eqref{eq:born}] can account for these findings: for oxidation, the change in potentials in the two solvents, $E^0_{ac} - E^0_{wa}$, is proportional to $\varepsilon_{r,ac}^{-1}-\varepsilon_{r,wa}^{-1}$, which is positive (assuming that \ce{N^.} is neutral, which holds true for the subset of compounds considered here), whereas for reduction, it is proportional to $\varepsilon_{r,wa}^{-1}-\varepsilon_{r,ac}^{-1}$, which is negative. Since this impact is systematic, similar trends (in terms of the impact of substituents) between redox potentials in water and acetonitrile are observed.
 
@@ -420,7 +422,7 @@ The difference between redox potentials computed in water and acetonitrile is il
 	\label{fig:watvsac}
 \end{figure}
 
-\subsection{Impact of the electrolytes}
+\subsection{Impact of the electrolytes} \label{sec:elect}
 
 So far, the concentration of electrolyte, $[X]$, has been maintained at zero. To evaluate its impact on the redox potentials, the DH correction itself is initially examined in Fig.~\ref{fig:DH}. As anticipated, it remains small within the concentration range considered here (a few hundredths of millivolts for $[X] \leq \SI{1}{\mole\per\liter}$ and larger in acetonitrile), increasing with $[X]$. Its sign differs between oxidation and reduction potentials. Additionally, it is diminished for compounds belonging to the IIO and APO families (as they are larger molecules with larger $a$), but amplified for species with a net positive charge (\textbf{11}, \textbf{21}, \textbf{35}), for which the correction for oxidation and reduction potentials is negative.
 
@@ -444,12 +446,12 @@ Next, the formation of ion pairs is addressed. First, the complexation equilibri
 
 A closer examination of Fig.~\ref{fig:Kx1} reveals that compounds of the P6O family exhibit distinct behavior, particularly in terms of the interaction between the aminoxyl group and the cation. This interaction is notably weaker ($\Delta G^\star_{cplx} > \SI{40}{\kilo\joule\per\mole}$) in water compared to other families. This can be elucidated by analyzing the geometries of the ion pairs. 
 Firstly, it should be noted that within the P6O family, where the basic skeleton is a cyclohexane, the \ce{N+=O} group occupies an equatorial position while the \ce{N-O-} bond adopts an axial position. The presence of nearby methyl groups hinders electrostatic interaction, especially for bulky counterions. This effect is less pronounced in other families, where the skeleton prevents the oxygen from adopting such a position (particularly in IIO and APO).
-Then, using compound \textbf{4} as an example (see Fig.~\ref{fig:pos-anion}), it is observed that there are two possible positions for the counterion: 
+Then,  it is observed that there are two possible positions for the counterion: 
 \begin{inparaenum}[(i)]
 	\item near the redox center ($>$\ce{N-O^.}), ``in front" of the methyl groups, and 
 	\item near the substituent, ``behind" the methyl groups.
 \end{inparaenum}
-The energy difference between these positions is approximately \SI{5}{\kilo\joule\per\mole}. The first position is generally favored, except for the oxammonium cation in water. In acetonitrile, however, the nitroxide-to-counterion distance is smaller due to the lower dielectric constant, which results in reduced charge screening. Consequently:
+Using compound \textbf{4} as an example (see Fig.~\ref{fig:pos-anion}), the energy difference between these positions is small (approximately \SI{5}{\kilo\joule\per\mole} for \textbf{12}). The first position is generally favored. In acetonitrile, however, the nitroxide-to-counterion distance is smaller due to the lower dielectric constant, which results in reduced charge screening. Consequently:
 \begin{inparaenum}[(i)]
 	\item for the oxammonium ion, the lower charge screening in acetonitrile secludes the \ce{BF4-} from interacting with the substituent in the second position, favoring the first position, and
 	\item for hydroxylamine, both positions result in smaller complexation energies due to the reduced dielectric constant.
@@ -476,9 +478,22 @@ Finally, complexation to the \ce{AC} pair is considered (Fig.~\ref{fig:Kx2}, Tab
 \end{figure}
 
 \clearpage
-\section{Conclusion}
+\subsection{Comparison to experiment} \label{sec:exp}
 
-Well.
+\begin{itemize}
+	\item So one can drop $K_{x2}$,
+	\item Impact is small, isn't?
+	\item What about Matsui?
+\end{itemize}
+
+\clearpage
+\section{Conclusion} \label{sec:conclusion}
+
+Random thoughts:\begin{itemize}
+	\item We only focused on the impact of substituent. Other study do the counterion part.
+	\item The impact remains moderate, but I hope I have provided keys in understanding interaction.\todo{check \cite{zhangInteractionsImidazoliumBasedIonic2016}}
+	\item Ionic liquids needs to be addressed at some point ;)
+\end{itemize}
 	
 	
 \bibliographystyle{elsarticle-num-names} 
