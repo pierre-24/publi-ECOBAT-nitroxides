@@ -98,19 +98,17 @@ Nitroxides are organic compounds containing the nitroxyl/aminoxyl radical functi
 	\label{fig:states}
 \end{figure}
 
-The performance of nitroxide-based batteries is influenced by substitents \cite{sugaCathodeAnodeActivePoly2007}, by solvation, and the nature of the electrolytes used, in particular in ionic liquids \cite{armandIonicliquidMaterialsElectrochemical2009,strehmelRadicalsIonicLiquids2012,wylieIncreasedStabilityNitroxide2019b}. Understanding the interplay between nitroxides, solvents, and electrolytes is therefore crucial for the rational design of high-performance batteries.  Computational studies using quantum chemical methods provide valuable insights into solvation effects, allowing for the prediction and tuning of redox properties. While the seminal studies of Coote and co-workers \cite{hodgsonOneElectronOxidationReduction2007,blincoExperimentalTheoreticalStudies2008} have focused on the impact of substituent on the redox potential, latter investigations by other groups have also considered the impact of electrolytes, and of the different (electrostatic, but not only) interactions between the two \cite{matsuiDensityFunctionalTheory2013,zhangInteractionsImidazoliumBasedIonic2016,zhangEffectHeteroatomFunctionality2018,wylieImprovedPerformanceAllOrganic2019a}. From a phenomenological point of view, two different approaches may be used: at low concentration in electrolytes, the Debye-Huckel (DH) theory \cite{kontogeorgisDebyeHuckelTheoryIts2018,silvaDerivationsDebyeHuckel2022,silvaImprovingBornEquation2024}  provide a first estimate for the interactions within an ionic liquid.  While improvments were proposed over the years to better consider ion-solvent interaction, especially by including dipole-ion \cite{silvaImprovingBornEquation2024} and quadrupole-ion interactions \cite{slavchovQuadrupoleTermsMaxwell2014,slavchovQuadrupoleTermsMaxwell2014a,coxQuadrupolemediatedDielectricResponse2021}, there only have been a few attempts \cite{xiaoReorganizationEnergyElectron2013,xiaoMolecularDebyeHuckelApproach2014} to include the DH theory in the prediction of redox potential  (in molten salts). However, at large concentration (such as in ionic liquids), one can expect the formation of ion-pairs \cite{marcusIonPairing2006}. Phenomenological models \cite{krishtalikElectrostaticIonSolvent1991,matsuiDensityFunctionalTheory2013,lundDielectricInterpretationSpecificity2010} (...)
+Experimental studies have demonstrated that the performance of nitroxide-based batteries is influenced by substituents \cite{sugaCathodeAnodeActivePoly2007}, solvation, and the nature of the electrolytes used \cite{armandIonicliquidMaterialsElectrochemical2009,strehmelRadicalsIonicLiquids2012,wylieIncreasedStabilityNitroxide2019b}. Understanding the interplay between nitroxides, solvents, and electrolytes is therefore crucial for the rational design of high-performance batteries. Computational studies using quantum chemical methods provide valuable insights into solvation effects, enabling the prediction and tuning of redox properties.
+
+From a phenomenological perspective, two approaches can be used: at low concentrations in electrolytes, the Debye-Hückel (DH) theory \cite{kontogeorgisDebyeHuckelTheoryIts2018,silvaDerivationsDebyeHuckel2022,silvaImprovingBornEquation2024} provides an initial estimate for interactions within an ionic liquid. While improvements have been proposed over the years to better account for ion-solvent interactions, particularly by including dipole-ion \cite{silvaImprovingBornEquation2024} and quadrupole-ion interactions \cite{slavchovQuadrupoleTermsMaxwell2014,slavchovQuadrupoleTermsMaxwell2014a,coxQuadrupolemediatedDielectricResponse2021}, there have been only a few attempts \cite{matsuiDensityFunctionalTheory2013,xiaoReorganizationEnergyElectron2013,xiaoMolecularDebyeHuckelApproach2014} to incorporate DH theory into the prediction of redox potentials (in molten salts). There is also a limited implementation of DH theory in the polarizable continuum model \cite{cossiInitioStudyIonic1998}. At high concentrations (such as in ionic liquids), ion-pair formation can be expected \cite{marcusIonPairing2006}. Alongside electrostatic models \cite{krishtalikElectrostaticIonSolvent1991,lundDielectricInterpretationSpecificity2010}, various theoretical calculations of redox potentials have been performed \cite{mehtaTheoreticalInvestigationRedox2007,quAccurateModelingEffect2016,taherkhaniInvestigationIonPairs2022}, indicating that such interactions can be significant. This has also been recently investigated experimentally by Mugisa et al. \cite{mugisaEffectIonparingKinetics2024}, who assessed the impact of complexation on the redox potential and kinetics of charged metal complexes.
+
+Therefore, while seminal studies by Coote and co-workers \cite{hodgsonOneElectronOxidationReduction2007,blincoExperimentalTheoreticalStudies2008} have focused on the impact of substituents on the redox potential of nitroxides, later investigations by other groups have also considered the impact of electrolytes and the various interactions between them, including electrostatic interactions. For example, in 2019, Wylie and co-workers \cite{wylieImprovedPerformanceAllOrganic2019a,wylieIncreasedStabilityNitroxide2019b} demonstrated that interactions between the ionic liquid and nitroxide can increase the redox potential by more than \SI{3}{\volt} with a well-chosen pair of electrolytes. Prior to this, Zhang \textit{et al.} focused on stabilizing radical-ion interactions \cite{zhangInteractionsImidazoliumBasedIonic2016,zhangEffectHeteroatomFunctionality2018}, showing that interactions between a cation and the nitroxyl group are driven by both electrostatic and dispersion effects.
 
 
-Missing:\begin{itemize}
-	\item Prediction of redox potential (generally, only AIP!), and \textbf{the needs for a correct description of solvent-solute interactions}
-	\item So: SMD, then Debye-Huckel, then CIP (or Matsui). For that, it could be nice to do an "historic overview".
-	\item Motivate the choice of water and acetonitrile and not ionic liquids (\textit{e.g.}, absence of experimental data?).
-\end{itemize}
+In this study, the impact of solvation at low and high concentrations in electrolytes on the redox potential of various nitroxides is investigated. The focus is on the effects of the skeleton bearing the nitroxyl group, categorized into five families\todo{scheme?}, and the substituents. To facilitate comparison with experimental data, two solvents are considered: water and acetonitrile, for which experimental results are available \cite{morrisChemicalElectrochemicalReduction1991,goldsteinStructureActivityRelationship2006,blincoExperimentalTheoreticalStudies2008,zhangEffectHeteroatomFunctionality2018}. Different (semi-)quantitative models are employed at each step to aid in the interpretation of the results.
+This paper is organized as follows: Section \ref{sec:theory} introduces key concepts and models. The methodology used in this study is detailed in Section \ref{sec:methodo}. The results are then presented in four parts: the impact of substituents on the redox properties is discussed in Section \ref{sec:sar}, followed by an analysis of the effects of solvents in Section \ref{sec:solv}, and the influence of electrolytes in Section \ref{sec:elect}. Finally, a comparison between theoretical predictions and experimental results is provided in Section \ref{sec:exp}. Conclusions and future outlooks are presented in Section \ref{sec:conclusion}.
 
-In this study, (...)
-
-This paper is organized as follows: Section \ref{sec:theory} introduces key concepts and various simplified models that aid in the interpretation of the results. The methodology employed in this study is detailed in Section \ref{sec:methodo}. The results are then presented in four parts: the impact of substituents on the redox properties is discussed in Section \ref{sec:sar}, followed by an analysis of the effects of solvents in Section \ref{sec:solv}, and the influence of electrolytes in Section \ref{sec:elect}. Finally, a comparison between theoretical predictions and experimental results is provided in Section \ref{sec:exp}. Conclusions and future outlooks are presented in Section \ref{sec:conclusion}.
-
+\clearpage
 \section{Theory}\label{sec:theory}
 
 \subsection{Redox potentials in solution}
@@ -119,10 +117,17 @@ According to Ref.~\cite{marenichComputationalElectrochemistryPrediction2014}, th
 	E_{abs}^0(X^{z}|X^{z-n_e}) = -\frac{\Delta G_{r}^\star}{n_e\,F}, \text{ with } \Delta G_{r}^\star = G^\star(X^{z-n_e}) - G^\star(X^z), \label{eq:nernst}
 \end{equation}
 where $\Delta G_{r}^\star$ is the free Gibbs energy of the reduction reaction in solution, $F$ is the Faraday constant (\SI{9.648533e4}{\coulomb\per\mole}) and $n_e$ the number of electrons involved in the reduction process. Last but not least, $G^\star(X^z)$ is the Gibbs free energy of $X^z$ in solution.  In the rest of this article, it is considered that $G^\star(e^-) = 0$.
+
+While there is some validity in using the adiabatic ionization/electron affinity potentials instead of the full Gibbs free energy change when the reorganization energy (in the sense of Marcus theory, referring to the geometry relaxation between two redox states) is small, allowing for precise post-Hartree Fock methods to be utilized \cite{namazianBenchmarkCalculationsAbsolute2010,marenichComputationalElectrochemistryPrediction2014,makosModelingAbsoluteRedox2022}, this condition is not met in the present study, which would require to evaluate geometry reorganization and solvent effects at a different level. Consequently, a coherent treatment at the DFT level is chosen for this article.
+
+
 The comparison between relative (vs SHE) experimental and calculated oxidation potential is performed using a common reference:\begin{equation}
 	E^0_{rel}(X^z|X^{z-n_e})  = E^0_{abs}(X^z|X^{z-n_e}) - E^{0}_{abs}(\text{SHE}), \label{eq:ecalc}
 \end{equation}
 with $E^0_{abs}(\text{SHE}) = \SI{4.28}{\volt}$ in water or \SI{4.52}{\volt} in acetonitrile \cite{marenichComputationalElectrochemistryPrediction2014}.
+
+
+\subsection{Debye-Huckel theory}
 
 From a phenomenological perspective, such $G^\star(X^z)$ values are the sum of the system's energy in vacuum, $G^0(X^z)$, and the change in (free) energy resulting from its transfer to an electrolytic solution, $\Delta G_S^\star(X^z)$. The latter can be further decomposed using the thermodynamic cycle presented in Figure \ref{fig:th}. There are four steps: $\Delta G_d + \Delta G_s$ (discharge of a sphere in the gas phase followed by charging in a dielectric) constitutes a purely electrostatic process, while $\Delta G_s$ is primarily due to non-electrostatic contributions (cavitation, van der Waals forces, etc.). Finally, $\Delta G^\star_{DH}$ incorporates the effect of surrounding ions and is therefore crucial for treating electrolytes \cite{silvaImprovingBornEquation2024}.
 
@@ -189,7 +194,7 @@ where $n_i$ is the number density ($n_i = N_i / V = c_i\,\mathcal{N}_a$ where $\
 In the limit of $\kappa\to 0$,  $\Delta G^\star_{DH} = 0$ and thus $\Delta G^\star_S \approx \Delta G^\star_{born} = \Delta G_d + \Delta G_c$.  Therefore, by combining Eqs.~\eqref{eq:scrf} and \eqref{eq:adh}, one defines:\begin{equation}
 	G^\star(X^z) = G^\star_{SCRF}(X^z) + \Delta G^\star_{DH}(X^z), \label{eq:gtot}
 \end{equation}
-to be used in Eq.~\eqref{eq:nernst}. It should provide similar results to the approach developed by Cossi \emph{et al.} in Ref.~\citenum{cossiInitioStudyIonic1998}.
+to be used in Eq.~\eqref{eq:nernst}.
 
 \subsection{Model for the impact of the substituent}
 
@@ -207,7 +212,7 @@ In 2018, building upon previous work by Gryn'ova et al. \cite{grynovaOriginScope
 \begin{equation}
 	U_q(r) =\frac{1}{4\pi\varepsilon_0} \left[\frac{\mu_x}{r^2} + \frac{Q_{xx}}{r^3}\right], \label{eq:Er}
 \end{equation}
-assuming a non-charged substituent. The different quantities (dipole moment, $\mu_x$, and traceless quadrupole moment, $Q_{xx}$) are evaluated through a single-point calculation on a simplified structure, using the geometry of the radical where the \ce{N-O^.} moiety is substituted by \ce{CH2}. In this contribution, since the alignment of the dipole with the charge needs to be accounted for, this geometry is oriented such that the $x$-axis passes through the origin and the nitrogen, with the origin placed at the carbon bearing the substituent. The definition for the origin differs from the original model, as Zhang and co-workers did not consider multiple positions for a given substituent.
+assuming a non-charged substituent. The different quantities (dipole moment, $\mu_x$, and traceless quadrupole moment, $Q_{xx}$) are evaluated through a single-point calculation on a simplified structure, using the geometry of the radical where the \ce{N-O^.} moiety is substituted by \ce{CH2}. In this contribution, since the alignment of the dipole with the charge needs to be accounted for, this geometry is oriented such that the $x$-axis passes through the origin and the nitrogen, with the origin placed at the carbon bearing the substituent. The definition for the origin differs from the original model, as Zhang and co-workers did not consider multiple positions for a given substituent. They also only focused on the oxidation, while both redox process are considered here.
 
 
 \subsection{Impact of ion-pair formation on redox potentials}
@@ -216,7 +221,7 @@ At high concentrations of electrolyte, the formation of ion pairs in solution is
 	\item the pairs \ce{NA}, \ce{NC^.+}, and \ce{NC} between the oxidized, neutral and reduced states of the nitroxide  (with a complexation equilibrium constant $K_{x1}$), with their corresponding counterions (\ce{A-} and \ce{C+}, respectively), and then
 	\item complexation with the \ce{AC} pair (with an equilibrium constant $K_{x2}$), which occurs when the concentration of electrolyte becomes large \cite{wylieImprovedPerformanceAllOrganic2019a}.
 \end{inparaenum}
-The various equilibrium constants are defined in Fig.~\ref{fig:cip}. Note that only the complexation between the radical species and the cation is considered here, following previous investigations by Zhang \textit{et al.} \cite{zhangInteractionsImidazoliumBasedIonic2016}.\todo{there are others.}
+The various equilibrium constants are defined in Fig.~\ref{fig:cip}. Note that only the complexation between the radical species and the cation is considered here, following previous investigations by Zhang \textit{et al.} \cite{zhangInteractionsImidazoliumBasedIonic2016,zhangEffectHeteroatomFunctionality2018}.
 
 
 \begin{figure}[!h]
@@ -354,6 +359,7 @@ where:\begin{align*}
 \end{align*}
 Matsui and co-workers propose to  find the parameter $f$ and $\mu$ that minimize the difference between $E^p_{rel}(X^z|X^{z-n_e})$  [from Eq.~\eqref{eq:ecalc}] and the experimental $E^0_{rel}(X^z|X^{z-n_e})$.  Note that they therefore considers that $ E^{0}_{abs}(\text{SHE})$ is a third fitting parameter.
 
+\clearpage
 \section{Methodology} \label{sec:methodo}
 
 In this study, the set of nitroxides considered by Hogsdon \textit{et al.} (compounds \textbf{1}-\textbf{54}) is examined, supplemented with a few additional compounds for completeness (\textbf{55}-\textbf{61}). All structures are depicted in Fig.~\ref{fig:nitroxides}. The \ce{AC} pair, consisting of \ce{BF4^-} (\ce{A-}) and \ce{NMe4^+} (\ce{C+}), is used as the electrolyte.
@@ -366,9 +372,9 @@ In this study, the set of nitroxides considered by Hogsdon \textit{et al.} (comp
 \label{fig:nitroxides}
 \end{figure}
 
-Geometry optimizations and subsequent vibrational frequency calculations were performed at the $\omega$B97X-D/6-311+G(d) level in water and acetonitrile (described using the SMD \cite{marenichUniversalSolvationModel2009} approach) with Gaussian 16 C02 \cite{g16}. For compound \textbf{1}-\textbf{54}, the geometries obtained by Hodgson et al. \cite{hodgsonOneElectronOxidationReduction2007} have been used as a starting point, taking advantage of their extensive conformational search. All radical forms are considered to have a doublet ground state. Then, the same calculations were preformed in acetonitrile for the subset of compounds for which experimental redox potentials are available (listed in Fig.~\ref{fig:nitroxides}). Finally, to study the influence of the substituent on the redox potential, following Zhang and co-workers \cite{zhangEffectHeteroatomFunctionality2018}, single point calculation are performed at the $\omega$B97X-D/6-311+G(d) level in gas phase, using the optimized geometries of  the radical states of each nitroxides (in water) in which $>$\ce{N-O^.} moiety is substituted by \ce{CH_2} (the rest of the geometry is kept fixed).
+Geometry optimizations and subsequent vibrational frequency calculations were performed at the $\omega$B97X-D/6-311+G(d) level in water and acetonitrile (described using the SMD \cite{marenichUniversalSolvationModel2009} approach) with Gaussian 16 C02 \cite{g16}. With other possible candidates, this functional have been demonstrated to provide reliable results  \cite{flores-leonarFurtherInsightsDFT2017,maierG4AccuracyDFT2020}.  For compound \textbf{1}-\textbf{54}, the geometries obtained by Hodgson et al. \cite{hodgsonOneElectronOxidationReduction2007} have been used as a starting point, taking advantage of their extensive conformational search. All radical forms are considered to have a doublet ground state  [$\braket{S^2}=\frac{3}{4}$]. Then, the same calculations were preformed in acetonitrile for the subset of compounds for which experimental redox potentials are available (listed in Fig.~\ref{fig:nitroxides}). Finally, to study the influence of the substituent on the redox potential, following Zhang and co-workers \cite{zhangEffectHeteroatomFunctionality2018}, single point calculation are performed at the $\omega$B97X-D/6-311+G(d) level in gas phase, using the optimized geometries of  the radical states of each nitroxides (in water) in which $>$\ce{N-O^.} moiety is substituted by \ce{CH_2} (the rest of the geometry is kept fixed).
 
-Since all thermochemical quantities are $\kappa$-dependent, analyses were performed using custom Python scripts. When required (e.g., in Eq.~\eqref{eq:dh}), the value of $a$ (the radius of the solute cavity) is taken as half the largest distance between two atoms in the molecule. Furthermore, a value of $\varepsilon_{r,wa}=80$ for water and $\varepsilon_{r,ac}=35$ for acetonitrile is used. These relative permittivities correspond to those of the pure solvents and are known to be lower in the respective electrolyte solutions \cite{silvaTrueHuckelEquation2022}. These variations can be substantial; for example, $\varepsilon_r \approx 70$ for a solution containing \SI{1}{\mol\per\kilo\gram} of \ce{NaCl} in water \cite{kontogeorgisDebyeHuckelTheoryIts2018, silvaTrueHuckelEquation2022}, but they depend on the nature of the electrolyte.
+Since all thermochemical quantities are $\kappa$-dependent, analyses were performed using custom Python scripts. When required (e.g., in Eq.~\eqref{eq:dh}), the value of $a$ (the radius of the solute cavity) is taken as half the largest distance between two atoms in the molecule. Furthermore, a value of $\varepsilon_{r,wa}=80$ for water and $\varepsilon_{r,ac}=35$ for acetonitrile is used. These relative permittivities correspond to those of the pure solvents and are known to be lower in the respective electrolyte solutions \cite{silvaTrueHuckelEquation2022}. These variations can be substantial; for example, $\varepsilon_r \approx 70$ for a solution containing \SI{1}{\mol\per\kilo\gram} of \ce{NaCl} in water \cite{kontogeorgisDebyeHuckelTheoryIts2018, silvaTrueHuckelEquation2022}, but they depend on the nature of the electrolyte, so it was not considered here.
 Unless otherwise mentioned, the value of $\kappa^2$ is obtained assuming  $c_{ox} = c_{rad} = c_ {red} = \SI{1e-3}{\mole\per\liter}$, a prototypical concentration in measurements.
 
 \clearpage
@@ -429,7 +435,7 @@ The difference between redox potentials computed in water and acetonitrile is il
 So far, the concentration of electrolyte, $[X]$, has been maintained at zero. To evaluate its impact on the redox potentials, the DH correction itself is initially examined in Fig.~\ref{fig:DH}. As anticipated, it remains small within the concentration range considered here (a few hundredths of millivolts for $[X] \leq \SI{1}{\mole\per\liter}$ and larger in acetonitrile), increasing with $[X]$. Its sign differs between oxidation and reduction potentials. Additionally, it is diminished for compounds belonging to the IIO and APO families (as they are larger molecules with larger $a$), but amplified for species with a net positive charge (\textbf{11}, \textbf{21}, \textbf{35}), for which the correction for oxidation and reduction potentials is negative.
 
 
-\begin{figure}[!h]
+\begin{figure}[!b]
 	\centering
 	\includegraphics[width=\linewidth]{Figure10}
 	\caption{Impact of the Debye-Huckel correction, as $\Delta E^0 = -\frac{\Delta \Delta G_{DH}^\star}{F}$ for $[X]=\SI{1}{\mole\per\liter}$ (round markers), $[X]=\SI{0.1}{\mole\per\liter}$ (triangular markers, $\blacktriangle$)  and $[\ce{X}]=\SI{0}{\mole\per\liter}$ (square markers, $\blacksquare$), as computed at the $\omega$B97X-D/6-311+G(d) level in water (top) and acetonitrile (bottom) using SMD. Filled (empty) markers represent the correction to the oxidation (reduction) potential. }
@@ -492,8 +498,9 @@ Finally, complexation to the \ce{AC} pair is considered (Fig.~\ref{fig:Kx2}, Tab
 \section{Conclusion} \label{sec:conclusion}
 
 Random thoughts:\begin{itemize}
-	\item more of DH could be included (dipole, quandrupole)
 	\item We only focused on the impact of substituent. Other study do the counterion part.
+	\item more of DH could be included (dipole, quandrupole)
+	\item Temperature is higher in batteries?
 	\item The impact remains moderate, but I hope I have provided keys in understanding interaction.\todo{check \cite{zhangInteractionsImidazoliumBasedIonic2016}}
 	\item Ionic liquids needs to be addressed at some point ;)
 \end{itemize}
