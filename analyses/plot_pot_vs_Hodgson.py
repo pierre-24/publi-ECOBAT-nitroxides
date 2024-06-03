@@ -16,7 +16,7 @@ POINTS_POSITION ={'E_ox': [], 'E_red': []}
 LABELS_KWARGS = {'E_ox': [], 'E_red': []}
 LABELS_PATH = {'E_ox': pathlib.Path('pot_hodgson_ox.pos'), 'E_red': pathlib.Path('pot_hodgson_red.pos')}
 
-TO_SHE = 4.4
+TO_SHE = 4.36  # Eq. 4 of Hodgson et al.
 
 def plot_family(ax, data: pandas.DataFrame, data_hog: pandas.DataFrame, family: str, column: str, color: str):
     subdata = data[(data['family'] == family) & (data['solvent'] == SOLVENT)]
