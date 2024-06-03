@@ -8,5 +8,6 @@ all:
 	python plot_DH.py -o ../FigureS1.pdf
 	python plot_CIP.py -o ../FigureS2.pdf
 	python plot_pairs.py -o ../FigureS3.pdf
-	python plot_pot_hammet.py -o ../FigureS4.pdf
-	python plot_cplx_Gx1.py -o ../FigureS5.pdf
+	python plot_pot_vs_Hodgson.py -o ../FigureS4.pdf
+	python plot_pot_hammet.py -o ../FigureS5.pdf
+	python plot_cplx_Gx1.py -o ../FigureS6.pdf
