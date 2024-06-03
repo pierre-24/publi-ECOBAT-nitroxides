@@ -87,18 +87,18 @@
 \section{Introduction}
 
 
-The quest for efficient and sustainable energy storage solutions has intensified research into various battery chemistries. Among these, nitroxide-based batteries have attracted significant attention due to their high theoretical capacity and stability.\todo{more!}
+The quest for efficient and sustainable energy storage solutions has intensified research into various battery chemistries. Among these, nitroxide-based batteries have attracted, since their first application in 2002 \cite{nakaharaRechargeableBatteriesOrganic2002}, significant attention due to their high theoretical capacity \cite{friebeSustainableEnergyStorage2019,ernouldNitroxidesBatteryrelatedApplications2021,keDesigningStrategiesAdvanced2023}. They are generally found, like other radical polymers, as a cathode material \cite{okaRadicalPolymersRechargeable2020a,assummaNewConductingCopolymer2020}. Beyond their application in batteries, nitroxides have been extensively studied and utilized in various fields. They serve as spin labels in electron paramagnetic resonance spectroscopy \cite{torricellaNitroxideSpinLabels2021}, as mediators for organic radical reactions and polymerizations \cite{tebbenNitroxidesApplicationsSynthesis2011,leifertOrganicSynthesisUsing2023}, in organic electronic devices \cite{jiAirStableOrganicRadicals2020,xieNitroxideRadicalPolymers2021}, and as antioxidants in biological systems  \cite{souleChemistryBiologyNitroxide2007,lewandowskiNitroxidesAntioxidantsAnticancer2017,prescottBiologicalRelevanceFree2017}.
 
-Nitroxides are organic compounds containing the nitroxyl/aminoxyl radical functional group \cite{berlinerHistoryUseNitroxides2012}. This group can exist in three redox states: the nitroxide radical ($>$\ce{N-O^.}, also shortened in \ce{N^.} in this article), which can be oxidized to the oxammonium cation ($>$\ce{N+=O}, abbreviated \ce{N+}) or reduced to the hydroxylamine anion ($>$\ce{N-O-}, abbreviated \ce{N-}), as depicted in Fig.~\ref{fig:states}\todo{add he notation \ce{N+}, \ce{N^.}, and \ce{N-}. Also, oxa\textbf{m}monium!}. The remarkable stability of the nitroxide radical arises from the delocalization of the unpaired electron over the nitrogen and oxygen atoms, combined with the steric protection provided by the substituents. Beyond their application in batteries, nitroxides have been extensively studied and utilized in various fields. They serve as spin labels in electron paramagnetic resonance (EPR) spectroscopy, as mediators for controlled radical polymerizations in polymer chemistry, and as antioxidants in biological systems  \cite{souleChemistryBiologyNitroxide2007,lewandowskiNitroxidesAntioxidantsAnticancer2017}.\todo{And \cite{jiAirStableOrganicRadicals2020}.}
+Nitroxides are organic compounds containing the nitroxyl/aminoxyl radical functional group \cite{berlinerHistoryUseNitroxides2012}. This group can exist in three redox states: the nitroxide radical ($>$\ce{N-O^.}, also shortened in \ce{N^.} in this article), which can be oxidized to the oxoammonium cation ($>$\ce{N+=O}, abbreviated \ce{N+}) or reduced to the hydroxylamine anion ($>$\ce{N-O-}, abbreviated \ce{N-}), as depicted in Fig.~\ref{fig:states}. The remarkable stability of the nitroxide radical arises from the delocalization of the unpaired electron over the nitrogen and oxygen atoms, combined with the steric protection provided by the substituents, and environmental effects due to the interaction with solvent and ions \cite{grynovaOriginScopeLongRange2013,grynovaSwitchingRadicalStability2013}. 
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=.5\linewidth]{Figure1}
-	\caption{Oxidized (left) and reduced (right) form of the the nitroxide radical (center).}
+	\caption{Oxidized (left) and reduced (right) forms of the the nitroxide radical (center).}
 	\label{fig:states}
 \end{figure}
 
-The performance of nitroxide-based batteries is influenced by solvation and the nature of the electrolytes used. Solvation effects can alter the electronic environment of nitroxide radicals, thereby affecting their redox potentials and reactivity. Additionally, the choice of electrolyte impacts ion transport, redox stability, and the overall efficiency of the battery. Understanding the interplay between nitroxides, solvents, and electrolytes is therefore crucial for the rational design of high-performance batteries. Computational studies using quantum chemical methods provide valuable insights into solvation effects, allowing for the prediction and tuning of redox properties.\todo{more!}
+The performance of nitroxide-based batteries is influenced by substitents \cite{sugaCathodeAnodeActivePoly2007}, by solvation, and the nature of the electrolytes used, in particular in ionic liquids \cite{armandIonicliquidMaterialsElectrochemical2009,strehmelRadicalsIonicLiquids2012,wylieIncreasedStabilityNitroxide2019b}. Understanding the interplay between nitroxides, solvents, and electrolytes is therefore crucial for the rational design of high-performance batteries.  Computational studies using quantum chemical methods provide valuable insights into solvation effects, allowing for the prediction and tuning of redox properties. While the seminal studies of Coote and co-workers \cite{hodgsonOneElectronOxidationReduction2007,blincoExperimentalTheoreticalStudies2008} have focused on the impact of substituent on the redox potential, latter investigations by other groups have also considered the impact of electrolytes, and of the different (electrostatic, but not only) interactions between the two \cite{matsuiDensityFunctionalTheory2013,zhangInteractionsImidazoliumBasedIonic2016,zhangEffectHeteroatomFunctionality2018,wylieImprovedPerformanceAllOrganic2019a}. From a phenomenological point of view, two different approaches may be used: at low concentration in electrolytes, the Debye-Huckel (DH) theory \cite{kontogeorgisDebyeHuckelTheoryIts2018,silvaDerivationsDebyeHuckel2022,silvaImprovingBornEquation2024}  provide a first estimate for the interactions within an ionic liquid.  While improvments were proposed over the years to better consider ion-solvent interaction, especially by including dipole-ion \cite{silvaImprovingBornEquation2024} and quadrupole-ion interactions \cite{slavchovQuadrupoleTermsMaxwell2014,slavchovQuadrupoleTermsMaxwell2014a,coxQuadrupolemediatedDielectricResponse2021}, there only have been a few attempts \cite{xiaoReorganizationEnergyElectron2013,xiaoMolecularDebyeHuckelApproach2014} to include the DH theory in the prediction of redox potential  (in molten salts). However, at large concentration (such as in ionic liquids), one can expect the formation of ion-pairs \cite{marcusIonPairing2006}. Phenomenological models \cite{krishtalikElectrostaticIonSolvent1991,matsuiDensityFunctionalTheory2013,lundDielectricInterpretationSpecificity2010} (...)
 
 
 Missing:\begin{itemize}
@@ -106,6 +106,8 @@ Missing:\begin{itemize}
 	\item So: SMD, then Debye-Huckel, then CIP (or Matsui). For that, it could be nice to do an "historic overview".
 	\item Motivate the choice of water and acetonitrile and not ionic liquids (\textit{e.g.}, absence of experimental data?).
 \end{itemize}
+
+In this study, (...)
 
 This paper is organized as follows: Section \ref{sec:theory} introduces key concepts and various simplified models that aid in the interpretation of the results. The methodology employed in this study is detailed in Section \ref{sec:methodo}. The results are then presented in four parts: the impact of substituents on the redox properties is discussed in Section \ref{sec:sar}, followed by an analysis of the effects of solvents in Section \ref{sec:solv}, and the influence of electrolytes in Section \ref{sec:elect}. Finally, a comparison between theoretical predictions and experimental results is provided in Section \ref{sec:exp}. Conclusions and future outlooks are presented in Section \ref{sec:conclusion}.
 
@@ -189,11 +191,9 @@ In the limit of $\kappa\to 0$,  $\Delta G^\star_{DH} = 0$ and thus $\Delta G^\st
 \end{equation}
 to be used in Eq.~\eqref{eq:nernst}. It should provide similar results to the approach developed by Cossi \emph{et al.} in Ref.~\citenum{cossiInitioStudyIonic1998}.
 
-%Note that this model is based on a monopole (ion-charges) interaction: while modifications have been proposed first \cite{krishtalikElectrostaticIonSolvent1991}, extension to further multipoles moments \cite{silvaImprovingBornEquation2024,lahiriDeterminationGibbsEnergies2003,duignanContinuumSolventModel2013}, especially dipole \cite{silvaImprovingBornEquation2024} and quadrupole \cite{slavchovQuadrupoleTermsMaxwell2014,slavchovQuadrupoleTermsMaxwell2014a,coxQuadrupolemediatedDielectricResponse2021}, now exists. They, however, generally focuses on simple ions and not ionic molecules.
-
 \subsection{Model for the impact of the substituent}
 
-In a first approximation, the electrostatic interaction between the substituent(s) and the charge formed upon oxidation or reduction influences the redox potential of nitroxides. Specifically, assuming a non-charged substituent, charge-dipole interactions stabilize the oxammonium ($>$\ce{N+=O}) if the dipole is aligned with the charge, while they destabilize the hydroxylamine ($>$\ce{N-O-}), both resulting in a decrease in the redox potential (see Fig.~\ref{fig:dipole}). Within this framework, it is therefore expected that compounds with donor substituents have lower redox potentials than acceptor substituents.
+In a first approximation, the electrostatic interaction between the substituent(s) and the charge formed upon oxidation or reduction influences the redox potential of nitroxides. Specifically, assuming a non-charged substituent, charge-dipole interactions stabilize the oxoammonium ($>$\ce{N+=O}) if the dipole is aligned with the charge, while they destabilize the hydroxylamine ($>$\ce{N-O-}), both resulting in a decrease in the redox potential (see Fig.~\ref{fig:dipole}). Within this framework, it is therefore expected that compounds with donor substituents have lower redox potentials than acceptor substituents.
 
 
 \begin{figure}[!h]
@@ -271,7 +271,7 @@ An example is provided in Fig.~S2: while $K_{(i+1)1} / K_{i1}$ ($i\in[0,1]$) gov
 
 \subsection{Model for the ion-pair formation}
 
-Insight into the formation of ion pairs ($K_{01}$ and $K_{21}$ in Fig.~\ref{fig:cip}) is provided by a simple model proposed by Lund et al. \cite{lundDielectricInterpretationSpecificity2010}. It is based on the balance between the solvation of the individual charges (described by the Born model, Eq.~\eqref{eq:born}) and the formation of a dipole when the two charges interact, leading to the famous Onsager model \cite{onsagerElectricMomentsMolecules1936,aubretUnderstandingLocalField2019}. From the thermodynamic cycle given in Fig.~\ref{fig:ionpair}, one can derive the following expression: \begin{equation}
+Insight into the formation of ion pairs ($K_{01}$ and $K_{21}$ in Fig.~\ref{fig:cip}) is provided by a simple model proposed by Lund et al. \cite{lundDielectricInterpretationSpecificity2010}. It is based on the balance between the solvation of the individual charges (described by the Born model, Eq.~\eqref{eq:born}) and the formation of a dipole when the two charges interact, leading to the famous Onsager model \cite{onsagerElectricMomentsMolecules1936,krishtalikElectrostaticIonSolvent1991,aubretUnderstandingLocalField2019}. From the thermodynamic cycle given in Fig.~\ref{fig:ionpair}, one can derive the following expression: \begin{equation}
 	\Delta G_{\text{pair}}^\star = \frac{1}{4\pi\varepsilon_0}\,\left\{\left[\frac{q_1^2}{2a_1}+\frac{q_2^2}{2a_2}\right]\,\left[1-\frac{1}{\varepsilon_r}\right]+\frac{q_1\,q_2\,|q_1-q_2|}{2\,\mu}-\frac{\varepsilon_r-1}{2\varepsilon_r+1}\,\frac{\mu^2}{a^3}\right\},\label{eq:pair}
 \end{equation}
 where $a_1$, $a_2$, and $a=s_2\,( a_1^3+a_2^3)^{1/3}$ are the radii of the cavities corresponding to $q_1$, $q_2$, and the dipole, respectively, defined as $\mu = \frac{s_1}{2}\,|q_2-q_1|\,(a_1+a_2)$.  $s_1$ and $s_2$ are scaling factors, which account for the electrostatic attraction between the two charges forming the dipole ($s_1\leq 1$) and the fact that the cavity might not be spherical ($s_2\geq 1$).
@@ -455,7 +455,7 @@ Then,  it is observed that there are two possible positions for the counterion:
 \end{inparaenum}
 Using compound \textbf{4} as an example (see Fig.~\ref{fig:pos-anion}), the energy difference between these positions is small (approximately \SI{5}{\kilo\joule\per\mole} for \textbf{12}). The first position is generally favored. In acetonitrile, however, the nitroxide-to-counterion distance is smaller due to the lower dielectric constant, which results in reduced charge screening. Consequently:
 \begin{inparaenum}[(i)]
-	\item for the oxammonium ion, the lower charge screening in acetonitrile secludes the \ce{BF4-} from interacting with the substituent in the second position, favoring the first position, and
+	\item for the oxoammonium ion, the lower charge screening in acetonitrile secludes the \ce{BF4-} from interacting with the substituent in the second position, favoring the first position, and
 	\item for hydroxylamine, both positions result in smaller complexation energies due to the reduced dielectric constant.
 \end{inparaenum}
 \todo{What about the other families?} 
@@ -492,6 +492,7 @@ Finally, complexation to the \ce{AC} pair is considered (Fig.~\ref{fig:Kx2}, Tab
 \section{Conclusion} \label{sec:conclusion}
 
 Random thoughts:\begin{itemize}
+	\item more of DH could be included (dipole, quandrupole)
 	\item We only focused on the impact of substituent. Other study do the counterion part.
 	\item The impact remains moderate, but I hope I have provided keys in understanding interaction.\todo{check \cite{zhangInteractionsImidazoliumBasedIonic2016}}
 	\item Ionic liquids needs to be addressed at some point ;)

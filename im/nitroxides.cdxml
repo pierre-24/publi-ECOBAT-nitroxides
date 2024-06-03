@@ -3,8 +3,8 @@
 <CDXML
  CreationProgram="ChemDraw 22.2.0.3300"
  Name="nitroxides.cdxml"
- BoundingBox="382 122.54 630.49 194.42"
- WindowPosition="0 1073741824"
+ BoundingBox="374.93 122.54 630.82 197.29"
+ WindowPosition="-1073741824 1073741824"
  WindowSize="-1073741824 -1073741824"
  FractionalWidths="yes"
  InterpretChemically="yes"
@@ -83,7 +83,7 @@
 </colortable><fonttable>
 <font id="3" charset="windows-1257" name="Arial"/>
 </fonttable><page
- id="69"
+ id="73"
  BoundingBox="0 0 1255.33 612.67"
  Width="1255.33"
  Height="612.67"
@@ -342,68 +342,68 @@
 ><s font="3" size="9.95" color="0">+ e</s><s font="3" size="9.95" color="0" face="64">-</s></t><t
  id="49"
  p="407.72 178.67"
- BoundingBox="382 169.67 433.44 192.57"
+ BoundingBox="374.93 166.94 440.51 195.29"
  Z="64"
  Warning="Chemical Interpretation is not possible for this label"
  CaptionJustification="Center"
  Justification="Center"
  LineHeight="auto"
- LineStarts="10 16"
-><s font="3" size="9.95" color="0">oxamonium
-cation</s></t><t
+ LineStarts="12 23"
+><s font="3" size="10" color="0">oxoammonium
+cation (N</s><s font="3" size="10" color="0" face="64">+</s><s font="3" size="10" color="0">)</s></t><t
  id="50"
  p="507.47 176.67"
- BoundingBox="488.67 167.67 526.27 190.57"
+ BoundingBox="483.30 164.94 531.64 193.29"
  Z="65"
  Warning="Chemical Interpretation is not possible for this label"
  CaptionJustification="Center"
  Justification="Center"
  LineHeight="auto"
- LineStarts="10 17"
-><s font="3" size="9.95" color="0">nitroxide
-radical</s></t><t
+ LineStarts="10 22"
+><s font="3" size="10" color="0">nitroxide
+radical (N</s><s font="3" size="10" color="0" face="65">.</s><s font="3" size="10" color="0">)</s></t><t
  id="51"
  p="598.58 180.67"
- BoundingBox="566.67 171.72 630.49 194.42"
+ BoundingBox="566.34 168.94 630.82 197.29"
  Z="66"
  Warning="Chemical Interpretation is not possible for this label"
  CaptionJustification="Center"
  Justification="Center"
  LineHeight="auto"
- LineStarts="14 19"
-><s font="3" size="9.9" color="0">hydroxylamine
-anion</s></t><graphic
- id="63"
- SupersededBy="70"
+ LineStarts="14 24"
+><s font="3" size="10" color="0">hydroxylamine
+anion (N</s><s font="3" size="10" color="0" face="64">-</s><s font="3" size="10" color="0">)</s></t><graphic
+ id="70"
+ SupersededBy="74"
  BoundingBox="468.13 144 439.33 144"
  Z="60"
  GraphicType="Line"
  ArrowType="Equilibrium"
  HeadSize="1000"
 /><graphic
- id="64"
- SupersededBy="71"
+ id="71"
+ SupersededBy="75"
  BoundingBox="566.80 141.33 538 141.33"
  Z="61"
  GraphicType="Line"
  ArrowType="Equilibrium"
  HeadSize="1000"
 /><scheme
- id="72"
+ id="76"
 ><step
- id="73"
+ id="77"
  ReactionStepReactants="8"
  ReactionStepProducts="15"
- ReactionStepArrows="63"
+ ReactionStepArrows="70"
  ReactionStepObjectsAboveArrow="47"
 /><step
- id="74"
+ id="78"
  ReactionStepReactants="15"
  ReactionStepProducts="23"
- ReactionStepArrows="64"
+ ReactionStepArrows="71"
  ReactionStepObjectsAboveArrow="48"
 /></scheme><arrow
- id="70"
+ id="74"
  BoundingBox="438.43 141.10 469.03 146.90"
  Z="60"
  FillType="None"
@@ -420,7 +420,7 @@ anion</s></t><graphic
  MajorAxisEnd3D="716.60 216 0"
  MinorAxisEnd3D="687.80 244.80 0"
 /><arrow
- id="71"
+ id="75"
  BoundingBox="537.10 138.43 567.70 144.23"
  Z="61"
  FillType="None"
