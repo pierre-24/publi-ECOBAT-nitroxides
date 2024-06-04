@@ -4,16 +4,16 @@ import pandas
 from scipy.spatial import distance_matrix
 
 # -- Electrolytes, from wB97X-D/6-311+G(d)
-G_NME4 = {'water': -214.096721, 'acetonitrile': -214.104109}
-G_BF4 = {'water': -424.654435, 'acetonitrile': -424.656267}
-RADII_NME4 = {'water': 2.108130614275878, 'acetonitrile': 2.098320849223868}
-RADII_BF4 = {'water': 1.151806660832909, 'acetonitrile': 1.1520489206428235}
-
+G_NME4 = {'water': -214.096721, 'acetonitrile': -214.104109} # Eh
+G_BF4 = {'water': -424.654435, 'acetonitrile': -424.656267}  # Eh
+RADII_NME4 = {'water': 2.108130614275878, 'acetonitrile': 2.098320849223868}  # angstrom
+RADII_BF4 = {'water': 1.151806660832909, 'acetonitrile': 1.1520489206428235}  # angstrom
 
 # -- CST
 
 C_NITROXIDE = 1e-3 # mol L-1
 EPSILON_R = {'water': 80, 'acetonitrile': 35}
+E_SHE = {'water': 4.28, 'acetonitrile': 4.52}  # volt
 
 # -- Debye-Huckel theory
 
