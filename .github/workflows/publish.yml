@@ -37,16 +37,7 @@ jobs:
            make
       - name: build PDFs
         run: |
-           # main text
-           lualatex nitroxides.tex
-           bibtex nitroxides.aux
-           lualatex nitroxides.tex
-           lualatex nitroxides.tex
-           # supporting
-           lualatex nitroxides_SI.tex
-           bibtex nitroxides_SI.aux
-           lualatex nitroxides_SI.tex
-           lualatex nitroxides_SI.tex
+           latexmk -lualatex
       - name: Upload main text
         uses: svenstaro/upload-release-action@v2
         with:
