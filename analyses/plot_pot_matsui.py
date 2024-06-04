@@ -15,8 +15,10 @@ LABELS_PATH = {'water': pathlib.Path('pot_matsui_water.pos'), 'acetonitrile': pa
 EXCLUDE = [57, 51, 59]
 
 def matsui_E_P_rel(E_abs, E_SHE, f, mu, a0, epsilon_r, z, n_e=1):
-    return E_abs - 1/(2*f*a0 / AU_TO_ANG) * (1/epsilon_r-1)*((n_e-z)**2*scipy.special.erf(mu*a0*numpy.abs(n_e-z))-z**2*scipy.special.erf(mu*a0*numpy.abs(z))) * 27.212 - E_SHE # in V
+    return E_abs - 1/(2*numpy.abs(f)*a0 / AU_TO_ANG) * (1/epsilon_r-1)*((n_e-z)**2*scipy.special.erf(mu*a0*numpy.abs(n_e-z))-z**2*scipy.special.erf(mu*a0*numpy.abs(z))) * 27.212 - E_SHE # in V
     
+
+INIT_FIT = {'water': [4.34, 0.7, 1e-3], 'acetonitrile': [4.26, 0.6, 1e-2]}
 
 def prepare_data(data: pandas.DataFrame, data_exp: pandas.DataFrame, solvent):
     subdata = data[data['solvent'] == solvent]
@@ -32,7 +34,7 @@ def prepare_data(data: pandas.DataFrame, data_exp: pandas.DataFrame, solvent):
         matsui, 
         subdata[~subdata['compound'].isin(EXCLUDE)]['E_ox'], 
         subdata[~subdata['compound'].isin(EXCLUDE)]['E_ox_exp_{}'.format(solvent)],
-        p0=[E_SHE_[solvent], 1.0, 0.1],
+        p0=INIT_FIT[solvent],
         method='dogbox'
     )
     
@@ -100,7 +102,7 @@ positioner.add_labels(ax1)
 
 subdata_ac, param_matsui_ac = prepare_data(data, data_exp, 'acetonitrile')
 
-ax2.text(.8, 1.18, '$E_{{SHE}}$ = {:.2f} V, $f$ = {:.1f}, $\\mu$ = {:.2f} a$_0^{{-1}}$'.format(*param_matsui_ac))
+ax2.text(.8, 1.18, '$E_{{SHE}}$ = {:.2f} V, $f$ = {:.3f}, $\\mu$ = {:.5f} a$_0^{{-1}}$'.format(*param_matsui_ac))
 
 plot_exp_vs_matsui(ax2, subdata_ac, 'acetonitrile', 'Family.P6O', 'tab:blue')
 plot_exp_vs_matsui(ax2, subdata_ac, 'acetonitrile', 'Family.P5O', 'black')
