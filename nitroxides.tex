@@ -279,9 +279,9 @@ Within these assumption, the following electrolyte concentration-dependent (form
 \end{align}
 in which $K_{ij}= \exp\left[-\frac{\Delta G_{cplx}^\star}{RT}\right]$, where $\Delta G_{cplx}^\star$ is the free Gibbs energy change [computed with Eq.~\eqref{eq:gtot}] for a given complexation reaction.
 
-An example is provided in Fig.~S2:  in order to have an impact two conditions should be met: \begin{inparaenum}[(i)]
-	\item the complexation constant should be large, and
-	\item there should be a large difference between the complexation energy of one species with respect to the other in the redox couple.
+An example is provided in Fig.~S2: to have a significant impact, two conditions must be met: \begin{inparaenum}[(i)]
+	\item the complexation constant must be large, and
+	\item there must be a substantial difference between the complexation energies of the two species in the redox couple.
 \end{inparaenum}
 
 \subsection{Model for the ion-pair formation}
@@ -350,7 +350,7 @@ It is worth noting that the impact of the ratio between the radii of different s
 Alternatively, Matsui et al. \cite{matsuiDensityFunctionalTheory2013} proposed that the impact of counterions on the redox potential of $X^z$ could be described using a single fictitious particle, $P^{-z}$, with a radius $a=fa_0$ proportional to that of the redox species, $a_0$ (considered constant for all oxidation states of $X$), and bearing the appropriate counter-charge, $-z$. They suggested evaluating the energy of this particle using a modified Born approach [Eq.~\eqref{eq:born}]:\begin{align}
 	&\Delta G^\star_{P}(P^z) = \frac{1}{4\pi\epsilon_0}\, \frac{q^2}{2fa_0}\,\left[\frac{1}{\varepsilon_r}-1\right]\,\erf(\mu\,a_0\,|q|),
 \end{align}
-where $f$ and $\mu$ are method-dependent factors, the latter being described in Ref.~\cite{matsuiDensityFunctionalTheory2013} as a screening factor.
+where $f$ and $\mu$ are method-dependent factors, the latter being described in Ref.~\cite{matsuiDensityFunctionalTheory2013} as a parameter to induce a screening effect near the redox center.
 
 
 In the presence of this fictitious particle, the reduction of $X^z$ becomes:\begin{equation*}
@@ -418,7 +418,7 @@ As a consequence, \textbf{55} exhibits the highest oxidation and reduction poten
 
 
 To elucidate these effects, attempts were made to correlate both potentials with Hammett constants for P5O and P6O, but the correlations were found to be very weak, especially for reduction (see Fig.~S5). The electrostatic interaction model [Eq.~\eqref{eq:Er}] provides more insights. Results are presented in Fig.~\ref{fig:corr} (see also Table S3). However, this model fails to account for the effect of substituting methyl groups with ethyl groups. Moreover, including the disubstituted compounds (e.g., \textbf{9}) worsens the correlation ($R^2 \sim 0.5$ and 0.3 for oxidation and reduction, respectively). Compounds \textbf{56} and \textbf{58} remain outliers for reduction. Therefore, all three sets of compounds were treated as outliers.
-On the positive side, this model helps explain some of the effects mentioned above: the increase in oxidation (and reduction) potential for aromatic compounds correlates with an increase in quadrupole moment ($Q_{xx} > \SI{5}{\elementarycharge\bohr\squared}$ for most member of IIO or APO), while the modification due to donor/acceptor substituents is linked to changes in the dipole moment. For example, aromatic compounds that have \ce{NH2} has substituent (\textit{e.g.}, \textbf{51}) are characterized by  $\mu_{x} < 0$, which gets larger for coumpounds have \ce{COOH} (\textit{e.g.}, \textbf{39}) or \ce{NO2} (\textit{e.g.}, \textbf{54}). It also accounts for some effects due to the position of the substituent (see, e.g., \textbf{49}-\textbf{51}), which was not the case with the original model by Zhang and co-workers (resulting in weak correlations, $R^2 \leq 0.3$).
+On the positive side, this model helps explain some of the effects mentioned above: the increase in oxidation (and reduction) potential for aromatic compounds correlates with an increase in quadrupole moment ($Q_{xx} > \SI{5}{\elementarycharge\bohr\squared}$ for most member of IIO or APO), while the modification due to donor/acceptor substituents is linked to changes in the dipole moment. For example, aromatic compounds that have \ce{NH2} has substituent (\textit{e.g.}, \textbf{51}) are characterized by  $\mu_{x} < 0$, which gets larger for coumpounds have \ce{COOH} (\textit{e.g.}, \textbf{39}) or \ce{NO2} (\textit{e.g.}, \textbf{54}). It also accounts for some effects due to the position of the substituent (see, e.g., \textbf{49}-\textbf{51}), which was not the case with the original model by Zhang and co-workers (resulting in weak correlations, $R^2 \leq 0.3$).\todo{Why is the correlation lower for reduction?}
 Finally, although it is not directly applicable to charged substituents (\textbf{11}, \textbf{21}, and \textbf{35}), for which the multipole moments are ill-defined, the leading term $q/r$ would result in a positive contribution to $E_r$, which correlates well with the increase in oxidation and reduction potential for these compounds.
 
 
@@ -502,26 +502,23 @@ Note that the decrease of the complexation energy for the interaction between th
 \clearpage
 \subsection{Comparison to experiment} \label{sec:exp}
 
-A comparison between theoretical (including all corrections discussed above) and experimental oxidation potentials is shown in Fig.~\ref{fig:expvstheo}.\todo{that's not really $E^f$ for the moment ;)} Excluding compounds bearing an \ce{NH2} group (\textbf{51}, \textbf{57}, and \textbf{59}) results in an excellent linear correlation ($R^2>0.9$). The computed potentials for these compounds are higher (by $>\SI{0.1}{\volt}$) than the fit line, suggesting that the amine group might be protonated under the experimental measurement conditions. This is consistent with the other cases (\textit{e.g.}, \textbf{25} vs \textbf{35}) discussed in Section \ref{sec:sar}.
+A comparison between theoretical (including all corrections discussed above) and experimental oxidation potentials is shown in Fig.~\ref{fig:expvstheo}.\todo{This is not really $E^f$ for the moment ;)} Excluding compounds bearing an \ce{NH2} group (\textbf{51}, \textbf{57}, and \textbf{59}) results in an excellent linear correlation ($R^2>0.9$). The computed potentials for these compounds are higher (by $>\SI{0.1}{\volt}$) than the fit line, suggesting that the amine group might be protonated under the experimental measurement conditions. This is indeed consistent with other cases (\textit{e.g.}, \textbf{25} vs \textbf{35}) discussed in Section \ref{sec:sar}. The remaining results indicate that the method used in this paper tends to overestimate the oxidation potentials in water and underestimate them in acetonitrile, with a large mean absolute deviation (MAE).
 
-
-\begin{itemize}
-	\item So one can drop $K_{x2}$,
-	\item Impact is small, isn't?
-	\item What about Matsui? (Fig.~\ref{fig:matsui})
-\end{itemize}
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=\linewidth]{Figure15}
-	\caption{Comparison between experimental ($E^0_{rel} $ vs SHE, from Table S8) and computed relative oxidation potential ($E^f_{rel}$ vs SHE), as computed at the $\omega$B97X-D/6-311+G(d) level in water (left) and acetonitrile (right) using SMD and $[X]=\SI{0.1}{\mole\per\liter}$.  }
+	\caption{Comparison between experimental ($E^0_{rel} $ vs SHE, from Table S8) and computed relative oxidation potential ($E^f_{rel}$ vs SHE), as computed at the $\omega$B97X-D/6-311+G(d) level in water (left) and acetonitrile (right) using SMD and $[X]=\SI{0.1}{\mole\per\liter}$.  The dashed line is a linear regression.}
 	\label{fig:expvstheo}
 \end{figure}
+
+For comparison, the model by Matsui and co-workers \cite{matsuiDensityFunctionalTheory2013} is used in Fig.~\ref{fig:matsui}. The different parameters were determined by fitting the experimental data. It should be noted that for such an oxidation process (\ce{N+ + e- -> N^.}), the $\Delta\Delta G^\star_P$ correction [Eq.~\eqref{eq:matsui}] can only be positive. As a consequence of this limitation, while the corrected $E_{SHE}$ predicted by this model is slightly larger than the recommended value in water, it is lower in acetonitrile. Interestingly, this correction is similar to the value of the MAE reported in Fig.~\ref{fig:expvstheo}. Furthermore, while the slope of the linear regression improves in water, it remains the same in acetonitrile. Finally, both $f$ and $\mu$ are smaller than those reported by Matsui and colleagues, though they treated systems bearing more significant charges. Therefore, this model is not well-suited for this case.
+
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=\linewidth]{Figure16}
-	\caption{Comparison between experimental ($E^0_{rel} $ vs SHE, from Table S8) and corrected oxidation potential using the scheme of Matsui et al. \cite{matsuiDensityFunctionalTheory2013} [Eq.~\eqref{eq:matsui}, with the parameter $E_{SHE}$, $f$, and $\mu$ obtained by fitting procedure], as computed at the $\omega$B97X-D/6-311+G(d) level in water (left) and acetonitrile (right).  }
+	\caption{Comparison between experimental ($E^0_{rel} $ vs SHE, from Table S8) and corrected oxidation potential using the scheme of Matsui et al. \cite{matsuiDensityFunctionalTheory2013} [Eq.~\eqref{eq:matsui}, with the parameter $E_{SHE}$, $f$, and $\mu$ obtained by a least-square procedure], as computed at the $\omega$B97X-D/6-311+G(d) level in water (left) and acetonitrile (right). The dashed line is a linear regression, obtained without the DH correction. }
 	\label{fig:matsui}
 \end{figure}
 

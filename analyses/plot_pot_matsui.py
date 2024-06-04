@@ -57,12 +57,13 @@ def plot_exp_vs_matsui(ax, data: pandas.DataFrame, solvent: str, family: str, co
 def plot_corr(ax, data: pandas.DataFrame, solvent: str):
     x, y = data[~data['compound'].isin(EXCLUDE)]['E_ox_theo_{}'.format(solvent)], data[~data['compound'].isin(EXCLUDE)]['E_ox_exp_{}'.format(solvent)]
     result = scipy.stats.linregress(x, y)
+    mae = numpy.mean(numpy.abs(x-y))
     
     x = numpy.array( [x.min(), x.max()])
     ax.plot(x, result.slope*x + result.intercept, 'k--')
     
-    x = .9 * x.min()+ .1 * x.max()
-    ax.text(x + .05, result.slope*x + result.intercept, '{:.2f} $\\times E^0_{{rel}}$ + {:.2f} ($R^2$={:.2f})'.format(result.slope, result.intercept,result.rvalue **2))
+    x = .95 * x.min()+ .05 * x.max()
+    ax.text(x + .05, result.slope*x + result.intercept, '{:.2f} $\\times E^0_{{rel}}$ + {:.2f}\n($R^2$={:.2f}, MAE={:.2f} V)'.format(result.slope, result.intercept, result.rvalue **2, mae))
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', default='../data/Data_pot.csv')
