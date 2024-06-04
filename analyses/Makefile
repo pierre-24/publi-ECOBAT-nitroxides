@@ -5,6 +5,7 @@ all:
 	python plot_pot_DH.py -o ../Figure11.pdf
 	python  plot_cplx_Kx1.py -o ../Figure12.pdf
 	python  plot_cplx_Kx2.py -o ../Figure14.pdf
+	python  plot_pot_exp.py -o ../Figure15.pdf
 	python plot_DH.py -o ../FigureS1.pdf
 	python plot_CIP.py -o ../FigureS2.pdf
 	python plot_pairs.py -o ../FigureS3.pdf

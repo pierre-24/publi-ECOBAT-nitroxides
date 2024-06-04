@@ -409,7 +409,7 @@ Oxidation and reduction potentials of nitroxide radicals in water, grouped by fa
 
 Regarding the impact of substituents, it is noteworthy that non-substituted nitroxides within each family (\textit{i.e.}, \textbf{2}, \textbf{14}, \textbf{23}, and \textbf{36}) generally have some of the lowest oxidation and reduction potentials within their respective groups. Several trends emerge based on the nature of the substituent: \begin{inparaenum}[(i)]
 	\item shielding the radical center with ethyl groups instead of methyl groups (\textbf{7}, \textbf{19}, and \textbf{28}) results in a decrease in potentials (particularly the reduction potential), likely due to changes in inductive effects,
-	\item protonation of \ce{NH2} increases the potentials, especially in P5O,
+	\item protonation of \ce{NH2} (\textit{e.g.}, \textbf{4} vs \textbf{11}) increases the potentials, especially in P5O,
 	\item multiple substitutions by COOH (\textit{e.g.}, \textbf{8} vs. \textbf{9} and \textbf{10}) also increase the potentials, though the effect is less pronounced in IIO and APO,
 	\item compounds with mesomeric donor substituents (\ce{NH2}, \ce{OH}, \ce{OMe}) have lower potentials than those with acceptor substituents (COOH, \ce{NO2}), particularly in aromatic systems (IIO and APO), and
 	\item compounds \textbf{56} and \textbf{58} have surprisingly low reduction potentials.
@@ -502,11 +502,21 @@ Note that the decrease of the complexation energy for the interaction between th
 \clearpage
 \subsection{Comparison to experiment} \label{sec:exp}
 
+A comparison between theoretical (including all corrections discussed above) and experimental oxidation potentials is shown in Fig.~\ref{fig:expvstheo}.\todo{that's not really $E^f$ for the moment ;)} Excluding compounds bearing an \ce{NH2} group (\textbf{51}, \textbf{57}, and \textbf{59}) results in an excellent linear correlation ($R^2>0.9$). The computed potentials for these compounds are higher (by $>\SI{0.1}{\volt}$) than the fit line, suggesting that the amine group might be protonated under the experimental measurement conditions. This is consistent with the other cases (\textit{e.g.}, \textbf{25} vs \textbf{35}) discussed in Section \ref{sec:sar}.
+
+
 \begin{itemize}
 	\item So one can drop $K_{x2}$,
 	\item Impact is small, isn't?
 	\item What about Matsui?
 \end{itemize}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=\linewidth]{Figure15}
+	\caption{Comparison between experimental ($E^0_{rel} $ vs SHE, from Table S8) and computed relative oxidation potential ($E^f_{rel}$ vs SHE), as computed at the $\omega$B97X-D/6-311+G(d) level in water (left) and acetonitrile (right) using SMD and $[X]=\SI{0.1}{\mole\per\liter}$.  }
+	\label{fig:expvstheo}
+\end{figure}
 
 \clearpage
 \section{Conclusion} \label{sec:conclusion}

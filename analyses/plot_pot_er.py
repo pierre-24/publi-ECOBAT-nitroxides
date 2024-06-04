@@ -58,7 +58,7 @@ def plot_corr_Er(ax, data: pandas.DataFrame, column: str):
     
     x = numpy.array([-.2, 1.5])
     ax.plot(x, result.slope*x + result.intercept, 'k--')
-    ax.text(1.2,  1.2*result.slope+result.intercept+.05, '$R^2$={:.3f}'.format(result.rvalue **2))
+    ax.text(1.2,  1.2*result.slope+result.intercept+.05, '$R^2$={:.2f}'.format(result.rvalue **2))
 
 def make_table(f, data: pandas.DataFrame, solvent: str):
     subdata = data[(data['solvent'] == solvent) & data['px'].notnull()]

@@ -1,9 +1,9 @@
 import pandas
 import matplotlib.pyplot as plt
 import numpy
-import sys
 import pathlib
 import argparse
+import scipy
 
 from nitroxides.commons import dG_DH, AU_TO_ANG, LabelPositioner, AU_TO_EV, EPSILON_R, E_SHE
 
@@ -11,6 +11,8 @@ LABELS = {'water': [], 'acetonitrile': []}
 POINTS_POSITION ={'water': [], 'acetonitrile': []}
 LABELS_KWARGS = {'water': [], 'acetonitrile': []}
 LABELS_PATH = {'water': pathlib.Path('pot_exp_water.pos'), 'acetonitrile': pathlib.Path('pot_exp_acetonitrile.pos')}
+
+EXCLUDE = [57, 51, 59]
 
 def prepare_data(data: pandas.DataFrame, data_exp: pandas.DataFrame, solvent):
     subdata = data[data['solvent'] == solvent]
@@ -25,14 +27,26 @@ def prepare_data(data: pandas.DataFrame, data_exp: pandas.DataFrame, solvent):
     return subdata[['compound', 'family', 'E_ox_theo_{}'.format(solvent), 'E_ox_exp_{}'.format(solvent)]]
     
 
-def plot_solv(ax, data: pandas.DataFrame, solvent: str, family: str, color: str):
+def plot_exp_vs_theo(ax, data: pandas.DataFrame, solvent: str, family: str, color: str):
     subdata = data[data['family'] == family]
-    ax.plot(subdata['E_ox_theo_{}'.format(solvent)], subdata['E_ox_exp_{}'.format(solvent)], 'o', color=color, label=family.replace('Family.', ''))
+    
+    ax.plot(subdata[~subdata['compound'].isin(EXCLUDE)]['E_ox_theo_{}'.format(solvent)], subdata[~subdata['compound'].isin(EXCLUDE)]['E_ox_exp_{}'.format(solvent)], 'o', color=color, label=family.replace('Family.', ''))
+    ax.plot(subdata[subdata['compound'].isin(EXCLUDE)]['E_ox_theo_{}'.format(solvent)], subdata[subdata['compound'].isin(EXCLUDE)]['E_ox_exp_{}'.format(solvent)], '^', color=color)
     
     for name, etheo, eexp in zip(subdata['compound'], subdata['E_ox_theo_{}'.format(solvent)], subdata['E_ox_exp_{}'.format(solvent)]):
         LABELS[solvent].append(name)
         POINTS_POSITION[solvent].append((etheo, eexp))
         LABELS_KWARGS[solvent].append(dict(color=color, ha='center', va='center'))
+
+def plot_corr(ax, data: pandas.DataFrame, solvent: str):
+    x, y = data[~data['compound'].isin(EXCLUDE)]['E_ox_theo_{}'.format(solvent)], data[~data['compound'].isin(EXCLUDE)]['E_ox_exp_{}'.format(solvent)]
+    result = scipy.stats.linregress(x, y)
+    
+    x = numpy.array( [x.min(), x.max()])
+    ax.plot(x, result.slope*x + result.intercept, 'k--')
+    
+    x = .9 * x.min()+ .1 * x.max()
+    ax.text(x + .05, result.slope*x + result.intercept, '{:.2f} $\\times E^0_{{rel}}$ + {:.2f} ($R^2$={:.2f})'.format(result.slope, result.intercept,result.rvalue **2))
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', default='../data/Data_pot.csv')
@@ -50,10 +64,10 @@ ax1, ax2 = figure.subplots(1, 2)
 
 subdata_wa = prepare_data(data, data_exp, 'water')
 
-plot_solv(ax1, subdata_wa, 'water', 'Family.P6O', 'tab:blue')
-plot_solv(ax1, subdata_wa, 'water', 'Family.P5O', 'black')
-plot_solv(ax1, subdata_wa, 'water', 'Family.IIO', 'tab:green')
-plot_solv(ax1, subdata_wa, 'water', 'Family.APO', 'tab:red')
+plot_exp_vs_theo(ax1, subdata_wa, 'water', 'Family.P6O', 'tab:blue')
+plot_exp_vs_theo(ax1, subdata_wa, 'water', 'Family.P5O', 'black')
+
+plot_corr(ax1, subdata_wa, 'water')
 
 positioner = LabelPositioner.from_file(
     LABELS_PATH['water'], 
@@ -70,10 +84,12 @@ positioner.add_labels(ax1)
 
 subdata_ac = prepare_data(data, data_exp, 'acetonitrile')
 
-plot_solv(ax2, subdata_ac, 'acetonitrile', 'Family.P6O', 'tab:blue')
-plot_solv(ax2, subdata_ac, 'acetonitrile', 'Family.P5O', 'black')
-plot_solv(ax2, subdata_ac, 'acetonitrile', 'Family.IIO', 'tab:green')
-plot_solv(ax2, subdata_ac, 'acetonitrile', 'Family.APO', 'tab:red')
+plot_exp_vs_theo(ax2, subdata_ac, 'acetonitrile', 'Family.P6O', 'tab:blue')
+plot_exp_vs_theo(ax2, subdata_ac, 'acetonitrile', 'Family.P5O', 'black')
+plot_exp_vs_theo(ax2, subdata_ac, 'acetonitrile', 'Family.IIO', 'tab:green')
+plot_exp_vs_theo(ax2, subdata_ac, 'acetonitrile', 'Family.APO', 'tab:red')
+
+plot_corr(ax2, subdata_ac, 'acetonitrile')
 
 positioner = LabelPositioner.from_file(
     LABELS_PATH['acetonitrile'], 
@@ -89,7 +105,7 @@ if args.reposition_labels:
 positioner.add_labels(ax2)
 
 ax2.legend()
-[ax.set_xlabel('Computed $E^0_{rel}(N^+|N^\\bullet)$ (V)') for ax in (ax1, ax2)]
+[ax.set_xlabel('Computed $E^f_{rel}(N^+|N^\\bullet)$ (V)') for ax in (ax1, ax2)]
 [ax.set_ylabel('Experimental $E^0_{rel}(N^+|N^\\bullet)$ (V)') for ax in (ax1, ax2)]
 
 plt.tight_layout()
