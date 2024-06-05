@@ -76,8 +76,8 @@ args = parser.parse_args()
 data = pandas.read_csv(args.input)
 data_exp = pandas.read_csv(args.input2)
 
-figure = plt.figure(figsize=(10, 5))
-ax1, ax2 = figure.subplots(1, 2)
+figure = plt.figure(figsize=(5, 9))
+ax1, ax2 = figure.subplots(2, 1)
 
 subdata_wa, param_matsui_wa = prepare_data(data, data_exp, 'water')
 

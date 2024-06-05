@@ -1,4 +1,4 @@
-\documentclass[review]{elsarticle}
+\documentclass[review,preprint]{elsarticle}
 
 %% Use the option review to obtain double line spacing
 %% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
@@ -93,7 +93,7 @@ Nitroxides are organic compounds containing the nitroxyl/aminoxyl radical functi
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=.5\linewidth]{Figure1}
+	\includegraphics[width=.7\linewidth]{Figure1}
 	\caption{Oxidized (left) and reduced (right) forms of the the nitroxide radical (center).}
 	\label{fig:states}
 \end{figure}
@@ -110,7 +110,7 @@ This paper is organized as follows: Section \ref{sec:theory} introduces key conc
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=.8\linewidth]{Figure2}
+	\includegraphics[width=\linewidth]{Figure2}
 	\caption{Families of nitroxide compounds studied in this article.}
 	\label{fig:families}
 \end{figure}
@@ -210,7 +210,7 @@ In a first approximation, the electrostatic interaction between the substituent(
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=.7\linewidth]{Figure4}
+	\includegraphics[width=\linewidth]{Figure4}
 	\caption{Impact of the dipole orientation of the substituent on the redox potential when the dipole is oriented in  the positive $x$ direction (red) or not (blue). Adapted from Ref.~\citenum{zhangEffectHeteroatomFunctionality2018}.}
 	\label{fig:dipole}
 \end{figure}
@@ -416,10 +416,13 @@ Regarding the impact of substituents, it is noteworthy that non-substituted nitr
 \end{inparaenum}
 As a consequence, \textbf{55} exhibits the highest oxidation and reduction potentials among all the compounds studied in this paper.
 
+To elucidate these effects, attempts are made to correlate both potentials with Hammett constants for P5O and P6O, but the correlations are found to be very weak, especially for reduction (see Fig.~S5). The electrostatic interaction model [Eq.~\eqref{eq:Er}] provides more insights. Results are presented in Fig.~\ref{fig:corr} (see also Table S4). It should be noted that this model fails to account for the effect of substituting methyl groups with ethyl groups. Moreover, including the disubstituted compounds (e.g., \textbf{9}) worsens the correlation ($R^2 \sim 0.5$ and 0.3 for oxidation and reduction, respectively). Compounds \textbf{56} and \textbf{58} remain outliers for reduction. Therefore, all three sets of compounds are treated as outliers in the following discussion.
 
-To elucidate these effects, attempts were made to correlate both potentials with Hammett constants for P5O and P6O, but the correlations were found to be very weak, especially for reduction (see Fig.~S5). The electrostatic interaction model [Eq.~\eqref{eq:Er}] provides more insights. Results are presented in Fig.~\ref{fig:corr} (see also Table S4). However, this model fails to account for the effect of substituting methyl groups with ethyl groups. Moreover, including the disubstituted compounds (e.g., \textbf{9}) worsens the correlation ($R^2 \sim 0.5$ and 0.3 for oxidation and reduction, respectively). Compounds \textbf{56} and \textbf{58} remain outliers for reduction. Therefore, all three sets of compounds were treated as outliers.
-On the positive side, though the correlation is lower for reduction than for oxidation, this model helps explain some of the effects mentioned above: the increase in oxidation (and reduction) potential for aromatic compounds correlates with an increase in quadrupole moment ($Q_{xx} > \SI{5}{\elementarycharge\bohr\squared}$ for most member of IIO or APO), while the modification due to donor/acceptor substituents is linked to changes in the dipole moment. For example, aromatic compounds that have \ce{NH2} has substituent (\textit{e.g.}, \textbf{51}) are characterized by  $\mu_{x} < 0$, which gets larger for coumpounds have \ce{COOH} (\textit{e.g.}, \textbf{39}) or \ce{NO2} (\textit{e.g.}, \textbf{54}). It also accounts for some effects due to the position of the substituent (see, e.g., \textbf{49}-\textbf{51}), which was not the case with the original model by Zhang and co-workers (resulting in weak correlations, $R^2 \leq 0.3$).
-Finally, although it is not directly applicable to charged substituents (\textbf{11}, \textbf{21}, and \textbf{35}), for which the multipole moments are ill-defined, the leading term $q/r$ would result in a positive contribution to $E_r$ (and to a destabilizing interaction with \ce{N+} and \ce{N^.}, while stablizing \ce{N-}, see Fig.~\ref{fig:dipole}), which correlates well with the increase in oxidation and reduction potential for these compounds.
+Though the correlation is lower for reduction than for oxidation (probably because the electron delocalization means nitrogen is not the atom that should be used to define the origin in that case), this model helps explain some of the observed effects. For instance, the increase in oxidation (and reduction) potential for aromatic compounds correlates with an increase in quadrupole moment ($Q_{xx} > \SI{5}{\elementarycharge\bohr\squared}$ for most members of IIO or APO). Additionally, modifications due to donor/acceptor substituents are linked to changes in the dipole moment. For example, aromatic compounds with \ce{NH2} as a substituent (\textit{e.g.}, \textbf{51}) are characterized by $\mu_{x} < 0$, which increases for compounds with \ce{COOH} (\textit{e.g.}, \textbf{39}) or \ce{NO2} (\textit{e.g.}, \textbf{54}). 
+
+This model also accounts for some effects due to the position of the substituent (see, e.g., \textbf{49}-\textbf{51}), which was not the case with the original model by Zhang and co-workers (resulting in weak correlations, $R^2 \leq 0.3$). Furthermore, members of P5O generally present a smaller value of $E_r$ than P6O (\textit{e.g.}, \textbf{17} versus \textbf{5}), which correlates with the increase in oxidation potential observed between these two families. The same trend is observed between APO and IIO.
+
+Finally, although this model is not directly applicable to charged substituents (\textbf{11}, \textbf{21}, and \textbf{35}), for which the multipole moments are ill-defined, the leading term $q/r$ results in a positive contribution to $E_r$ (and a destabilizing interaction with \ce{N+} and \ce{N^.}, while stabilizing \ce{N-}, see Fig.~\ref{fig:dipole}), which correlates well with the increase in oxidation and reduction potential for these compounds.
 
 
 \begin{figure}[!h]
@@ -440,7 +443,7 @@ The difference between redox potentials computed in water and acetonitrile is re
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=\linewidth]{Figure10}
+	\includegraphics[width=.8\linewidth]{Figure10}
 	\caption{Comparison between absolute oxidation (left) and reduction (right) potentials of nitroxides as computed at the $\omega$B97X-D/6-311+G(d) level in water and acetonitrile (SMD), with $[\ce{X}]=\SI{0}{\mole\per\liter}$. The dashed line represents no change. }
 	\label{fig:watvsac}
 \end{figure}
@@ -484,7 +487,7 @@ Using compound \textbf{4} as an example (see Fig.~\ref{fig:pos-anion}), the ener
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=.7\linewidth]{Figure13}
+	\includegraphics[width=.8\linewidth]{Figure13}
 	\caption{Impact of the counterion position (a) or (b) on the distance between the counterion and the redox center (the nitrogen in the oxidized form, $>$\ce{N+=O}, or the oxygen in the reduced form, $>$\ce{N-O-}), and on $\Delta G^\star_{cplx}$, using compound \textbf{4} as an example. Calculations were performed at the $\omega$B97X-D/6-311+G(d) level in water (black) and acetonitrile (blue).}
 	\label{fig:pos-anion}
 \end{figure}
@@ -509,7 +512,7 @@ A comparison between theoretical (including all corrections discussed above) and
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=\linewidth]{Figure15}
+	\includegraphics[width=.8\linewidth]{Figure15}
 	\caption{Comparison between experimental ($E^0_{rel} $ vs SHE, from Table S11) and computed relative oxidation potential ($E^f_{rel}$ vs SHE), as computed at the $\omega$B97X-D/6-311+G(d) level in water (left) and acetonitrile (right) using SMD and $[X]=\SI{0.1}{\mole\per\liter}$.  The dashed line is a linear regression.}
 	\label{fig:expvstheo}
 \end{figure}
@@ -519,7 +522,7 @@ For comparison, the model by Matsui and co-workers \cite{matsuiDensityFunctional
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=\linewidth]{Figure16}
+	\includegraphics[width=.8\linewidth]{Figure16}
 	\caption{Comparison between experimental ($E^0_{rel} $ vs SHE, from Table S11) and corrected oxidation potential using the scheme of Matsui et al. \cite{matsuiDensityFunctionalTheory2013} [Eq.~\eqref{eq:matsui}, with the parameter $E_{SHE}$, $f$, and $\mu$ obtained by a least-square procedure], as computed at the $\omega$B97X-D/6-311+G(d) level in water (left) and acetonitrile (right). The dashed line is a linear regression, obtained without the DH correction. }
 	\label{fig:matsui}
 \end{figure}

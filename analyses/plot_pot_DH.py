@@ -32,7 +32,7 @@ args = parser.parse_args()
 
 data = pandas.read_csv(args.input)
 
-figure = plt.figure(figsize=(10, 10))
+figure = plt.figure(figsize=(7, 10))
 ax1, ax2 = figure.subplots(2, 1, sharey=True)
 
 plot_DH(ax1, data, 'Family.AMO', 'water', 80., 1, 'tab:pink')

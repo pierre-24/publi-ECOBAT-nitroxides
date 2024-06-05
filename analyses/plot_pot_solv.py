@@ -39,8 +39,8 @@ args = parser.parse_args()
 
 data = pandas.read_csv(args.input)
 
-figure = plt.figure(figsize=(10, 5))
-ax1, ax2 = figure.subplots(1, 2)
+figure = plt.figure(figsize=(5, 9))
+ax1, ax2 = figure.subplots(2, 1)
 
 plot_solv(ax1, data, 'E_ox', 'Family.P6O', 'tab:blue')
 plot_solv(ax1, data, 'E_ox', 'Family.P5O', 'black')
