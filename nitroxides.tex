@@ -448,6 +448,7 @@ The difference between redox potentials computed in water and acetonitrile is re
 	\label{fig:watvsac}
 \end{figure}
 
+\clearpage
 \subsection{Impact of the electrolytes} \label{sec:elect}
 
 So far, the concentration of electrolyte, $[X]$, has been maintained at zero. To evaluate its impact on the redox potentials, the DH correction itself is initially examined in Fig.~\ref{fig:DH}. As anticipated, it remains small within the concentration range considered here (a few tenths of millivolts for $[X] \leq \SI{1}{\mole\per\liter}$ and larger in acetonitrile), increasing with $[X]$. Its sign differs between oxidation and reduction potentials. Additionally, it is diminished for compounds belonging to the IIO and APO families (as they are larger molecules with larger $a$), but amplified for species with a net positive charge (\textbf{11}, \textbf{21}, \textbf{35}), for which the correction for oxidation and reduction potentials is negative.
@@ -460,40 +461,43 @@ So far, the concentration of electrolyte, $[X]$, has been maintained at zero. To
 	\label{fig:DH}
 \end{figure}
 
-Next, the formation of ion pairs is addressed. First, the complexation equilibrium constants between the oxidized and reduced states (which bear a formal charge, except for \textbf{11}, \textbf{21}, and \textbf{35}) and a counterion are reported in Fig.~\ref{fig:Kx1} (see also Tables S5-S6 and Fig.~S6). In water and acetonirile, the equilibrium constant $K_{01}$ (between \ce{N+} and $\ce{A-}$) is approximately \num{e-4} ($\Delta G^\star_{cplx} \sim \SI{25}{\kilo\joule\per\mole}$), indicating unfavorability complexation. Then, on the one hand, $K_{21}$ (between \ce{N-} and $\ce{C+}$) is generally smaller (especially for members of P6O) in water, except in a few cases. This contradicts the electrostatic model for ion pair formation [Eq.~\eqref{eq:pair}], which predicts $K_{21} > K_{01}$, as it favors pairs composed of ions of similar size. In this study, \ce{NMe4+} has a larger radius (\SI{2.1}{\angstrom}) than \ce{BF4-} (\SI{1.5}{\angstrom}), the former being closer to the size of nitroxides ($>$\SI{3}{\angstrom}). On the other hand, the results in acetonitrile follow the prediction of the model, with $K_{21} \sim \num{e-2}$. 
+\clearpage
+
+Next, the formation of ion pairs is addressed. As noted by other researchers \cite{zhangInteractionsImidazoliumBasedIonic2016,wylieImprovedPerformanceAllOrganic2019a}, the position of the ions significantly impacts the complexation energies. In practice, it is observed that there are two possible positions for the counterion (see an example in Fig.~\ref{fig:pos-anion}, and Tables S7-S8):
+\begin{inparaenum}[(i)]
+	\item near the redox center ($>$\ce{N-O^.}), "in front" of the methyl groups, and
+	\item near the substituent, "behind" the methyl groups.
+\end{inparaenum}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.8\linewidth]{Figure12}
+\caption{Impact of the counterion position (a) or (b) on the distance between the counterion and the redox center (the nitrogen in the oxidized form, $>$\ce{N+=O}, or the oxygen in the reduced form, $>$\ce{N-O-}), and on $\Delta G^\star_{cplx}$, using compound \textbf{4} as an example. Calculations were performed at the $\omega$B97X-D/6-311+G(d) level in water (black) and acetonitrile (blue).}
+\label{fig:pos-anion}
+\end{figure}
+
+In both solvents, the radical (\ce{N^.}) interacts with \ce{C+} in the first position \cite{zhangEffectHeteroatomFunctionality2018}. In water, the complexation energies for the \ce{NA} and \ce{NC} pairs are positive and significant. The difference in complexation energies between the two positions is generally small (a few \si{\kilo\joule\per\mole}), but the second position is favored in most of the case. Interestingly, this results in a larger nitroxide-to-counterion distance, indicating a less significant electrostatic interaction and suggesting that the substituent also plays a role in lowering the complexation energy. Another contributing factor is the quadrupole-ion interaction due to the aromatic systems present in compounds from the IIO and APO families, which is particularly important in the \ce{NC} pair. Here, the difference in energy between the two positions is more pronounced.
+
+In acetonitrile, however, the lower dielectric constant leads to reduced charge screening and lower complexation energies compared to water. A significant decrease (20 to \SI{40}{\kilo\joule\per\mole}) is observed for the \ce{NC} pair, especially when \ce{C+} is near the nitroxyl group (first position). This aligns with the model for ion pair formation [Eq.~\eqref{eq:pair}], particularly considering the impact of the ratio between the radii of the cavities. Since \ce{NMe4+} has a larger radius (\SI{2.1}{\angstrom}) than \ce{BF4-} (\SI{1.5}{\angstrom}), the former is closer in size to nitroxides ($>$\SI{3}{\angstrom}). The second position remains favored in the \ce{NA} pair, though only by a few \si{\kilo\joule\per\mole}.
+
+
+
+Using the most stable positions for each complexes, the corresponding equilibrium constants are reported in Fig.~\ref{fig:Kx1} (see also Tables S5-S6 and Fig.~S6). In water and acetonitrile, the equilibrium constant $K_{01}$ (between \ce{N+} and $\ce{A-}$) is approximately \num{e-4}. In acetonitrile, $K_{21} \sim \num{e-2}$. \todo{To be addressed when new results comes in. Also, structure-activity relationships?}
 
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=\linewidth]{Figure12}
+\includegraphics[width=\linewidth]{Figure13}
 \caption{Value of the complexation equilibrium constants $K_{01}$ (round markers, $\bullet$) and $K_{21}$ (square markers, $\blacksquare$), as computed at the $\omega$B97X-D/6-311+G(d) level in water (top) and acetonitrile (bottom) using SMD and $[X]=\SI{1}{\mole\per\liter}$.  The dashed line is there to help visualization. }
 \label{fig:Kx1}
 \end{figure}
 
-A closer examination of Fig.~\ref{fig:Kx1} reveals that compounds of the P6O family exhibit distinct behavior, particularly in terms of the interaction between the aminoxyl group and the cation. This interaction is notably weaker ($\Delta G^\star_{cplx} > \SI{40}{\kilo\joule\per\mole}$) in water compared to other families. This can be elucidated by analyzing the geometries of the ion pairs. 
-Firstly, it should be noted that within the P6O family, where the basic skeleton is a cyclohexane, the \ce{N+=O} group occupies an equatorial position while the \ce{N-O-} bond adopts an axial position. The presence of nearby methyl groups hinders electrostatic interaction, especially for bulky counterions. This effect is less pronounced in other families, where the skeleton prevents the oxygen from adopting such a position (particularly in IIO and APO).
-Then,  it is observed that there are two possible positions for the counterion: 
-\begin{inparaenum}[(i)]
-	\item near the redox center ($>$\ce{N-O^.}), ``in front" of the methyl groups, and 
-	\item near the substituent, ``behind" the methyl groups.
-\end{inparaenum}
-Using compound \textbf{4} as an example (see Fig.~\ref{fig:pos-anion}), the energy difference between these positions is small (approximately \SI{5}{\kilo\joule\per\mole} for \textbf{12}). The first position is generally favored. In acetonitrile, however, the nitroxide-to-counterion distance is smaller due to the lower dielectric constant, which results in reduced charge screening. Consequently:
-\begin{inparaenum}[(i)]
-	\item for the oxoammonium ion, the lower charge screening in acetonitrile secludes the \ce{BF4-} from interacting with the substituent in the second position, favoring the first position, and
-	\item for hydroxylamine, both positions result in smaller complexation energies due to the reduced dielectric constant.
-\end{inparaenum}
-\todo{What about the other families?} 
+
+Regarding the \ce{NC} pair, another result of this study is that compounds of the P6O family display larger complexation energies ($>\SI{40}{\kilo\joule\per\mole}$) than other families in both solvents. This is a geometrical effect: in such compounds, the \ce{N+=O} group (in oxoammonium) occupies an equatorial position while the \ce{N-O-} bond (in the hydroxylamine anion) adopts an axial position. The presence of nearby methyl groups hinders electrostatic interaction in the first case, especially for bulky counterions such as \ce{NMe4+}, as seen in Fig.~\ref{fig:pos-anion}. This effect is less pronounced in other families, where the skeleton prevents the oxygen from adopting such a position (particularly in IIO and APO), resulting in larger complexation equilibrium constants.
 
 
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=.8\linewidth]{Figure13}
-	\caption{Impact of the counterion position (a) or (b) on the distance between the counterion and the redox center (the nitrogen in the oxidized form, $>$\ce{N+=O}, or the oxygen in the reduced form, $>$\ce{N-O-}), and on $\Delta G^\star_{cplx}$, using compound \textbf{4} as an example. Calculations were performed at the $\omega$B97X-D/6-311+G(d) level in water (black) and acetonitrile (blue).}
-	\label{fig:pos-anion}
-\end{figure}
-
-
-Finally, complexation to the \ce{AC} pair is considered (Fig.~\ref{fig:Kx2}, Tables S9-S10). As expected, the equilibrium constants are smaller (by about four order of magnitude, $\Delta G^\star_{cplx} \sim \SI{50}{\kilo\joule\per\mole}$) than the ones that were previously discussed.\todo{Structure-activity relationships?}
+Finally, complexation to the \ce{AC} pair is considered (Fig.~\ref{fig:Kx2}, Tables S9-S10). Following the discussions on the position of the ions in the pairs, in order to build these complexes, the cation has been placed near the nitroxyl moiety, while the anion is placed near the substituent.
+As expected, the equilibrium constants are smaller (by about four order of magnitude, $\Delta G^\star_{cplx} \sim \SI{50}{\kilo\joule\per\mole}$) than the ones that were previously discussed.
 Note that the decrease of the complexation energy for the interaction between the hydroxylamine anion and the pair was also observed previously \cite{wylieImprovedPerformanceAllOrganic2019a}.\todo{check wheter redox potential are lower than free species?}
 
 
