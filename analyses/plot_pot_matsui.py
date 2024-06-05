@@ -63,7 +63,7 @@ def plot_corr(ax, data: pandas.DataFrame, solvent: str):
     ax.plot(x, result.slope*x + result.intercept, 'k--')
     
     x = .95 * x.min()+ .05 * x.max()
-    ax.text(x + .05, result.slope*x + result.intercept, '{:.2f} $\\times E^0_{{rel}}$ + {:.2f}\n($R^2$={:.2f}, MAE={:.2f} V)'.format(result.slope, result.intercept, result.rvalue **2, mae))
+    ax.text(x + .05, result.slope*x + result.intercept, '{:.2f} $\\times E^P_{{rel}}$ + {:.2f}\n($R^2$={:.2f}, MAE={:.2f} V)'.format(result.slope, result.intercept, result.rvalue **2, mae))
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', default='../data/Data_pot.csv')
