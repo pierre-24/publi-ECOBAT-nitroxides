@@ -23,6 +23,7 @@
 \usetikzlibrary {arrows.meta} 
 \usepackage{paralist}
 \usepackage{todonotes}
+\usepackage{tabularray}
 
 \DeclareMathOperator{\erf}{erf}
 
@@ -481,23 +482,37 @@ In both solvents, the radical (\ce{N^.}) interacts with \ce{C+} in the first pos
 
 In acetonitrile, however, the lower dielectric constant leads to reduced charge screening. A significant decrease (10 to \SI{20}{\kilo\joule\per\mole}) is observed for the \ce{NC} pair when \ce{C+} is near the nitroxyl group (first position). This aligns with the model for ion pair formation [Eq.~\eqref{eq:pair}], particularly considering the impact of the ratio between the radii of the cavities. Since \ce{NMe4+} has a larger radius (\SI{2.1}{\angstrom}) than \ce{BF4-} (\SI{1.5}{\angstrom}), the former is closer in size to nitroxides ($>$\SI{3}{\angstrom}). The second position remains generally favored in the \ce{NA} pair, though only by a few \si{\kilo\joule\per\mole}.
 
-Using the most stable positions for each complexes, the corresponding equilibrium constants are reported in Fig.~\ref{fig:Kx1} (see also Tables S7-S8 and Fig.~S6). In water and acetonitrile, the equilibrium constant $K_{01}$ (between \ce{N+} and $\ce{A-}$) is approximately \num{e-4}. In acetonitrile, $K_{21} \sim \num{e-2}$. \todo{To be addressed when new results comes in. Also, structure-activity relationships?}
-
+Using the most stable positions for each complex, the corresponding equilibrium constants are reported in Fig.~\ref{fig:Kx1} (see also Tables S7-S8 and Fig.~S6). The average value in each family, in water, is also reported in Table \ref{tab:Kx1}. In general, $K_{11} < K_{01} < K_{21} < 1$, indicating that the interaction between the hydroxylamine anion and the cation is the most stabilizing. Furthermore, while these equilibrium constants are of the same order of magnitude ($\sim \num{e-5}$) for \textbf{1}, significant differences appear in the other families.
 
 \begin{figure}[!h]
-\centering
-\includegraphics[width=\linewidth]{Figure13}
-\caption{Value of the complexation equilibrium constants $K_{01}$ (round markers, $\bullet$), $K_{11}$ (round markers, $\blacktriangle$), and $K_{21}$ (square markers, $\blacksquare$), as computed at the $\omega$B97X-D/6-311+G(d) level in water (top) and acetonitrile (bottom) using SMD and $[X]=\SI{1}{\mole\per\liter}$.  The dashed line is there to help visualization. }
-\label{fig:Kx1}
+	\centering
+	\includegraphics[width=\linewidth]{Figure13}
+	\caption{Value of the complexation equilibrium constants $K_{01}$ (round markers, $\bullet$), $K_{11}$ (round markers, $\blacktriangle$), and $K_{21}$ (square markers, $\blacksquare$), as computed at the $\omega$B97X-D/6-311+G(d) level in water (top) and acetonitrile (bottom) using SMD and $[X]=\SI{1}{\mole\per\liter}$. The dashed line is for visualization purposes.}
+	\label{fig:Kx1}
 \end{figure}
 
+\begin{table}[!h]
+	\centering
+	\begin{tblr}{lccc}
+		\hline
+		& $\log_{10}K_{01}$ & $\log_{10}K_{11}$ & $\log_{10}K_{21}$ \\
+		\hline
+		AMO & -4.13 & -4.65 &  -5.15  \\
+		P6O & -3.20 $\pm$ 0.70 & -5.54 $\pm$ 0.73 &  -7.52 $\pm$ 1.36 \\
+		P5O & -4.38 $\pm$ 1.83 & -5.44 $\pm$ 1.84 &  -3.80 $\pm$ 1.85 \\
+		IIO & -3.24 $\pm$ 0.54 & -4.64 $\pm$ 0.40 &  -3.22 $\pm$ 0.81 \\
+		APO & -3.22 $\pm$ 0.39 & -5.26 $\pm$ 1.83 &  -2.41 $\pm$ 1.18 \\
+		\hline
+	\end{tblr}
+	\caption{Mean value of the complexation equilibrium constants for each family (reported as mean $\pm$ standard deviation), as computed at the $\omega$B97X-D/6-311+G(d) level in water using SMD and $[X]=\SI{1}{\mole\per\liter}$.}
+	\label{tab:Kx1}
+\end{table}
 
-Regarding the \ce{NC} pair, another result of this study is that compounds of the P6O family display larger complexation energies ($>\SI{40}{\kilo\joule\per\mole}$) than other families in both solvents. This is a geometrical effect: in such compounds, the \ce{N+=O} group (in oxoammonium) occupies an equatorial position while the \ce{N-O-} bond (in the hydroxylamine anion) adopts an axial position. The presence of nearby methyl groups hinders electrostatic interaction in the first case, especially for bulky counterions such as \ce{NMe4+}, as seen in Fig.~\ref{fig:pos-anion}. This effect is less pronounced in other families, where the skeleton prevents the oxygen from adopting such a position (particularly in IIO and APO), resulting in larger complexation equilibrium constants.
+In particular, in water, the equilibrium constants $K_{01}$ and $K_{21}$ for aromatic compounds, IIO and APO, are two orders of magnitude larger due to ion-quadrupole interactions. The latter family contains compounds with some of the lowest complexation energies. However, correlating the nature of the substituent with the complexation energy remains challenging. In the literature, perpendicular $\pi$-cation interactions are stabilized by electron-rich aromatic rings (and thus donor substituents), while $\pi$-anion interactions are stabilized by electron-poor rings (acceptor substituents) \cite{pappFourFacesInteraction2017}. Despite this, compounds with either donor (\textit{e.g.}, \textbf{42}) or acceptor (\textit{e.g.}, \textbf{54}) substituents exhibit small complexation energies, likely due to variations in ion positioning across different systems. Regarding acetonitrile, while $K_{21}$ increases for the reasons discussed, this is not necessarily the case for the other constants. 
 
+A notable exception to thse trends is the P6O family, which shows larger complexation equilibrium constants for the \ce{NC} pair (with $\Delta G^\star_{cplx} > \SI{40}{\kilo\joule\per\mole}$) than others. This is a geometric effect: in such compounds, the \ce{N+=O} group (in oxoammonium) occupies an equatorial position, while the \ce{N-O-} bond (in the hydroxylamine anion) adopts an axial position. Nearby methyl groups hinder electrostatic interaction in the first case, especially for bulky counterions such as \ce{NMe4+}, as seen in Fig.~\ref{fig:pos-anion}. This effect is less pronounced in other families, where the skeleton prevents the oxygen from adopting such a position (particularly in IIO and APO), resulting in larger complexation equilibrium constants when the i ion is in close interaction with the redox center.
 
-Finally, complexation to the \ce{AC} pair is considered (Fig.~\ref{fig:Kx2}, Tables S9-S10). Following the discussions on the position of the ions in the pairs, in order to build these complexes, the cation has been placed near the nitroxyl moiety, while the anion is placed near the substituent.
-As expected, the equilibrium constants are smaller (by about four order of magnitude, $\Delta G^\star_{cplx} \sim \SI{50}{\kilo\joule\per\mole}$) than the ones that were previously discussed.
-Note that the decrease of the complexation energy for the interaction between the hydroxylamine anion and the pair was also observed previously \cite{wylieImprovedPerformanceAllOrganic2019a}.\todo{check wheter redox potential are lower than free species?}
+Finally, complexation to the \ce{AC} pair is considered (Fig.~\ref{fig:Kx2}, Tables S9-S10). Based on the positioning of the ions in the pairs that were previously discussed, for the \ce{NAC^-} and \ce{NAC^.} complexes, the cation is placed near the nitroxyl moiety, while the anion is placed near the substituent. The opposite is done for \ce{NAC^+}. As expected, the equilibrium constants are smaller (by about four orders of magnitude, $\Delta G^\star_{cplx} \sim \SI{50}{\kilo\joule\per\mole}$) than the ones previously discussed. However, the trends are similar: for example, in acetonitrile, the \ce{NAC^-} complexes are more stable than the others, as also observed previously \cite{wylieImprovedPerformanceAllOrganic2019a}. The stabilization of \ce{NAC^.} is however less important in this work than observed by this team, probably because of the larger dielectric constant used here.
 
 
 \begin{figure}[!h]

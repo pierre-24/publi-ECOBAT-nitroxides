@@ -37,13 +37,26 @@ def plot_Kx1(ax, data: pandas.DataFrame, family: str, color: str):
     
     x = [int(x.replace('mol_', '')) for x in subdata['name']]
     
-    ax.plot(x, numpy.log10(subdata['k01']), 'o', color=color, label=family.replace('Family.', ''))
-    ax.plot(x, numpy.log10(subdata['k11']), '^', color=color)
-    ax.plot(x, numpy.log10(subdata['k21']), 's', color=color)
+    pK01 = numpy.log10(subdata['k01'])
+    pK11 = numpy.log10(subdata['k11'])
+    pK21 = numpy.log10(subdata['k21'])
+    
+    ax.plot(x, pK01, 'o', color=color, label=family.replace('Family.', ''))
+    ax.plot(x, pK11, '^', color=color)
+    ax.plot(x, pK21, 's', color=color)
+    
+    print('{} & {:.2f} $\\pm$ {:.2f} & {:.2f} $\\pm$ {:.2f} & {:.2f} $\\pm$ {:.2f} \\\\'.format(family, numpy.mean(pK01), numpy.std(pK01), numpy.mean(pK11), numpy.std(pK11), numpy.mean(pK21), numpy.std(pK21)))
+    
 
 def plot_helpline(ax, data):
     x = [int(x.replace('mol_', '')) for x in data['name']]
     ax.plot(x, numpy.log10(data['k01']), '--', color='black', linewidth=0.8)
+    
+    pK01 = numpy.log10(data['k01'])
+    pK11 = numpy.log10(data['k11'])
+    pK21 = numpy.log10(data['k21'])
+    
+    print('{} & {:.2f} $\\pm$ {:.2f} & {:.2f} $\\pm$ {:.2f} & {:.2f} $\\pm$ {:.2f} \\\\'.format('Total', numpy.mean(pK01), numpy.std(pK01), numpy.mean(pK11), numpy.std(pK11), numpy.mean(pK21), numpy.std(pK21)))
 
 def make_table(f, data: pandas.DataFrame, solvent: str):
     subdata = data[data['solvent'] == solvent]

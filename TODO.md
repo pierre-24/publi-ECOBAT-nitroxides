@@ -1,8 +1,14 @@
 # TODOs
 
-- [ ] Clean up the bibliography, check for duplicates
-- [ ] mark missing values in Tables
+- [ ] **12**!!
 - [ ] 62 → 61
+- [ ] Use $E^f$ in Fig. 15 (and check discussion, especially **4**)
+- [ ] Fig. 16 $E_SHE$ → $E^0_abs$
+- [ ] Conclude & abstract
+- [ ] Aknowledgements
+- [ ] Clean up the bibliography, check for duplicates
+
 - [ ] pack the geometries
 - [ ] prepare a TOC
-- [ ] Aknowledgements
+- [ ] Research highlight
+- [ ] mark missing values in Tables
