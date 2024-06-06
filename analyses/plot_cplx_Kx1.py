@@ -1,46 +1,74 @@
 import pandas
 import matplotlib.pyplot as plt
 import numpy
-import sys
+import pathlib
 import argparse
 
 from matplotlib.ticker import AutoMinorLocator, MultipleLocator
-from nitroxides.commons import G_DH, AU_TO_ANG, AU_TO_KJMOL, kappa2, G_NME4, G_BF4, RADII_BF4, RADII_NME4, C_NITROXIDE, dG_DH_cplx_Kx1
+from nitroxides.commons import G_DH, AU_TO_ANG, AU_TO_KJMOL, G_NME4, G_BF4, RADII_BF4, RADII_NME4, dG_DH_cplx_Kx1, EPSILON_R
+from nitroxides.tex import format_longtable
 
 T = 298.15
 R = 8.3145e-3 # kJ mol⁻¹
 
-def plot_Kx1(ax, data: pandas.DataFrame, family: str, solvent: str, epsilon_r: float, color: str):
-    subdata_k01 = data[(data['family'] == family) & (data['solvent'] == solvent) & (data['has_anion'] == True)] # K_01 → N+ + A-
-    subdata_k21 = data[(data['family'] == family) & (data['solvent'] == solvent) & (data['has_cation'] == True)] # K_21 → N- + C+
+def prepare_data(data: pandas.DataFrame, solvent: str):
+    subdata = data[data['solvent'] == solvent]
     
-    dG_DH_k01 = dG_DH_cplx_Kx1(subdata_k01['z'] + 1, subdata_k01['z'], -1, subdata_k01['r_A'] / AU_TO_ANG, subdata_k01['r_AX'] / AU_TO_ANG, RADII_BF4[solvent] / AU_TO_ANG, epsilon_r)
-    dG_DH_k21 = dG_DH_cplx_Kx1(subdata_k21['z'] - 1, subdata_k21['z'], 1, subdata_k21['r_A'] / AU_TO_ANG, subdata_k21['r_AX'] / AU_TO_ANG, RADII_NME4[solvent] / AU_TO_ANG, epsilon_r)
+    dG_DH_k01 = dG_DH_cplx_Kx1(subdata['z'] + 1, subdata['z'] + 1, 1, subdata['r_A_ox'] / AU_TO_ANG, subdata['r_AX_ox'] / AU_TO_ANG, RADII_BF4[solvent] / AU_TO_ANG, EPSILON_R[solvent])
+    dG_DH_k11 = dG_DH_cplx_Kx1(subdata['z'], subdata['z'], 1, subdata['r_A_rad'] / AU_TO_ANG, subdata['r_AX_rad'] / AU_TO_ANG, RADII_NME4[solvent] / AU_TO_ANG, EPSILON_R[solvent])
+    dG_DH_k21 = dG_DH_cplx_Kx1(subdata['z'] - 1, subdata['z'] - 1, 1, subdata['r_A_red'] / AU_TO_ANG, subdata['r_AX_red'] / AU_TO_ANG, RADII_NME4[solvent] / AU_TO_ANG, EPSILON_R[solvent])
     
-    dG_k01 = (subdata_k01['G_cplx'] - G_BF4[solvent] + dG_DH_k01) * AU_TO_KJMOL
-    dG_k21 = (subdata_k21['G_cplx'] - G_NME4[solvent] + dG_DH_k21) * AU_TO_KJMOL
+    dG_k01 = (subdata['G_cplx_ox'] - G_BF4[solvent] + dG_DH_k01) * AU_TO_KJMOL
+    dG_k11 = (subdata['G_cplx_rad'] - G_NME4[solvent] + dG_DH_k11) * AU_TO_KJMOL
+    dG_k21 = (subdata['G_cplx_red'] - G_NME4[solvent] + dG_DH_k21) * AU_TO_KJMOL
     
-    k01 = numpy.exp(-dG_k01 / (R * T))
-    k21 = numpy.exp(-dG_k21 / (R * T))
+    subdata.insert(1, 'dG_cplx_ox', dG_k01)
+    subdata.insert(1, 'dG_cplx_rad', dG_k11)
+    subdata.insert(1, 'dG_cplx_red', dG_k21)
     
-    ax.plot([int(x.replace('mol_', '')) for x in subdata_k01['name']], numpy.log10(k01), 'o', color=color, label=family.replace('Family.', ''))
-    ax.plot([int(x.replace('mol_', '')) for x in subdata_k21['name']], numpy.log10(k21), 's', color=color)
+    subdata.insert(1, 'k01', numpy.exp(-dG_k01 / (R * T)))
+    subdata.insert(1, 'k11', numpy.exp(-dG_k11 / (R * T)))
+    subdata.insert(1, 'k21', numpy.exp(-dG_k21 / (R * T)))
+    
+    return subdata
 
-def helpline_K01(ax, data: pandas.DataFrame, solvent: str, epsilon_r: float, color: str = 'black'):
-    subdata_k01 = data[(data['solvent'] == solvent) & (data['has_anion'] == True)] # K_01 → N+ + A-
+def plot_Kx1(ax, data: pandas.DataFrame, family: str, color: str):
+    subdata = data[data['family'] == family]
     
-    dG_DH_k01 = dG_DH_cplx_Kx1(subdata_k01['z'] + 1, subdata_k01['z'], -1, subdata_k01['r_A'] / AU_TO_ANG, subdata_k01['r_AX'] / AU_TO_ANG, RADII_BF4[solvent] / AU_TO_ANG, epsilon_r)
+    x = [int(x.replace('mol_', '')) for x in subdata['name']]
     
-    dG_k01 = (subdata_k01['G_cplx'] - G_BF4[solvent]+ dG_DH_k01) * AU_TO_KJMOL
+    ax.plot(x, numpy.log10(subdata['k01']), 'o', color=color, label=family.replace('Family.', ''))
+    ax.plot(x, numpy.log10(subdata['k11']), '^', color=color)
+    ax.plot(x, numpy.log10(subdata['k21']), 's', color=color)
+
+def plot_helpline(ax, data):
+    x = [int(x.replace('mol_', '')) for x in data['name']]
+    ax.plot(x, numpy.log10(data['k01']), '--', color='black', linewidth=0.8)
+
+def make_table(f, data: pandas.DataFrame, solvent: str):
+    subdata = data[data['solvent'] == solvent]
     
-    k01 = numpy.exp(-dG_k01 / (R * T))
-    
-    ax.plot([int(x.replace('mol_', '')) for x in subdata_k01['name']], numpy.log10(k01), '--', color=color, linewidth=0.75)
+    f.write(format_longtable(
+        subdata, 
+        titles=['', '$a_{\\ce{NA}}$', '$\\Delta{G}_{cplx}^\\star$', '', '$a_{\\ce{NC^.}}$', '$\\Delta{G}_{cplx}^\\star$', '', '$a_{\\ce{NC}}$', '$\\Delta{G}_{cplx}^\\star$'], 
+        line_maker=lambda r: [
+            '{}'.format(int(r['name'].replace('mol_', ''))), 
+            '{:.2f}'.format(r['r_AX_ox']), 
+            '{:.1f}'.format(r['dG_cplx_ox']), 
+            '',
+            '{:.2f}'.format(r['r_AX_rad']), 
+            '{:.1f}'.format(r['dG_cplx_rad']), 
+            '',
+            '{:.2f}'.format(r['r_AX_red']), 
+            '{:.1f}'.format(r['dG_cplx_red']), 
+        ]
+    ))
     
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', default='../data/Data_cplx_Kx1.csv')
 parser.add_argument('-o', '--output', default='Data_cplx_Kx1.pdf')
+parser.add_argument('-t', '--table')
 
 args = parser.parse_args()
 
@@ -49,31 +77,33 @@ data = pandas.read_csv(args.input)
 figure = plt.figure(figsize=(7, 8))
 ax1, ax2 = figure.subplots(2, 1, sharey=True, sharex=True)
 
-helpline_K01(ax1, data, 'water', 80, 'black')
+subdata_wa = prepare_data(data, 'water')
+plot_helpline(ax1, subdata_wa)
 
-plot_Kx1(ax1, data, 'Family.AMO', 'water', 80.,'tab:pink')
-plot_Kx1(ax1, data, 'Family.P6O', 'water', 80.,'tab:blue')
-plot_Kx1(ax1, data, 'Family.P5O', 'water', 80., 'black')
-plot_Kx1(ax1, data, 'Family.IIO', 'water', 80., 'tab:green')
-plot_Kx1(ax1, data, 'Family.APO', 'water', 80., 'tab:red')
+plot_Kx1(ax1, subdata_wa, 'Family.AMO', 'tab:pink')
+plot_Kx1(ax1, subdata_wa, 'Family.P6O', 'tab:blue')
+plot_Kx1(ax1, subdata_wa, 'Family.P5O', 'black')
+plot_Kx1(ax1, subdata_wa, 'Family.IIO', 'tab:green')
+plot_Kx1(ax1, subdata_wa, 'Family.APO', 'tab:red')
 
 ax1.legend(ncols=5)
 ax1.set_xlim(0.5,61.5)
-ax1.text(38, -2, "Water", fontsize=18)
+ax1.text(38, 0.5, "Water", fontsize=18)
 ax1.xaxis.set_minor_locator(MultipleLocator(2))
 ax1.grid(which='both', axis='x')
 ax1.plot([0, 62], [0, 0], '-', color='grey')
 
-helpline_K01(ax2, data, 'acetonitrile', 35, 'black')
+subdata_ac = prepare_data(data, 'acetonitrile')
+plot_helpline(ax2, subdata_ac)
 
-plot_Kx1(ax2, data, 'Family.P6O', 'acetonitrile', 35.,'tab:blue')
-plot_Kx1(ax2, data, 'Family.P5O', 'acetonitrile', 35., 'black')
-plot_Kx1(ax2, data, 'Family.IIO', 'acetonitrile', 35., 'tab:green')
-plot_Kx1(ax2, data, 'Family.APO', 'acetonitrile', 35., 'tab:red')
+plot_Kx1(ax2, subdata_ac, 'Family.P6O', 'tab:blue')
+plot_Kx1(ax2, subdata_ac, 'Family.P5O', 'black')
+plot_Kx1(ax2, subdata_ac, 'Family.IIO', 'tab:green')
+plot_Kx1(ax2, subdata_ac, 'Family.APO', 'tab:red')
 
 ax2.set_xlabel('Molecule id') 
-ax2.set_xlim(0.5,61.5)
-ax2.text(38, -2, "Acetonitrile", fontsize=18)
+ax2.set_xlim(0.5, 61.5)
+ax2.text(38, 0.5, "Acetonitrile", fontsize=18)
 ax2.xaxis.set_minor_locator(MultipleLocator(2))
 ax2.grid(which='both', axis='x')
 ax2.plot([0, 62], [0, 0], '-', color='grey')
@@ -82,3 +112,8 @@ ax2.plot([0, 62], [0, 0], '-', color='grey')
 
 plt.tight_layout()
 figure.savefig(args.output)
+
+if args.table:
+    with pathlib.Path(args.table).open('w') as f:
+        make_table(f, subdata_wa, 'water')
+        make_table(f, subdata_ac, 'acetonitrile')

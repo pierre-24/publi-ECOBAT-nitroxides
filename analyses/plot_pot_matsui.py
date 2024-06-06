@@ -25,15 +25,20 @@ def prepare_data(data: pandas.DataFrame, data_exp: pandas.DataFrame, solvent):
     subdata.insert(1, 'compound', [int(n.replace('mol_', '')) for n in subdata['name']])
     subdata = subdata.join(data_exp[data_exp['E_ox_exp_{}'.format(solvent)].notnull()].set_index('compound'), on='compound', how='inner')
     
+    e = EXCLUDE.copy()
+    
+    if solvent == 'acetonitrile':
+        e += [12, 4]
+    
     subdata['E_ox_exp_{}'.format(solvent)] /= 1000
     
     def matsui(x, E_SHE, f, mu):
-        return matsui_E_P_rel(x[~subdata['compound'].isin(EXCLUDE)], E_SHE, f, mu, subdata[~subdata['compound'].isin(EXCLUDE)]['r_rad'], EPSILON_R[solvent], subdata[~subdata['compound'].isin(EXCLUDE)]['z'] + 1)
+        return matsui_E_P_rel(x[~subdata['compound'].isin(e)], E_SHE, f, mu, subdata[~subdata['compound'].isin(e)]['r_rad'], EPSILON_R[solvent], subdata[~subdata['compound'].isin(e)]['z'] + 1)
     
     (mat_E_SHE, mat_f, mat_mu), cov = scipy.optimize.curve_fit(
         matsui, 
-        subdata[~subdata['compound'].isin(EXCLUDE)]['E_ox'], 
-        subdata[~subdata['compound'].isin(EXCLUDE)]['E_ox_exp_{}'.format(solvent)],
+        subdata[~subdata['compound'].isin(e)]['E_ox'], 
+        subdata[~subdata['compound'].isin(e)]['E_ox_exp_{}'.format(solvent)],
         p0=INIT_FIT[solvent],
         method='dogbox'
     )
@@ -45,9 +50,13 @@ def prepare_data(data: pandas.DataFrame, data_exp: pandas.DataFrame, solvent):
 
 def plot_exp_vs_matsui(ax, data: pandas.DataFrame, solvent: str, family: str, color: str):
     subdata = data[data['family'] == family]
+    e = EXCLUDE.copy()
     
-    ax.plot(subdata[~subdata['compound'].isin(EXCLUDE)]['E_ox_theo_{}'.format(solvent)], subdata[~subdata['compound'].isin(EXCLUDE)]['E_ox_exp_{}'.format(solvent)], 'o', color=color, label=family.replace('Family.', ''))
-    ax.plot(subdata[subdata['compound'].isin(EXCLUDE)]['E_ox_theo_{}'.format(solvent)], subdata[subdata['compound'].isin(EXCLUDE)]['E_ox_exp_{}'.format(solvent)], '^', color=color)
+    if solvent == 'acetonitrile':
+        e += [12, 4]
+    
+    ax.plot(subdata[~subdata['compound'].isin(e)]['E_ox_theo_{}'.format(solvent)], subdata[~subdata['compound'].isin(e)]['E_ox_exp_{}'.format(solvent)], 'o', color=color, label=family.replace('Family.', ''))
+    ax.plot(subdata[subdata['compound'].isin(e)]['E_ox_theo_{}'.format(solvent)], subdata[subdata['compound'].isin(e)]['E_ox_exp_{}'.format(solvent)], '^', color=color)
     
     for name, etheo, eexp in zip(subdata['compound'], subdata['E_ox_theo_{}'.format(solvent)], subdata['E_ox_exp_{}'.format(solvent)]):
         LABELS[solvent].append(name)
@@ -55,14 +64,19 @@ def plot_exp_vs_matsui(ax, data: pandas.DataFrame, solvent: str, family: str, co
         LABELS_KWARGS[solvent].append(dict(color=color, ha='center', va='center'))
 
 def plot_corr(ax, data: pandas.DataFrame, solvent: str):
-    x, y = data[~data['compound'].isin(EXCLUDE)]['E_ox_theo_{}'.format(solvent)], data[~data['compound'].isin(EXCLUDE)]['E_ox_exp_{}'.format(solvent)]
+    e = EXCLUDE.copy()
+    
+    if solvent == 'acetonitrile':
+        e += [12, 4]
+        
+    x, y = data[~data['compound'].isin(e)]['E_ox_theo_{}'.format(solvent)], data[~data['compound'].isin(e)]['E_ox_exp_{}'.format(solvent)]
     result = scipy.stats.linregress(x, y)
     mae = numpy.mean(numpy.abs(x-y))
     
     x = numpy.array( [x.min(), x.max()])
     ax.plot(x, result.slope*x + result.intercept, 'k--')
     
-    x = .95 * x.min()+ .05 * x.max()
+    x = x.min()
     ax.text(x + .05, result.slope*x + result.intercept, '{:.2f} $\\times E^P_{{rel}}$ + {:.2f}\n($R^2$={:.2f}, MAE={:.2f} V)'.format(result.slope, result.intercept, result.rvalue **2, mae))
 
 parser = argparse.ArgumentParser()
@@ -120,7 +134,7 @@ positioner = LabelPositioner.from_file(
 )
 
 if args.reposition_labels:
-    positioner.optimize(dx=1e-3, beta=1e4, krep=1, kspring=1000, c=0.05, b0=0.015)
+    positioner.optimize(dx=1e-3, beta=1e4, krep=1, kspring=1000, c=0.05, b0=0.015, scale=[0.5, 1])
     positioner.save(LABELS_PATH['acetonitrile'])
 
 positioner.add_labels(ax2)

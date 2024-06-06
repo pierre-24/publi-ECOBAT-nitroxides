@@ -67,7 +67,7 @@ def make_table(f, data: pandas.DataFrame, solvent: str):
         subdata,
         titles=['', '$r$', '$\\mu_x$', '$Q_{xx}$'], 
         line_maker=lambda r: [
-            r['name'].replace('mol_', ''), 
+            '{}'.format(int(r['name'].replace('mol_', ''))), 
             '{:.2f}'.format(r['r']), 
             '{:.2f}'.format(r['px']  / AU_TO_DEBYE), 
             '{:.2f}'.format(r['Qxx'] / AU_TO_DEBYE / AU_TO_ANG),

@@ -11,8 +11,8 @@ from nitroxides.tex import format_longtable
 T = 298.15
 R = 8.3145e-3 # kJ mol⁻¹
 
-def plot_Kx2(ax, data: pandas.DataFrame, family: str, solvent: str, color: str):
-    subdata = data[(data['family'] == family) & (data['solvent'] == solvent)]
+def prepare_data(data: pandas.DataFrame, solvent: str):
+    subdata = data[data['solvent'] == solvent]
     
     dG_DH_k02 = dG_DH_cplx_Kx2(subdata['z'] + 1, subdata['z'] + 1, 1, subdata['r_A_ox'] / AU_TO_ANG, subdata['r_AX_ox'] / AU_TO_ANG, RADII_NME4[solvent] / AU_TO_ANG, RADII_BF4[solvent] / AU_TO_ANG, EPSILON_R[solvent])
     dG_DH_k12 = dG_DH_cplx_Kx2(subdata['z'], subdata['z'], 1, subdata['r_A_rad'] / AU_TO_ANG, subdata['r_AX_rad'] / AU_TO_ANG, RADII_NME4[solvent] / AU_TO_ANG, RADII_BF4[solvent] / AU_TO_ANG, EPSILON_R[solvent])
@@ -22,39 +22,37 @@ def plot_Kx2(ax, data: pandas.DataFrame, family: str, solvent: str, color: str):
     dG_k12 = (subdata['G_cplx_rad'] - G_NME4[solvent] - G_BF4[solvent] + dG_DH_k12) * AU_TO_KJMOL
     dG_k22 = (subdata['G_cplx_red'] - G_NME4[solvent] - G_BF4[solvent] + dG_DH_k22) * AU_TO_KJMOL
     
-    k02 = numpy.exp(-dG_k02 / (R * T))
-    k12 = numpy.exp(-dG_k12 / (R * T))
-    k22 = numpy.exp(-dG_k22 / (R * T))
+    subdata.insert(1, 'dG_cplx_ox', dG_k02)
+    subdata.insert(1, 'dG_cplx_rad', dG_k12)
+    subdata.insert(1, 'dG_cplx_red', dG_k22)
     
-    ax.plot([int(x.replace('mol_', '')) for x in subdata['name']], numpy.log10(k02), 'o', color=color, label=family.replace('Family.', ''))
-    ax.plot([int(x.replace('mol_', '')) for x in subdata['name']], numpy.log10(k12), '^', color=color)
-    ax.plot([int(x.replace('mol_', '')) for x in subdata['name']], numpy.log10(k22), 's', color=color)
+    subdata.insert(1, 'k02', numpy.exp(-dG_k02 / (R * T)))
+    subdata.insert(1, 'k12', numpy.exp(-dG_k12 / (R * T)))
+    subdata.insert(1, 'k22', numpy.exp(-dG_k22 / (R * T)))
+    
+    return subdata
 
-def helpline_K02(ax, data: pandas.DataFrame, solvent: str, color: str = 'black'):
-    subdata = data[data['solvent'] == solvent]
+def plot_Kx2(ax, data: pandas.DataFrame, family: str, color: str):
+    subdata = data[data['family'] == family]
     
-    dG_DH_k12 = dG_DH_cplx_Kx2(subdata['z'], subdata['z'], 1, subdata['r_A_rad'] / AU_TO_ANG, subdata['r_AX_rad'] / AU_TO_ANG, RADII_NME4[solvent] / AU_TO_ANG, RADII_BF4[solvent] / AU_TO_ANG, EPSILON_R[solvent])
-    dG_k12 = (subdata['G_cplx_rad'] - G_NME4[solvent] - G_BF4[solvent] + dG_DH_k12) * AU_TO_KJMOL
-    k12 = numpy.exp(-dG_k12 / (R * T))
+    x = [int(x.replace('mol_', '')) for x in subdata['name']]
     
-    ax.plot([int(x.replace('mol_', '')) for x in subdata['name']], numpy.log10(k12), '--', color=color, linewidth=0.75)
+    ax.plot(x, numpy.log10(subdata['k02']), 'o', color=color, label=family.replace('Family.', ''))
+    ax.plot(x, numpy.log10(subdata['k12']), '^', color=color)
+    ax.plot(x, numpy.log10(subdata['k22']), 's', color=color)
+
+def plot_helpline(ax, data):
+    x = [int(x.replace('mol_', '')) for x in data['name']]
+    ax.plot(x, numpy.log10(data['k02']), '--', color='black', linewidth=0.8)
 
 def make_table(f, data: pandas.DataFrame, solvent: str):
     subdata = data[data['solvent'] == solvent]
-    
-    dG_DH_k02 = dG_DH_cplx_Kx2(subdata['z'] + 1, subdata['z'] + 1, 1, subdata['r_A_ox'] / AU_TO_ANG, subdata['r_AX_ox'] / AU_TO_ANG, RADII_NME4[solvent] / AU_TO_ANG, RADII_BF4[solvent] / AU_TO_ANG, EPSILON_R[solvent])
-    dG_DH_k12 = dG_DH_cplx_Kx2(subdata['z'], subdata['z'], 1, subdata['r_A_rad'] / AU_TO_ANG, subdata['r_AX_rad'] / AU_TO_ANG, RADII_NME4[solvent] / AU_TO_ANG, RADII_BF4[solvent] / AU_TO_ANG, EPSILON_R[solvent])
-    dG_DH_k22 = dG_DH_cplx_Kx2(subdata['z'] - 1, subdata['z'] - 1, 1, subdata['r_A_red'] / AU_TO_ANG, subdata['r_AX_red'] / AU_TO_ANG, RADII_NME4[solvent] / AU_TO_ANG, RADII_BF4[solvent] / AU_TO_ANG, EPSILON_R[solvent])
-    
-    subdata.insert(1, 'dG_cplx_ox', (subdata['G_cplx_ox'] - G_NME4[solvent] - G_BF4[solvent] + dG_DH_k02) * AU_TO_KJMOL)
-    subdata.insert(1, 'dG_cplx_rad', (subdata['G_cplx_rad'] - G_NME4[solvent] - G_BF4[solvent] + dG_DH_k12) * AU_TO_KJMOL)
-    subdata.insert(1, 'dG_cplx_red', (subdata['G_cplx_red'] - G_NME4[solvent] - G_BF4[solvent] + dG_DH_k22) * AU_TO_KJMOL)
     
     f.write(format_longtable(
         subdata, 
         titles=['', '$a_{\\ce{NAC+}}$', '$\\Delta{G}_{cplx}^\\star$', '', '$a_{\\ce{NAC^.}}$', '$\\Delta{G}_{cplx}^\\star$', '', '$a_{\\ce{NAC-}}$', '$\\Delta{G}_{cplx}^\\star$'], 
         line_maker=lambda r: [
-            r['name'].replace('mol_', ''), 
+            '{}'.format(int(r['name'].replace('mol_', ''))), 
             '{:.2f}'.format(r['r_AX_ox']), 
             '{:.1f}'.format(r['dG_cplx_ox']), 
             '',
@@ -79,13 +77,14 @@ data = pandas.read_csv(args.input)
 figure = plt.figure(figsize=(7, 8))
 ax1, ax2 = figure.subplots(2, 1, sharey=True, sharex=True)
 
-helpline_K02(ax1, data, 'water', 'black')
+subdata_wa = prepare_data(data, 'water')
+plot_helpline(ax1, subdata_wa)
 
-plot_Kx2(ax1, data, 'Family.AMO', 'water', 'tab:pink')
-plot_Kx2(ax1, data, 'Family.P6O', 'water', 'tab:blue')
-plot_Kx2(ax1, data, 'Family.P5O', 'water',  'black')
-plot_Kx2(ax1, data, 'Family.IIO', 'water',  'tab:green')
-plot_Kx2(ax1, data, 'Family.APO', 'water',  'tab:red')
+plot_Kx2(ax1, subdata_wa, 'Family.AMO', 'tab:pink')
+plot_Kx2(ax1, subdata_wa, 'Family.P6O', 'tab:blue')
+plot_Kx2(ax1, subdata_wa, 'Family.P5O', 'black')
+plot_Kx2(ax1, subdata_wa, 'Family.IIO', 'tab:green')
+plot_Kx2(ax1, subdata_wa, 'Family.APO', 'tab:red')
 
 ax1.legend(ncols=5)
 ax1.set_xlim(0.5,61.5)
@@ -96,12 +95,13 @@ ax1.plot([0, 62], [0, 0], '-', color='grey')
 
 ax1.legend()
 
-helpline_K02(ax2, data, 'acetonitrile', 'black')
+subdata_ac = prepare_data(data, 'acetonitrile')
+plot_helpline(ax2, subdata_ac)
 
-plot_Kx2(ax2, data, 'Family.P6O', 'acetonitrile', 'tab:blue')
-plot_Kx2(ax2, data, 'Family.P5O', 'acetonitrile',  'black')
-plot_Kx2(ax2, data, 'Family.IIO', 'acetonitrile',  'tab:green')
-plot_Kx2(ax2, data, 'Family.APO', 'acetonitrile',  'tab:red')
+plot_Kx2(ax2, subdata_ac, 'Family.P6O', 'tab:blue')
+plot_Kx2(ax2, subdata_ac, 'Family.P5O', 'black')
+plot_Kx2(ax2, subdata_ac, 'Family.IIO', 'tab:green')
+plot_Kx2(ax2, subdata_ac, 'Family.APO', 'tab:red')
 
 ax2.set_xlabel('Molecule id') 
 ax2.set_xlim(0.5,61.5)
@@ -117,5 +117,5 @@ figure.savefig(args.output)
 
 if args.table:
     with pathlib.Path(args.table).open('w') as f:
-        make_table(f, data, 'water')
-        make_table(f, data, 'acetonitrile')
+        make_table(f, subdata_wa, 'water')
+        make_table(f, subdata_ac, 'acetonitrile')

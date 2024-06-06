@@ -47,7 +47,7 @@ def make_table(f, data: pandas.DataFrame, solvent: str):
         subdata, 
         titles=['', '$a_{\\ce{N+}}$', '$a_{\\ce{N^.}}$', '$a_{\\ce{N-}}$', '$E^0_{abs}(\\ce{N+}|\\ce{N^.})$', '$E^0_{abs}(\\ce{N^.}|\\ce{N-})$'], 
         line_maker=lambda r: [
-            r['name'].replace('mol_', ''), 
+            '{}'.format(int(r['name'].replace('mol_', ''))), 
             '{:.2f}'.format(r['r_ox']), 
             '{:.2f}'.format(r['r_rad']), 
             '{:.2f}'.format(r['r_red']),
