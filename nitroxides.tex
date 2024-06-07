@@ -277,8 +277,8 @@ Following Mugisa and co-workers \cite{mugisaEffectIonparingKinetics2024}, a quan
 	\item the redox potentials of the ion-pair complexes are smaller than the one of the free species.
 \end{inparaenum}
 Within these assumption, the following electrolyte concentration-dependent (formal) redox potentials are obtained:\begin{align}
-	E^f_{abs}(\ce{N+|N^.}) &= E^0_ {abs}(\ce{N+|N^.})+\frac{RT}{F}\,\ln\left[\frac{1+K_{11}\,[X]+K_{12}\,[X]^2}{1+K_{01}\,[X]+K_{02}\,[X]^2}\right],\\
-	E^f_{abs}(\ce{N^.|N-}) &= E^0_ {abs}(\ce{N^.|N-})+\frac{RT}{F}\,\ln\left[\frac{1+K_{21}\,[X]+K_{22}\,[X]^2}{1+K_{11}\,[X]+K_{12}\,[X]^2}\right],
+	E^f_{abs}(\ce{N+|N^.}) &= E^0_ {abs}(\ce{N+|N^.})+\frac{RT}{F}\,\ln\left[\frac{1+K_{11}\,[X]+K_{12}\,[X]^2}{1+K_{01}\,[X]+K_{02}\,[X]^2}\right],\label{eq:ef1}\\
+	E^f_{abs}(\ce{N^.|N-}) &= E^0_ {abs}(\ce{N^.|N-})+\frac{RT}{F}\,\ln\left[\frac{1+K_{21}\,[X]+K_{22}\,[X]^2}{1+K_{11}\,[X]+K_{12}\,[X]^2}\right],\label{eq:ef2}
 \end{align}
 in which $K_{ij}= \exp\left[-\frac{\Delta G_{cplx}^\star}{RT}\right]$, where $\Delta G_{cplx}^\star$ is the free Gibbs energy change [computed with Eq.~\eqref{eq:gtot}] for a given complexation reaction.
 
@@ -525,13 +525,14 @@ Finally, complexation to the \ce{AC} pair is considered (Fig.~\ref{fig:Kx2}, Tab
 \clearpage
 \subsection{Comparison to experiment} \label{sec:exp}
 
-A comparison between theoretical (including all corrections discussed above) and experimental oxidation potentials is shown in Fig.~\ref{fig:expvstheo}.\todo{This is not really $E^f$ for the moment ;)} Excluding compounds bearing an \ce{NH2} group (\textbf{51}, \textbf{57}, and \textbf{59}) results in an excellent linear correlation ($R^2>0.9$). The computed potentials for these compounds are higher (by $>\SI{0.1}{\volt}$) than the fit line, suggesting that the amine group might be protonated under the experimental measurement conditions. This is indeed consistent with other cases (\textit{e.g.}, \textbf{25} vs \textbf{35}) discussed in Section \ref{sec:sar}. The remaining results indicate that the method used in this paper tends to overestimate the oxidation potentials in water and systematically underestimate them in acetonitrile, with a large mean average error (MAE), indicating that the value for $E^0_{abs}(\text{SHE)}$ might not be appropriate in this solvent.
+A comparison between theoretical (including all corrections discussed above) and experimental oxidation potentials is shown in Fig.~\ref{fig:expvstheo}. Excluding compounds bearing an \ce{NH2} group (\textbf{51}, \textbf{57}, \textbf{59}, and \textbf{4} in acetontrile) results in an excellent linear correlation ($R^2 > 0.9$). The computed potentials for these compounds are higher (by $>\SI{0.1}{\volt}$) than the fit line, suggesting that the amine group might be protonated under the experimental measurement conditions. This is indeed consistent with other cases (\textit{e.g.}, \textbf{25} vs \textbf{35}) discussed in Section \ref{sec:sar}. 
 
+The remaining results indicate that the method used in this paper tends to overestimate the oxidation potentials in water and systematically underestimate them in acetonitrile, with a large mean average error (MAE). This suggests that the value for $E^0_{abs}(\text{SHE})$ might not be appropriate in this solvent. The impact of the different corrections (see Fig.~S7) is to decrease the potential, mainly due to the DH correction (given the value of the complexation equilibrium constants for the oxidation reaction, see Table \ref{tab:Kx1}), as seen in Fig.~\ref{fig:DH}. While this improves the slope and MAE in water, the opposite effect is observed in acetonitrile.
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=.8\linewidth]{Figure15}
-	\caption{Comparison between experimental ($E^0_{rel} $ vs SHE, from Table S11) and computed relative oxidation potential ($E^f_{rel}$ vs SHE), as computed at the $\omega$B97X-D/6-311+G(d) level in water (left) and acetonitrile (right) using SMD and $[X]=\SI{0.1}{\mole\per\liter}$.  The dashed line is a linear regression.}
+	\includegraphics[width=.75\linewidth]{Figure15}
+	\caption{Comparison between experimental ($E^0_{rel} $ vs SHE, from Table S11) and computed relative oxidation potential ($E^f_{rel}$, computed using \eqref{eq:ef1}, vs SHE), as computed at the $\omega$B97X-D/6-311+G(d) level in water (top) and acetonitrile (bottom) using SMD and $[X]=\SI{0.1}{\mole\per\liter}$.  The dashed line is a linear regression.}
 	\label{fig:expvstheo}
 \end{figure}
 
@@ -540,8 +541,8 @@ For comparison, the model by Matsui and co-workers \cite{matsuiDensityFunctional
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=.8\linewidth]{Figure16}
-	\caption{Comparison between experimental ($E^0_{rel} $ vs SHE, from Table S11) and corrected oxidation potential using the scheme of Matsui et al. \cite{matsuiDensityFunctionalTheory2013} [Eq.~\eqref{eq:matsui}, with the parameters $E_{abs}^0(\text{SHE})$, $f$, and $\mu$ obtained by a least-square procedure], as computed at the $\omega$B97X-D/6-311+G(d) level in water (left) and acetonitrile (right). The dashed line is a linear regression, obtained without the DH correction. }
+	\includegraphics[width=.75\linewidth]{Figure16}
+	\caption{Comparison between experimental ($E^0_{rel} $ vs SHE, from Table S11) and corrected oxidation potential using the scheme of Matsui et al. \cite{matsuiDensityFunctionalTheory2013} [Eq.~\eqref{eq:matsui}, with the parameters $E_{abs}^0(\text{SHE})$, $f$, and $\mu$ obtained by a least-square procedure, on calculated data without the DH correction], as computed at the $\omega$B97X-D/6-311+G(d) level in water (top) and acetonitrile (bottom). The dashed line is a linear regression. }
 	\label{fig:matsui}
 \end{figure}
 

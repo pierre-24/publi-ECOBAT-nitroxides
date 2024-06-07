@@ -582,7 +582,8 @@
 		note{a} = {From Ref.~\citenum{goldsteinStructureActivityRelationship2006}.},
 		note{b} = {From Ref.~\citenum{morrisChemicalElectrochemicalReduction1991}, converted from SCE to SHE with +\SI{244}{\milli\volt} \cite{pavlishchukConversionConstantsRedox2000}.},
 		note{c}={From Ref.~\citenum{blincoExperimentalTheoreticalStudies2008}.},
-		note{d}={From Ref.~\citenum{zhangEffectHeteroatomFunctionality2018}, converted from Fc to SHE with +\SI{624}{\milli\volt} \cite{pavlishchukConversionConstantsRedox2000}.}
+		note{d}={From Ref.~\citenum{zhangEffectHeteroatomFunctionality2018}, converted from Fc to SHE with +\SI{624}{\milli\volt} \cite{pavlishchukConversionConstantsRedox2000}.},
+		label={tab:exp}
 	]{colspec={>{\bfseries}lX[c]X[c]c>{\bfseries}lX[c]X[c]}, width = 0.85\linewidth,rowhead=1}
 	\hline
 	& Water & Acetonitrile  & & & Water & Acetonitrile\\
@@ -604,7 +605,15 @@
 	\hline
 \end{longtblr}
 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=.75\linewidth]{FigureS7}
+	\caption{Comparison between experimental ($E^0_{rel} $ vs SHE, from Table \ref{tab:exp}) and computed relative oxidation potential ($E^f_{rel}$ vs SHE), as computed at the $\omega$B97X-D/6-311+G(d) level in water (top) and acetonitrile (bottom) using SMD and no correction due to DH or pair formation.  The dashed line is a linear regression.}
+	\label{fig:expvstheo}
+\end{figure}
+
 \clearpage
+
 
 
 \bibliographystyle{unsrt} 

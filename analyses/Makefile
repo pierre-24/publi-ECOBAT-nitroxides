@@ -13,6 +13,7 @@ all:
 	python plot_pot_vs_Hodgson.py -o ../FigureS4.pdf
 	python plot_pot_hammet.py -o ../FigureS5.pdf
 	python plot_cplx_Gx1.py -o ../FigureS6.pdf
+	python  plot_pot_exp.py -R -o ../FigureS7.pdf
 
 tab:
 	python plot_pot.py --table pot.tab
