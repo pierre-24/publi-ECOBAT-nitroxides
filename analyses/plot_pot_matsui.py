@@ -95,7 +95,7 @@ ax1, ax2 = figure.subplots(2, 1)
 
 subdata_wa, param_matsui_wa = prepare_data(data, data_exp, 'water')
 
-ax1.text(.72, .95, '$E_{{SHE}}$ = {:.2f} V, $f$ = {:.3f}, $\\mu$ = {:.5f} a$_0^{{-1}}$'.format(*param_matsui_wa))
+ax1.text(.72, .95, '$E_{{abs}}^0(\\text{{SHE}})$ = {:.2f} V, $f$ = {:.3f}, $\\mu$ = {:.5f} a$_0^{{-1}}$'.format(*param_matsui_wa))
 
 plot_exp_vs_matsui(ax1, subdata_wa, 'water', 'Family.P6O', 'tab:blue')
 plot_exp_vs_matsui(ax1, subdata_wa, 'water', 'Family.P5O', 'black')
@@ -117,7 +117,7 @@ positioner.add_labels(ax1)
 
 subdata_ac, param_matsui_ac = prepare_data(data, data_exp, 'acetonitrile')
 
-ax2.text(.8, 1.18, '$E_{{SHE}}$ = {:.2f} V, $f$ = {:.3f}, $\\mu$ = {:.5f} a$_0^{{-1}}$'.format(*param_matsui_ac))
+ax2.text(.8, 1.18, '$E_{{abs}}^0(\\text{{SHE}})$ = {:.2f} V, $f$ = {:.3f}, $\\mu$ = {:.5f} a$_0^{{-1}}$'.format(*param_matsui_ac))
 
 plot_exp_vs_matsui(ax2, subdata_ac, 'acetonitrile', 'Family.P6O', 'tab:blue')
 plot_exp_vs_matsui(ax2, subdata_ac, 'acetonitrile', 'Family.P5O', 'black')
