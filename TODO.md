@@ -15,3 +15,4 @@
 - [ ] mark (and address) missing values in Tables
 - [ ] tries to move labels as much as possible in graphs
 - [ ] PACS code, MSC code?
+- [ ] Fig. or Figure?
