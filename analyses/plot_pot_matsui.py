@@ -28,7 +28,7 @@ def prepare_data(data: pandas.DataFrame, data_exp: pandas.DataFrame, solvent):
     e = EXCLUDE.copy()
     
     if solvent == 'acetonitrile':
-        e += [12, 4]
+        e += [4]
     
     subdata['E_ox_exp_{}'.format(solvent)] /= 1000
     
@@ -53,7 +53,7 @@ def plot_exp_vs_matsui(ax, data: pandas.DataFrame, solvent: str, family: str, co
     e = EXCLUDE.copy()
     
     if solvent == 'acetonitrile':
-        e += [12, 4]
+        e += [4]
     
     ax.plot(subdata[~subdata['compound'].isin(e)]['E_ox_theo_{}'.format(solvent)], subdata[~subdata['compound'].isin(e)]['E_ox_exp_{}'.format(solvent)], 'o', color=color, label=family.replace('Family.', ''))
     ax.plot(subdata[subdata['compound'].isin(e)]['E_ox_theo_{}'.format(solvent)], subdata[subdata['compound'].isin(e)]['E_ox_exp_{}'.format(solvent)], '^', color=color)
@@ -95,7 +95,7 @@ ax1, ax2 = figure.subplots(2, 1)
 
 subdata_wa, param_matsui_wa = prepare_data(data, data_exp, 'water')
 
-ax1.text(.72, .95, '$E_{{abs}}^0(\\text{{SHE}})$ = {:.2f} V, $f$ = {:.3f}, $\\mu$ = {:.5f} a$_0^{{-1}}$'.format(*param_matsui_wa))
+ax1.text(.72, .95, '$E_{{abs}}^0(\\text{{SHE}})$ = {:.2f} V, $f$ = {:.3f}, $\\mu$ = {:.4f} a$_0^{{-1}}$'.format(*param_matsui_wa))
 
 plot_exp_vs_matsui(ax1, subdata_wa, 'water', 'Family.P6O', 'tab:blue')
 plot_exp_vs_matsui(ax1, subdata_wa, 'water', 'Family.P5O', 'black')
@@ -117,7 +117,7 @@ positioner.add_labels(ax1)
 
 subdata_ac, param_matsui_ac = prepare_data(data, data_exp, 'acetonitrile')
 
-ax2.text(.8, 1.18, '$E_{{abs}}^0(\\text{{SHE}})$ = {:.2f} V, $f$ = {:.3f}, $\\mu$ = {:.5f} a$_0^{{-1}}$'.format(*param_matsui_ac))
+ax2.text(.8, 1.18, '$E_{{abs}}^0(\\text{{SHE}})$ = {:.2f} V, $f$ = {:.3f}, $\\mu$ = {:.4f} a$_0^{{-1}}$'.format(*param_matsui_ac))
 
 plot_exp_vs_matsui(ax2, subdata_ac, 'acetonitrile', 'Family.P6O', 'tab:blue')
 plot_exp_vs_matsui(ax2, subdata_ac, 'acetonitrile', 'Family.P5O', 'black')

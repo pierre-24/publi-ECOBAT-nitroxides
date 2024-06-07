@@ -1,6 +1,6 @@
 # TODOs
 
-- [ ] **12**!!
+- [x] **12**!!
 - [ ] 62 → 61
 - [ ] Use $E^f$ in Fig. 15 (and check discussion, especially **4**)
 - [x] Fig. 16 $E_{SHE}$ → $E^0_{abs}$

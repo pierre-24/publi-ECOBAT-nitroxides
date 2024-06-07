@@ -62,7 +62,7 @@ def plot_exp_vs_theo(ax, data: pandas.DataFrame, solvent: str, family: str, colo
     e = EXCLUDE.copy()
     
     if solvent == 'acetonitrile':
-        e += [12, 4]
+        e += [4]
     
     ax.plot(subdata[~subdata['compound'].isin(e)]['E_ox_theo_{}'.format(solvent)], subdata[~subdata['compound'].isin(e)]['E_ox_exp_{}'.format(solvent)], 'o', color=color, label=family.replace('Family.', ''))
     ax.plot(subdata[subdata['compound'].isin(e)]['E_ox_theo_{}'.format(solvent)], subdata[subdata['compound'].isin(e)]['E_ox_exp_{}'.format(solvent)], '^', color=color)
@@ -76,7 +76,7 @@ def plot_corr(ax, data: pandas.DataFrame, solvent: str):
     e = EXCLUDE.copy()
     
     if solvent == 'acetonitrile':
-        e += [12, 4]
+        e += [4]
     
     x, y = data[~data['compound'].isin(e)]['E_ox_theo_{}'.format(solvent)], data[~data['compound'].isin(e)]['E_ox_exp_{}'.format(solvent)]
     result = scipy.stats.linregress(x, y)
