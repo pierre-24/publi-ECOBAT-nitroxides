@@ -55,9 +55,9 @@
 			country={Belgium}}
 		
 		\begin{abstract}
-			This is an abstract
-			
+			This paper investigates the impact of solute-solvent effects on the redox potentials of nitroxides, with a focus on ionic interactions caused by the presence of electrolytes found in different environment such as batteries. Indeed the Born model highlights the stabilization of charges due to solvent dielectric constant changes, while solute-ion interactions, influenced by electrolyte presence, play a crucial role. The study reveals that moderate electrolyte concentrations stabilize charged compounds through the Debye-Hückel (DH) effect, and higher concentrations lead to ion-pair formation, both affecting redox properties. The analysis of various nitroxide families shows that ion-substituent interactions, especially in aromatic systems, significantly influence complex stability. In particular, in acetonitrile, the hydroxylamine anion and its cation exhibit strong interactions near the nitroxyl moiety, but only if the nitroxyl is well positioned. The study also confirm that an electrostatic interaction model can predict the effects of substituents, aromaticity, and ring size on redox potentials of nitroxides. 
 		\end{abstract}
+		
 		
 		%%Graphical abstract
 		\begin{graphicalabstract}
@@ -72,6 +72,12 @@
 		
 		\begin{keyword}
 			%% keywords here, in the form: keyword \sep keyword
+			Nitroxide 
+			\sep Electrolyte 
+			\sep Redox potential
+			\sep Debye-Hückel 
+			\sep Ion pairs 
+			\sep Quantum chemistry
 			
 			%% PACS codes here, in the form: \PACS code \sep code
 			
@@ -549,16 +555,21 @@ For comparison, the model by Matsui and co-workers \cite{matsuiDensityFunctional
 \clearpage
 \section{Conclusion} \label{sec:conclusion}
 
-Random thoughts:\begin{itemize}
-	\item We only focused on the impact of substituent. Other study do the counterion part.
-	\item more of DH could be included (dipole, quandrupole)
-	\item Temperature is higher in batteries?
-	\item The impact remains moderate, but I hope I have provided keys in understanding interaction.\todo{check \cite{zhangInteractionsImidazoliumBasedIonic2016}}
-	\item Ionic liquids needs to be addressed at some point ;)
-\end{itemize}
+In this paper, the impact of different solute-solvent effects on the redox potentials of nitroxides has been assessed, with a particular emphasis on ionic interactions. While the Born model [Eq.~\eqref{eq:born}] shows that the solvent tends to stabilize charges due to changes in the dielectric constant (especially in polar solvents), other, more subtle effects arise from solute-ion interactions caused by the presence of electrolytes. These electrolytes are found in moderate concentrations (\textit{i.e.,} \SI{0.1}{\mole\per\liter}) during the experimental measurement of redox potentials and in higher concentrations (>$\SI{1}{\mole\per\liter}$) in ionic liquids used for batteries.
+
+The impact of electrolytes is twofold:
+\begin{inparaenum}[(i)]
+	\item at any concentration, the background of charge further stabilizes charged compounds, as described by the Debye-Hückel (DH) model [Eq.~\eqref{eq:dh}], and
+	\item at high concentrations, the formation of ion-pairs modifies the redox properties of nitroxides.
+\end{inparaenum}
+Both effects have been examined: when the charge of the compound and of the electrolyte constituents is moderate, the DH correction is small. However, the formation of pairs depends on the redox state of the nitroxide and the nature of the intermolecular interactions, which goes beyond a simple pair formation model (Fig.~\ref{fig:ionpair}). Two positions are possible for the ion: near the redox center of the nitroxide, and near its substituent, if any. The ion-substituent interaction (in the second position) generally leads to more favorable complexes (especially when the molecule contains aromatic moieties). However, in acetonitrile, the interaction between the reduced form (hydroxylamine anion) and its cation, positioned near the $>$\ce{N-O-} moiety, is the strongest. This seems to be the case in other low-dielectric environments, as noted by others in an even less polar solvent ($\varepsilon_r$ = 25) \cite{wylieImprovedPerformanceAllOrganic2019a}.
+
+In this work, different families of nitroxides have been considered: 5- (P6O, APO) and 6-membered rings (P5O, IIO) containing the nitroxyl moiety, and with (IIO, APO) or without an aromatic system (P5O, P6O) in close vicinity. The impact of such changes, and of substituents, on the redox potentials is largely explained by the electrostatic interaction model (Fig.~\ref{fig:dipole}) developed by Zhang and co-workers \cite{zhangEffectHeteroatomFunctionality2018}: a large quadrupole moment increases both the oxidation and reduction potentials of nitroxides, while increasing the size of the ring (and thus the distance between the substituent and the nitroxyl) mostly affects the reduction potential. Furthermore, acceptor substituents (such as \ce{NO2}) further increase both potentials. While the impact remains moderate (+\SI{0.4}{\volt}), it is hoped that this will provide design rules for future investigations. It was, however, not possible to correlate the impact of the substitution on the formation of ion-pairs, but it was noticed that the favorable interaction between \ce{N-} and \ce{C+} mentioned was systematically hampered by the nitroxyl in an axial position in P6O. This is another important design rule for future applications.
+
+Finally, a comparison with experiment has been performed. It results in an excellent correlation, but the impact of the corrections presented above is minimal in the solvents considered here (water and acetonitrile) and with the concentrations of electrolytes used experimentally. It would be interesting to compare redox potentials measured under different conditions (such as in ionic liquids). Another factor that should be investigated is the temperature, which would affect both the DH correction (through $\kappa$, Eq.~\eqref{eq:kappa2}) and the complexation equilibrium constant. For example, conventional lithium-ion batteries can operate up to \SI{60}{\degreeCelsius} \cite{maTemperatureEffectThermal2018}, but ionic liquids are stable over extended temperature ranges.
 	
 \section*{Notes}
-The authors declare no competing financial interest.
+The author declare no competing financial interest.
 
 \section*{Acknowledgements}
 P.B. thanks Prof. B. Champagne for fruitful discussions, and is grateful to the Excellence of Science (EOS) programme  ECOBAT (EOS number: 40007515) for funding this research. 
