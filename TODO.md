@@ -16,3 +16,5 @@
 - [ ] tries to move labels as much as possible in graphs
 - [ ] PACS code, MSC code?
 - [ ] Fig. or Figure?
+- [ ] Fig. S7: not $E^f$
+- [ ] Title of the SI
