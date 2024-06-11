@@ -18,3 +18,4 @@
 - [ ] Fig. or Figure?
 - [ ] Fig. S7: not $E^f$
 - [ ] Title of the SI
+- [ ] Check NC → N-C+, etc.
