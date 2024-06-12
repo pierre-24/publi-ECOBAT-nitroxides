@@ -77,7 +77,7 @@ def plot_corr(ax, data: pandas.DataFrame, solvent: str):
     ax.plot(x, result.slope*x + result.intercept, 'k--')
     
     x = x.min()
-    ax.text(x + .05, result.slope*x + result.intercept, '{:.2f} $\\times E^P_{{rel}}$ + {:.2f}\n($R^2$={:.2f}, MAE={:.2f} V)'.format(result.slope, result.intercept, result.rvalue **2, mae))
+    ax.text(x + .05, result.slope*x + result.intercept, '{:.2f} $\\times E^{{Mat}}_{{rel}}$ + {:.2f} V\n($R^2$={:.2f}, MAE={:.2f} V)'.format(result.slope, result.intercept, result.rvalue **2, mae))
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', default='../data/Data_pot.csv')
@@ -101,6 +101,7 @@ plot_exp_vs_matsui(ax1, subdata_wa, 'water', 'Family.P6O', 'tab:blue')
 plot_exp_vs_matsui(ax1, subdata_wa, 'water', 'Family.P5O', 'black')
 
 plot_corr(ax1, subdata_wa, 'water')
+ax1.text(0.75, 0.9, 'Water', fontsize=18)
 
 positioner = LabelPositioner.from_file(
     LABELS_PATH['water'], 
@@ -125,6 +126,7 @@ plot_exp_vs_matsui(ax2, subdata_ac, 'acetonitrile', 'Family.IIO', 'tab:green')
 plot_exp_vs_matsui(ax2, subdata_ac, 'acetonitrile', 'Family.APO', 'tab:red')
 
 plot_corr(ax2, subdata_ac, 'acetonitrile')
+ax2.text(0.8, 1.15, 'Acetonitrile', fontsize=18)
 
 positioner = LabelPositioner.from_file(
     LABELS_PATH['acetonitrile'], 
@@ -140,6 +142,7 @@ if args.reposition_labels:
 positioner.add_labels(ax2)
 
 ax2.legend()
+ax2.xaxis.set_major_formatter('{x:.2f}')
 [ax.set_xlabel('Computed $E^P_{rel}(N^+|N^\\bullet)$ (V)') for ax in (ax1, ax2)]
 [ax.set_ylabel('Experimental $E^0_{rel}(N^+|N^\\bullet)$ (V)') for ax in (ax1, ax2)]
 

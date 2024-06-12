@@ -87,7 +87,7 @@ def plot_corr(ax, data: pandas.DataFrame, solvent: str):
     ax.plot(x, result.slope*x + result.intercept, 'k--')
     
     x = x.min()
-    ax.text(x + .05, result.slope*x + result.intercept, '{:.2f} $\\times E^f_{{rel}}$ + {:.2f}\n($R^2$={:.2f}, MAE={:.2f} V)'.format(result.slope, result.intercept,result.rvalue **2, mae))
+    ax.text(x + .05, result.slope*x + result.intercept, '{:.2f} $\\times E^f_{{rel}}$ + {:.2f} V\n($R^2$={:.2f}, MAE={:.2f} V)'.format(result.slope, result.intercept,result.rvalue **2, mae))
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', default='../data/Data_pot.csv')
@@ -110,8 +110,13 @@ subdata_wa = prepare_data(data, data_exp, data_Kx1, 'water', correct=not args.ra
 
 plot_exp_vs_theo(ax1, subdata_wa, 'water', 'Family.P6O', 'tab:blue')
 plot_exp_vs_theo(ax1, subdata_wa, 'water', 'Family.P5O', 'black')
+plot_exp_vs_theo(ax1, subdata_wa, 'water', 'Family.IIO', 'tab:green')
+plot_exp_vs_theo(ax1, subdata_wa, 'water', 'Family.APO', 'tab:red')
 
 plot_corr(ax1, subdata_wa, 'water')
+
+ax1.legend()
+ax1.text(0.85, 0.95, 'Water', fontsize=18)
 
 positioner = LabelPositioner.from_file(
     LABELS_PATH['water'], 
@@ -134,6 +139,7 @@ plot_exp_vs_theo(ax2, subdata_ac, 'acetonitrile', 'Family.IIO', 'tab:green')
 plot_exp_vs_theo(ax2, subdata_ac, 'acetonitrile', 'Family.APO', 'tab:red')
 
 plot_corr(ax2, subdata_ac, 'acetonitrile')
+ax2.text(0.5, 1.15, 'Acetonitrile', fontsize=18)
 
 positioner = LabelPositioner.from_file(
     LABELS_PATH['acetonitrile'], 
@@ -147,8 +153,7 @@ if args.reposition_labels:
     positioner.save(LABELS_PATH['acetonitrile'])
 
 positioner.add_labels(ax2)
-
-ax2.legend()
+ax2.xaxis.set_major_formatter('{x:.2f}')
 [ax.set_xlabel('Computed $E^f_{rel}(N^+|N^\\bullet)$ (V)') for ax in (ax1, ax2)]
 [ax.set_ylabel('Experimental $E^0_{rel}(N^+|N^\\bullet)$ (V)') for ax in (ax1, ax2)]
 

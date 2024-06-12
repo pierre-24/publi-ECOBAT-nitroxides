@@ -37,9 +37,9 @@ def plot_Kx1(ax, data: pandas.DataFrame, family: str, color: str):
     
     x = [int(x.replace('mol_', '')) for x in subdata['name']]
     
-    pK01 = numpy.log10(subdata['k01'])
-    pK11 = numpy.log10(subdata['k11'])
-    pK21 = numpy.log10(subdata['k21'])
+    pK01 = -numpy.log10(subdata['k01'])
+    pK11 = -numpy.log10(subdata['k11'])
+    pK21 = -numpy.log10(subdata['k21'])
     
     ax.plot(x, pK01, 'o', color=color, label=family.replace('Family.', ''))
     ax.plot(x, pK11, '^', color=color)
@@ -50,12 +50,12 @@ def plot_Kx1(ax, data: pandas.DataFrame, family: str, color: str):
 
 def plot_helpline(ax, data):
     x = [int(x.replace('mol_', '')) for x in data['name']]
-    ax.plot(x, numpy.log10(data['k01']), '--', color='black', linewidth=0.8)
     
-    pK01 = numpy.log10(data['k01'])
-    pK11 = numpy.log10(data['k11'])
-    pK21 = numpy.log10(data['k21'])
+    pK01 = -numpy.log10(data['k01'])
+    pK11 = -numpy.log10(data['k11'])
+    pK21 = -numpy.log10(data['k21'])
     
+    ax.plot(x, pK01, '--', color='black', linewidth=0.8)
     print('{} & {:.2f} $\\pm$ {:.2f} & {:.2f} $\\pm$ {:.2f} & {:.2f} $\\pm$ {:.2f} \\\\'.format('Total', numpy.mean(pK01), numpy.std(pK01), numpy.mean(pK11), numpy.std(pK11), numpy.mean(pK21), numpy.std(pK21)))
 
 def make_table(f, data: pandas.DataFrame, solvent: str):
@@ -101,7 +101,7 @@ plot_Kx1(ax1, subdata_wa, 'Family.APO', 'tab:red')
 
 ax1.legend(ncols=5)
 ax1.set_xlim(0.5,61.5)
-ax1.text(38, 0.5, "Water", fontsize=18)
+ax1.text(38, 8, "Water", fontsize=18)
 ax1.xaxis.set_minor_locator(MultipleLocator(2))
 ax1.grid(which='both', axis='x')
 ax1.plot([0, 62], [0, 0], '-', color='grey')
@@ -116,12 +116,12 @@ plot_Kx1(ax2, subdata_ac, 'Family.APO', 'tab:red')
 
 ax2.set_xlabel('Molecule id') 
 ax2.set_xlim(0.5, 61.5)
-ax2.text(38, 0.5, "Acetonitrile", fontsize=18)
+ax2.text(38, 8, "Acetonitrile", fontsize=18)
 ax2.xaxis.set_minor_locator(MultipleLocator(2))
 ax2.grid(which='both', axis='x')
 ax2.plot([0, 62], [0, 0], '-', color='grey')
 
-[ax.set_ylabel('log$_{10}$(K)') for ax in [ax1, ax2]]
+[ax.set_ylabel('pK$_{x1}$') for ax in [ax1, ax2]]
 
 plt.tight_layout()
 figure.savefig(args.output)

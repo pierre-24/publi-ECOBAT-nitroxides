@@ -37,13 +37,13 @@ def plot_Kx2(ax, data: pandas.DataFrame, family: str, color: str):
     
     x = [int(x.replace('mol_', '')) for x in subdata['name']]
     
-    ax.plot(x, numpy.log10(subdata['k02']), 'o', color=color, label=family.replace('Family.', ''))
-    ax.plot(x, numpy.log10(subdata['k12']), '^', color=color)
-    ax.plot(x, numpy.log10(subdata['k22']), 's', color=color)
+    ax.plot(x, -numpy.log10(subdata['k02']), 'o', color=color, label=family.replace('Family.', ''))
+    ax.plot(x, -numpy.log10(subdata['k12']), '^', color=color)
+    ax.plot(x, -numpy.log10(subdata['k22']), 's', color=color)
 
 def plot_helpline(ax, data):
     x = [int(x.replace('mol_', '')) for x in data['name']]
-    ax.plot(x, numpy.log10(data['k02']), '--', color='black', linewidth=0.8)
+    ax.plot(x, -numpy.log10(data['k02']), '--', color='black', linewidth=0.8)
 
 def make_table(f, data: pandas.DataFrame, solvent: str):
     subdata = data[data['solvent'] == solvent]
@@ -88,12 +88,12 @@ plot_Kx2(ax1, subdata_wa, 'Family.APO', 'tab:red')
 
 ax1.legend(ncols=5)
 ax1.set_xlim(0.5,61.5)
-ax1.text(38, -2, "Water", fontsize=18)
+ax1.text(38, 2, "Water", fontsize=18)
 ax1.xaxis.set_minor_locator(MultipleLocator(2))
 ax1.grid(which='both', axis='x')
 ax1.plot([0, 62], [0, 0], '-', color='grey')
 
-ax1.legend()
+ax1.legend(ncols=5)
 
 subdata_ac = prepare_data(data, 'acetonitrile')
 plot_helpline(ax2, subdata_ac)
@@ -105,12 +105,12 @@ plot_Kx2(ax2, subdata_ac, 'Family.APO', 'tab:red')
 
 ax2.set_xlabel('Molecule id') 
 ax2.set_xlim(0.5,61.5)
-ax2.text(38, -2, "Acetonitrile", fontsize=18)
+ax2.text(38, 2, "Acetonitrile", fontsize=18)
 ax2.xaxis.set_minor_locator(MultipleLocator(2))
 ax2.grid(which='both', axis='x')
 ax2.plot([0, 62], [0, 0], '-', color='grey')
 
-[ax.set_ylabel('log$_{10}$(K)') for ax in [ax1, ax2]]
+[ax.set_ylabel('pK$_{x2}$') for ax in [ax1, ax2]]
 
 plt.tight_layout()
 figure.savefig(args.output)

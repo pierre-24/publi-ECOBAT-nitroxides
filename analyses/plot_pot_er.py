@@ -10,10 +10,10 @@ from scipy.spatial import distance_matrix
 from nitroxides.commons import dG_DH, AU_TO_ANG, LabelPositioner, AU_TO_EV
 from nitroxides.tex import format_longtable
 
-LABELS = {'E_ox': [], 'E_red': []}
-POINTS_POSITION ={'E_ox': [], 'E_red': []}
-LABELS_KWARGS = {'E_ox': [], 'E_red': []}
-LABELS_PATH = {'E_ox': pathlib.Path('pot_er_ox.pos'), 'E_red': pathlib.Path('pot_er_red.pos')}
+LABELS = {'Ef_ox': [], 'Ef_red': []}
+POINTS_POSITION ={'Ef_ox': [], 'Ef_red': []}
+LABELS_KWARGS = {'Ef_ox': [], 'Ef_red': []}
+LABELS_PATH = {'Ef_ox': pathlib.Path('pot_er_ox.pos'), 'Ef_red': pathlib.Path('pot_er_red.pos')}
 
 AU_TO_DEBYE = 1 / 0.3934303 
 
@@ -23,42 +23,43 @@ EXCLUDE = [
     56, 58, # ?!?
 ]
 
+def prepare_data(data: pandas.DataFrame):
+    subdata = data[(data['solvent'] == 'water') & data['px'].notnull()]
+    
+    dG_DH_ox = dG_DH(subdata['z'] + 1, subdata['z'], subdata['r_ox'] / AU_TO_ANG, subdata['r_rad'] / AU_TO_ANG, 80, 0) * AU_TO_EV
+    dG_DH_red = dG_DH(subdata['z'], subdata['z'] - 1, subdata['r_rad'] / AU_TO_ANG,  subdata['r_red'] / AU_TO_ANG, 80, 0) * AU_TO_EV
+    
+    subdata.insert(1, 'Ef_ox', subdata['E_ox'] - dG_DH_ox)
+    subdata.insert(1, 'Ef_red', subdata['E_red'] - dG_DH_red)
+    
+    r =  subdata['r'] / AU_TO_ANG
+    Er = (subdata['px'] / AU_TO_DEBYE / r ** 2 + subdata['Qxx'] / AU_TO_DEBYE / AU_TO_ANG / r ** 3) * AU_TO_EV
+    subdata.insert(1, 'Er', Er)
+    
+    return subdata
+
 def plot_Er(ax, data: pandas.DataFrame, column: str, family: str, color: str):
-    subdata = data[(data['solvent'] == 'water') &  (data['family'] == family) & data['px'].notnull()]
-    
-    if column == 'E_ox':
-        dG_DH_ = dG_DH(subdata['z'] + 1, subdata['z'], subdata['r_ox'] / AU_TO_ANG, subdata['r_rad'] / AU_TO_ANG, 80, 0) * AU_TO_EV
-    else:
-        dG_DH_ = dG_DH(subdata['z'], subdata['z'] - 1, subdata['r_rad'] / AU_TO_ANG,  subdata['r_red'] / AU_TO_ANG, 80, 0) * AU_TO_EV
-    
-    Er = subdata['px'] / subdata['r'] ** 2 + subdata['Qxx'] / subdata['r'] ** 3
+    subdata = data[data['family'] == family]
     
     excluded_ = [int(x.replace('mol_', '')) in EXCLUDE for x in subdata['name']]
     not_excluded_ = [not x for x in excluded_]
     
-    ax.plot(Er[not_excluded_], subdata[not_excluded_][column]  - dG_DH_[not_excluded_], 'o', color=color, label=family.replace('Family.', ''))
-    ax.plot(Er[excluded_], subdata[excluded_][column]  - dG_DH_[excluded_], '^', color=color)
+    ax.plot(subdata[not_excluded_]['Er'], subdata[not_excluded_][column], 'o', color=color, label=family.replace('Family.', ''))
+    ax.plot(subdata[excluded_]['Er'], subdata[excluded_][column], '^', color=color)
 
-    for name, er, e in zip(subdata['name'], Er, subdata[column]  - dG_DH_):
+    for name, er, e in zip(subdata['name'], subdata['Er'], subdata[column]):
         name = name.replace('mol_', '')
         LABELS[column].append(name)
         POINTS_POSITION[column].append((er, e))
         LABELS_KWARGS[column].append(dict(color=color, ha='center', va='center'))
 
 def plot_corr_Er(ax, data: pandas.DataFrame, column: str):
-    subdata = data[(data['solvent'] == 'water') & data['px'].notnull()]
-    subdata = subdata[[int(x.replace('mol_', '')) not in EXCLUDE for x in subdata['name']]]
+    subdata = data[[int(x.replace('mol_', '')) not in EXCLUDE for x in data['name']]]
+    result = scipy.stats.linregress(subdata['Er'], subdata[column])
     
-    if column == 'E_ox':
-        dG_DH_ = dG_DH(subdata['z'] + 1, subdata['z'], subdata['r_ox'] / AU_TO_ANG, subdata['r_rad']  / AU_TO_ANG, 80, 0) * AU_TO_EV
-    else:
-        dG_DH_ = dG_DH(subdata['z'], subdata['z'] - 1, subdata['r_rad'] / AU_TO_ANG,  subdata['r_red']  / AU_TO_ANG, 80, 0) * AU_TO_EV
-    
-    result = scipy.stats.linregress(subdata['px'] / subdata['r'] ** 2 + subdata['Qxx'] / subdata['r'] ** 3, subdata[column]  - dG_DH_)
-    
-    x = numpy.array([-.2, 1.5])
+    x = numpy.array([-.2, 4])
     ax.plot(x, result.slope*x + result.intercept, 'k--')
-    ax.text(1.2,  1.2*result.slope+result.intercept+.05, '$R^2$={:.2f}'.format(result.rvalue **2))
+    ax.text(3.,  3.*result.slope+result.intercept+.05, '$R^2$={:.2f}'.format(result.rvalue **2))
 
 def make_table(f, data: pandas.DataFrame, solvent: str):
     subdata = data[(data['solvent'] == solvent) & data['px'].notnull()]
@@ -83,51 +84,52 @@ parser.add_argument('-t', '--table')
 args = parser.parse_args()
 
 data = pandas.read_csv(args.input)
+data = prepare_data(data)
 
 figure = plt.figure(figsize=(7, 10))
 ax3, ax4 = figure.subplots(2, 1)
 
-plot_Er(ax3, data, 'E_ox', 'Family.P6O', 'tab:blue')
-plot_Er(ax3, data, 'E_ox', 'Family.P5O', 'black')
-plot_Er(ax3, data, 'E_ox', 'Family.IIO', 'tab:green')
-plot_Er(ax3, data, 'E_ox', 'Family.APO', 'tab:red')
-plot_corr_Er(ax3, data, 'E_ox')
+plot_Er(ax3, data, 'Ef_ox', 'Family.P6O', 'tab:blue')
+plot_Er(ax3, data, 'Ef_ox', 'Family.P5O', 'black')
+plot_Er(ax3, data, 'Ef_ox', 'Family.IIO', 'tab:green')
+plot_Er(ax3, data, 'Ef_ox', 'Family.APO', 'tab:red')
+plot_corr_Er(ax3, data, 'Ef_ox')
 
 ax3.legend()
 
 positioner = LabelPositioner.from_file(
-    LABELS_PATH['E_ox'], 
-    numpy.array(POINTS_POSITION['E_ox']), 
-    LABELS['E_ox'], 
-    labels_kwargs=LABELS_KWARGS['E_ox']
+    LABELS_PATH['Ef_ox'], 
+    numpy.array(POINTS_POSITION['Ef_ox']), 
+    LABELS['Ef_ox'], 
+    labels_kwargs=LABELS_KWARGS['Ef_ox']
 )
 
 if args.reposition_labels: 
-    positioner.optimize(dx=1e-3, beta=1e4, krep=1, kspring=10000, c=0.02, b0=0.015, scale=(.2, 1))
-    positioner.save(LABELS_PATH['E_ox'])
+    positioner.optimize(dx=1e-3, beta=1e4, krep=1, kspring=10000, c=0.02, b0=0.015, scale=(.1, 1))
+    positioner.save(LABELS_PATH['Ef_ox'])
 
 positioner.add_labels(ax3)
 
-plot_Er(ax4, data, 'E_red', 'Family.P6O', 'tab:blue')
-plot_Er(ax4, data, 'E_red', 'Family.P5O', 'black')
-plot_Er(ax4, data, 'E_red', 'Family.IIO', 'tab:green')
-plot_Er(ax4, data, 'E_red', 'Family.APO', 'tab:red')
-plot_corr_Er(ax4, data, 'E_red')
+plot_Er(ax4, data, 'Ef_red', 'Family.P6O', 'tab:blue')
+plot_Er(ax4, data, 'Ef_red', 'Family.P5O', 'black')
+plot_Er(ax4, data, 'Ef_red', 'Family.IIO', 'tab:green')
+plot_Er(ax4, data, 'Ef_red', 'Family.APO', 'tab:red')
+plot_corr_Er(ax4, data, 'Ef_red')
 
 positioner = LabelPositioner.from_file(
-    LABELS_PATH['E_red'], 
-    numpy.array(POINTS_POSITION['E_red']), 
-    LABELS['E_red'], 
-    labels_kwargs=LABELS_KWARGS['E_red']
+    LABELS_PATH['Ef_red'], 
+    numpy.array(POINTS_POSITION['Ef_red']), 
+    LABELS['Ef_red'], 
+    labels_kwargs=LABELS_KWARGS['Ef_red']
 )
 
 if args.reposition_labels:
-    positioner.optimize(dx=1e-3, beta=1e4,  krep=1, kspring=10000, c=0.02, b0=0.015, scale=(.2, 1))
-    positioner.save(LABELS_PATH['E_red'])
+    positioner.optimize(dx=1e-3, beta=1e4,  krep=1, kspring=10000, c=0.02, b0=0.015, scale=(.1, 1))
+    positioner.save(LABELS_PATH['Ef_red'])
 
 positioner.add_labels(ax4)
 
-[ax.set_xlabel('Electrostatic potential $\\mu_x/r^2 + Q_{xx}/r^3$ (D Å$^{-2}$)') for ax in [ax3, ax4]]
+[ax.set_xlabel('Electrostatic potential $U_q$ (V)') for ax in [ax3, ax4]]
 ax3.set_ylabel('$E^0_{abs}(N^+|N^\\bullet)$ (V)')
 ax4.set_ylabel('$E^0_{abs}(N^\\bullet|N^-)$ (V)')
 
