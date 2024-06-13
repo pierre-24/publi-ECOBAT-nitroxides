@@ -17,7 +17,7 @@
 - [ ] xx in Fig. 12?
 - [ ] Use correct hammet parameters
 - [ ] Figs. S3 & S4
-- [ ] Entropy in cplx
+- [x] Entropy in cplx
 - [ ] Sign $U_q$
 - [ ] Extra explanation solv. (diff of $\varepsilon$ is not enough)
 - [ ] All tables in the SI should be updated (!)
