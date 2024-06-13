@@ -4,8 +4,16 @@ import pandas
 from scipy.spatial import distance_matrix
 
 # -- Electrolytes, from wB97X-D/6-311+G(d)
-G_NME4 = {'water': -214.096721, 'acetonitrile': -214.104109} # Eh
-G_BF4 = {'water': -424.654435, 'acetonitrile': -424.656267}  # Eh
+# using T_d (symmetry number = 12)
+S_BF4 = {'water':  1.10930898e-04, 'acetonitrile': 1.10898588e-04}  # Eh K⁻¹
+H_BF4 = {'water': -4.24623707e+02, 'acetonitrile': -4.24625549e+02}  # Eh
+G_BF4 = {'water': -4.24654435e+02, 'acetonitrile': -4.24656267e+02}  # Eh 
+
+# using T_d (symmetry number = 12)
+S_NME4 = {'water':  1.20348114e-04, 'acetonitrile': 1.20369406e-04} # Eh K⁻¹
+H_NME4 = {'water': -2.14060409e+02, 'acetonitrile': -2.14067632e+02} # Eh
+G_NME4 = {'water': -2.14093945e+02, 'acetonitrile': -2.14101174e+02} # Eh
+
 RADII_NME4 = {'water': 2.108130614275878, 'acetonitrile': 2.098320849223868}  # angstrom
 RADII_BF4 = {'water': 1.151806660832909, 'acetonitrile': 1.1520489206428235}  # angstrom
 

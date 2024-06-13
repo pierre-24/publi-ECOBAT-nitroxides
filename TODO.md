@@ -20,6 +20,7 @@
 - [ ] Entropy in cplx
 - [ ] Sign $U_q$
 - [ ] Extra explanation solv. (diff of $\varepsilon$ is not enough)
+- [ ] All tables in the SI should be updated (!)
 
 - [ ] Fig. or Figure?
 - [ ] PACS code, MSC code?
