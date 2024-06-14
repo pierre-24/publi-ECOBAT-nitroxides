@@ -82,21 +82,21 @@ plot_Gx1(ax1, subdata_wa, 'ox', 'Family.APO', 'tab:red')
 
 ax1.legend(ncols=5)
 ax1.set_xlim(0.5,61.5)
-ax1.text(5, 60, "N$^+$A$^-$", fontsize=18)
+ax1.text(5, -40, "N$^+$A$^-$", fontsize=18)
 
 plot_Gx1(ax2, subdata_wa, 'rad', 'Family.AMO', 'tab:pink')
 plot_Gx1(ax2, subdata_wa, 'rad', 'Family.P6O', 'tab:blue')
 plot_Gx1(ax2, subdata_wa, 'rad', 'Family.P5O', 'black')
 plot_Gx1(ax2, subdata_wa, 'rad', 'Family.IIO', 'tab:green')
 plot_Gx1(ax2, subdata_wa, 'rad', 'Family.APO', 'tab:red')
-ax2.text(5, 60, "N$^\\bullet$C$^+$", fontsize=18)
+ax2.text(5, -40, "N$^\\bullet$C$^+$", fontsize=18)
 
 plot_Gx1(ax3, subdata_wa, 'red', 'Family.AMO', 'tab:pink')
 plot_Gx1(ax3, subdata_wa, 'red', 'Family.P6O', 'tab:blue')
 plot_Gx1(ax3, subdata_wa, 'red', 'Family.P5O', 'black')
 plot_Gx1(ax3, subdata_wa, 'red', 'Family.IIO', 'tab:green')
 plot_Gx1(ax3, subdata_wa, 'red', 'Family.APO', 'tab:red')
-ax3.text(5, 60, "N$^-$C$^+$", fontsize=18)
+ax3.text(5, -40, "N$^-$C$^+$", fontsize=18)
 
 [ax.set_ylabel('Thermochemical contribution (kJ mol$^{-1}$)') for ax in [ax1, ax2, ax3]]
 [ax.xaxis.set_minor_locator(MultipleLocator(2)) for ax in [ax1, ax2, ax3]]

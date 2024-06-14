@@ -14,7 +14,7 @@
 - [x] Fig. S7: not $E^f$
 - [x] Title of the SI
 - [ ] Check NC → N-C+, etc.
-- [ ] xx in Fig. 12?
+- [x] xx in Fig. 12?
 - [ ] Use correct hammet parameters
 - [ ] Figs. S3 & S4
 - [x] Entropy in cplx
