@@ -28,23 +28,23 @@ a2 = xi * a1
 R = 8.3145e-3
 T=298.15
 
-def logK(dG: float):
-    return  numpy.log10(numpy.exp(-dG * AU_TO_KJMOL / (R * T)))
+def pK(dG: float):
+    return  -numpy.log10(numpy.exp(-dG * AU_TO_KJMOL / (R * T)))
 
 for s, color in [(1.0, 'tab:blue'), (1.2, 'tab:orange'), (1.4, 'tab:green')]:
-    ax1.plot(xi, logK(System(1, a1, a2, s1 = 1.0, s2 = s).e_pair(35)), label='$s_2$={}'.format(s), color=color)
-    ax1.plot(xi, logK(System(1, a1, a2, s1= 1.0, s2 = s).e_pair(80)), '--', color=color)
-    ax2.plot(xi, logK(System(1, a1, a2, s1 = 0.7, s2 = s).e_pair(35)), label='$s_2$={}'.format(s), color=color)
-    ax2.plot(xi, logK(System(1, a1, a2, s1= 0.7, s2 = s).e_pair(80)), '--', color=color)
+    ax1.plot(xi, pK(System(1, a1, a2, s1 = 1.0, s2 = s).e_pair(35)), label='$s_2$={}'.format(s), color=color)
+    ax1.plot(xi, pK(System(1, a1, a2, s1= 1.0, s2 = s).e_pair(80)), '--', color=color)
+    ax2.plot(xi, pK(System(1, a1, a2, s1 = 0.7, s2 = s).e_pair(35)), label='$s_2$={}'.format(s), color=color)
+    ax2.plot(xi, pK(System(1, a1, a2, s1= 0.7, s2 = s).e_pair(80)), '--', color=color)
 
 [ax.set_xlabel('$\\chi = a_1$ / $a_2$') for ax in (ax1, ax2)]
 [ax.set_xlim(MI, MX) for ax in (ax1, ax2)]
-ax1.set_ylabel('log$_{10}$($K_{pair}$)')
+ax1.set_ylabel('pK$_{pair}$')
 
 ax1.legend()
 
-ax1.text(2, 10, '$s_1$=1', fontsize=14)
-ax2.text(2, 10, '$s_1$=0.7', fontsize=14)
+ax1.text(2, -10, '$s_1$=1', fontsize=14)
+ax2.text(2, -10, '$s_1$=0.7', fontsize=14)
 
 plt.tight_layout()
 fig.savefig(args.output)

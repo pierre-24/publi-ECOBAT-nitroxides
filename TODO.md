@@ -16,7 +16,7 @@
 - [ ] Check NC → N-C+, etc.
 - [x] xx in Fig. 12?
 - [ ] Use correct hammet parameters
-- [ ] Figs. S3 & S4
+- [x] Figs. S3 & S4
 - [x] Entropy in cplx
 - [ ] Sign $U_q$
 - [ ] Extra explanation solv. (diff of $\varepsilon$ is not enough)
