@@ -35,7 +35,7 @@ for ki1, kip1, ki2, kip2, color in [(1, 1e-2, 1,1, 'tab:green'), (1e-2, 1, 1e-2,
     ax.plot(X, Ef_ox(X, ki1, ki2, kip1, kip2), color=color, label='$K_{{01}}$={}, $K_{{11}}$={}, $K_{{02}}$={}, $K_{{12}}$={}'.format(ki1, kip1, ki2, kip2))
 
 ax.set_xlabel('[X] (mol L$^{-1}$)')
-ax.set_ylabel('$E^f_{abs}$ (V)')
+ax.set_ylabel('$E^f_{abs}(N$+$|N$^\\bullet$)$ (V)')
 ax.set_xscale('log')
 ax.set_xlim(10**MI, 10**MX)
 ax.legend()

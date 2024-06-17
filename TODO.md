@@ -8,8 +8,8 @@
 - [x] Aknowledgements
 - [x] Clean up the bibliography, check for duplicates
 
-- [ ] prepare a TOC
-- [ ] Research highlight
+- [x] prepare a TOC
+- [x] Research highlight
 - [x] mark (and address) missing values in Tables
 - [x] Fig. S7: not $E^f$
 - [x] Title of the SI
