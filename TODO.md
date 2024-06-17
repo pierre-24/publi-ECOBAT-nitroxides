@@ -10,17 +10,17 @@
 
 - [ ] prepare a TOC
 - [ ] Research highlight
-- [ ] mark (and address) missing values in Tables
+- [x] mark (and address) missing values in Tables
 - [x] Fig. S7: not $E^f$
 - [x] Title of the SI
 - [ ] Check NC → N-C+, etc.
 - [x] xx in Fig. 12?
-- [ ] Use correct hammet parameters
+- [x] Use correct hammet parameters
 - [x] Figs. S3 & S4
 - [x] Entropy in cplx
 - [ ] Sign $U_q$
 - [ ] Extra explanation solv. (diff of $\varepsilon$ is not enough)
-- [ ] All tables in the SI should be updated (!)
+- [x] All tables in the SI should be updated (!)
 
 - [ ] Fig. or Figure?
 - [ ] PACS code, MSC code?
