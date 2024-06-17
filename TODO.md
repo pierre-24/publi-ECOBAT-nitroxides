@@ -13,13 +13,13 @@
 - [x] mark (and address) missing values in Tables
 - [x] Fig. S7: not $E^f$
 - [x] Title of the SI
-- [ ] Check NC → N-C+, etc.
+- [x] Check NC → N-C+, etc.
 - [x] xx in Fig. 12?
 - [x] Use correct hammet parameters
 - [x] Figs. S3 & S4
 - [x] Entropy in cplx
-- [ ] Sign $U_q$
-- [ ] Extra explanation solv. (diff of $\varepsilon$ is not enough)
+- [x] Sign $U_q$
+- [x] Extra explanation solv. (diff of $\varepsilon$ is not enough)
 - [x] All tables in the SI should be updated (!)
 
 - [ ] Fig. or Figure?

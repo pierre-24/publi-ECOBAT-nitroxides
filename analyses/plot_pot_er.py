@@ -44,10 +44,11 @@ def plot_Er(ax, data: pandas.DataFrame, column: str, family: str, color: str):
     excluded_ = [int(x.replace('mol_', '')) in EXCLUDE for x in subdata['name']]
     not_excluded_ = [not x for x in excluded_]
     
-    ax.plot(subdata[not_excluded_]['Er'], subdata[not_excluded_][column], 'o', color=color, label=family.replace('Family.', ''))
-    ax.plot(subdata[excluded_]['Er'], subdata[excluded_][column], '^', color=color)
+    f = 1 if column == 'Ef_ox' else -1
+    ax.plot(f * subdata[not_excluded_]['Er'], subdata[not_excluded_][column], 'o', color=color, label=family.replace('Family.', ''))
+    ax.plot(f * subdata[excluded_]['Er'], subdata[excluded_][column], '^', color=color)
 
-    for name, er, e in zip(subdata['name'], subdata['Er'], subdata[column]):
+    for name, er, e in zip(subdata['name'], f * subdata['Er'], subdata[column]):
         name = name.replace('mol_', '')
         LABELS[column].append(name)
         POINTS_POSITION[column].append((er, e))
@@ -55,11 +56,12 @@ def plot_Er(ax, data: pandas.DataFrame, column: str, family: str, color: str):
 
 def plot_corr_Er(ax, data: pandas.DataFrame, column: str):
     subdata = data[[int(x.replace('mol_', '')) not in EXCLUDE for x in data['name']]]
-    result = scipy.stats.linregress(subdata['Er'], subdata[column])
+    f = 1 if column == 'Ef_ox' else -1
+    result = scipy.stats.linregress(f * subdata['Er'], subdata[column])
     
-    x = numpy.array([-.2, 4])
+    x = numpy.array([(f * subdata['Er']).min(), (f * subdata['Er']).max()])
     ax.plot(x, result.slope*x + result.intercept, 'k--')
-    ax.text(3.,  3.*result.slope+result.intercept+.05, '$R^2$={:.2f}'.format(result.rvalue **2))
+    ax.text(0, result.intercept + .1, '$R^2$={:.2f}'.format(result.rvalue **2))
 
 def make_table(f, data: pandas.DataFrame, solvent: str):
     subdata = data[(data['solvent'] == solvent) & data['px'].notnull()]
