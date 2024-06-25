@@ -43,9 +43,10 @@ def kappa2(C: float, z: int, eps_r: float, T: float = 298.15) -> float:
     
     return k2
 
-def G_DH(z: float, kappa: float, epsilon_r: float, a: float) -> float:
+def G_DH(z: float, kappa: float, epsilon_r: float, a: float, fx: bool = True) -> float:
     G = -1 * z **2 / epsilon_r * kappa / (kappa * a) ** 3 * (numpy.log(1 +  kappa * a) - kappa * a + .5 * (kappa * a) ** 2)  # in Ha
-    G[kappa < 1e-5] = 0
+    if fx:
+        G[kappa < 1e-5] = 0
     
     return G
 
