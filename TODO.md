@@ -22,7 +22,10 @@
 - [x] Extra explanation solv. (diff of $\varepsilon$ is not enough)
 - [x] All tables in the SI should be updated (!)
 
-- [ ] Fig. or Figure?
-- [ ] PACS code, MSC code?
+- [x] Fig. or Figure? → Fig. ;-)
+- [x] PACS code, MSC code? → not relevant, also PACS is discontinued
 - [ ] tries to move labels as much as possible in graphs
 - [ ] pack the geometries
+- [x] Description of the SI? → Nope
+- [x] Mat → Matsui
+- [ ] Data availability

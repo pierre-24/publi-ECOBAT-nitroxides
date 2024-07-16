@@ -99,6 +99,8 @@ ax1.text(.72, .95, '$E_{{abs}}^0(\\text{{SHE}})$ = {:.2f} V, $f$ = {:.3f}, $\\mu
 
 plot_exp_vs_matsui(ax1, subdata_wa, 'water', 'Family.P6O', 'tab:blue')
 plot_exp_vs_matsui(ax1, subdata_wa, 'water', 'Family.P5O', 'black')
+plot_exp_vs_matsui(ax1, subdata_wa, 'water', 'Family.IIO', 'tab:green')
+plot_exp_vs_matsui(ax1, subdata_wa, 'water', 'Family.APO', 'tab:red')
 
 plot_corr(ax1, subdata_wa, 'water')
 ax1.text(0.75, 0.9, 'Water', fontsize=18)
@@ -141,9 +143,9 @@ if args.reposition_labels:
 
 positioner.add_labels(ax2)
 
-ax2.legend()
+ax1.legend()
 ax2.xaxis.set_major_formatter('{x:.2f}')
-[ax.set_xlabel('Computed $E^P_{rel}(N^+|N^\\bullet)$ (V)') for ax in (ax1, ax2)]
+[ax.set_xlabel('Computed $E^{Matsui}_{rel}(N^+|N^\\bullet)$ (V)') for ax in (ax1, ax2)]
 [ax.set_ylabel('Experimental $E^0_{rel}(N^+|N^\\bullet)$ (V)') for ax in (ax1, ax2)]
 
 plt.tight_layout()
