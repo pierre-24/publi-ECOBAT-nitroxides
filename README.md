@@ -1,6 +1,6 @@
-# A publication on nitroxides
+# Solvent effects on the prediction of redox potentials: application to nitroxides
 
-A publication about nitroxides (aminoxyls) and their redox potential in solution, by Dr. [P. Beaujean](https://pierrebeaujean.net).
+A publication about nitroxides (aminoxyls) and their redox potential in solution (including electrolytes and ion-pairs), by Dr. [P. Beaujean](https://pierrebeaujean.net).
 
 This repository contains the [structures](./structures), the [curated data](./data), the [analysis scripts](./analyses), [the source for other images](./im), and the text.
 

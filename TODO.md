@@ -35,5 +35,5 @@ For v3.0 (to be submitted):
 - [x] Description of the SI? → Nope
 - [x] Mat → Matsui
 - [x] Data availability
-- [ ] Update SI (!!)
+- [x] Update SI (!!)
 - [ ] Address last comments
