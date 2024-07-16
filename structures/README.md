@@ -1,4 +1,4 @@
-This dataset contains the optimized structures of the nitroxides, as XYZ files.
+This dataset contains the optimized (and most stable) structures of the nitroxides, as XYZ files.
 
 They are organized as `{solvent}/{complexation_state}/mol_{n}/mol_{n}_{state}.xyz`, where:
 
