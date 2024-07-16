@@ -48,8 +48,8 @@ def prepare_data(data: pandas.DataFrame, data_exp: pandas.DataFrame, data_Kx1: p
     dG_DH_ = dG_DH(subdata['z'] + 1, subdata['z'], subdata['r_ox'] / AU_TO_ANG, subdata['r_rad'] / AU_TO_ANG, EPSILON_R[solvent], c_elt=0.1) * AU_TO_EV
     
     if correct:
-        subdata.insert(1, 'E_ox_theo_{}'.format(solvent), subdata['E_ox'] - dG_DH_ - E_SHE[solvent])
-        # subdata.insert(1, 'E_ox_theo_{}'.format(solvent), Ef_ox(subdata['E_ox'] - dG_DH_, 0.1, subdata['k01'], 0, subdata['k11'], 0) - E_SHE[solvent]) → some data are missing for the moment
+        # subdata.insert(1, 'E_ox_theo_{}'.format(solvent), subdata['E_ox'] - dG_DH_ - E_SHE[solvent])
+        subdata.insert(1, 'E_ox_theo_{}'.format(solvent), Ef_ox(subdata['E_ox'] - dG_DH_, 0.1, subdata['k01'], 0, subdata['k11'], 0) - E_SHE[solvent])
     else:
         subdata.insert(1, 'E_ox_theo_{}'.format(solvent), subdata['E_ox'] - E_SHE[solvent])
     
