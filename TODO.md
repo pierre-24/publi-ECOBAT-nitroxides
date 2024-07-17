@@ -30,10 +30,10 @@ For v3.0 (to be submitted):
 
 - [x] Fig. or Figure? → Fig. ;-)
 - [x] PACS code, MSC code? → not relevant, also PACS is discontinued
-- [ ] tries to move labels as much as possible in graphs
+- [x] tries to move labels as much as possible in graphs
 - [x] pack the geometries
 - [x] Description of the SI? → Nope
 - [x] Mat → Matsui
 - [x] Data availability
 - [x] Update SI (!!)
-- [ ] Address last comments
+- [x] Address last comments

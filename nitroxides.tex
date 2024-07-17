@@ -30,7 +30,8 @@
 %% The lineno packages adds line numbers. Start line numbering with
 %% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
 %% for the whole article with \linenumbers.
-%\usepackage{lineno}
+\usepackage{lineno}
+\linenumbers
 
 \journal{Journal of Molecular Liquids}
 
@@ -116,8 +117,9 @@ At high concentrations (such as in ionic liquids), ion-pair formation can be exp
 
 Therefore, while seminal studies by Coote and co-workers \cite{hodgsonOneElectronOxidationReduction2007,blincoExperimentalTheoreticalStudies2008} have focused on the impact of substituents on the redox potential of nitroxides, later investigations by other groups have also considered the effect of the nature of the electrolytes and of the various nitroxide-electrolyte interactions, including electrostatic interactions. For example, in 2019, Wylie and co-workers \cite{wylieImprovedPerformanceAllOrganic2019a,wylieIncreasedStabilityNitroxide2019b} demonstrated that the interactions between the ionic liquid and the nitroxide can increase the redox potential by more than \SI{3}{\volt} for a well-chosen pair of electrolytes. Prior to this, Zhang \textit{et al.} focused on stabilizing the radical-ion interactions \cite{zhangInteractionsImidazoliumBasedIonic2016,zhangEffectHeteroatomFunctionality2018}, showing that the interactions between a cation and the nitroxyl group are driven by both electrostatic and dispersion effects.
 
-In this study, the impact of solvation at low and high concentrations in electrolytes is investigated on the redox potential of various nitroxides  by using theoretical chemistry methods. Since the impact of different electrolytes has already been addressed in previous studies \cite{wylieImprovedPerformanceAllOrganic2019a}, the focus is on the effects of the skeleton bearing the nitroxyl group, categorized into five families (Fig.~\ref{fig:families}), and of the substituents. To facilitate comparison with experimental data, two solvents are considered: water and acetonitrile, for which experimental results are available \cite{morrisChemicalElectrochemicalReduction1991,goldsteinStructureActivityRelationship2006,blincoExperimentalTheoreticalStudies2008,zhangEffectHeteroatomFunctionality2018}. 
-Different (semi-)quantitative models are employed at each step to aid in the interpretation of the results. It should be noted that the reduced form (hydroxylamine anion) is generally not found in solution \cite{israeliKineticsMechanismComproportionation2005}, as further proton additions (depending on the pH) are involved to form the hydroxylamine or the hydroxylamonium cation. Thus only experimental oxidation potentials (first reaction in  Fig.~\ref{fig:states}) are compared to the theoretical predictions.
+In this study, the impact of solvation at low and high concentrations in electrolytes (and the formation of ion pairs) is investigated on the redox potential of various nitroxides  by using theoretical chemistry methods. Rather than the impact of possible electrolytes, the focus is on the effects of the skeleton bearing the nitroxyl group, categorized into five families (Fig.~\ref{fig:families}), and of the substituents. 
+Different (semi-)quantitative models are employed at each step to aid in the interpretation of the results. 
+To facilitate comparison with experimental data, two solvents are considered: water and acetonitrile, for which experimental results are available \cite{morrisChemicalElectrochemicalReduction1991,goldsteinStructureActivityRelationship2006,blincoExperimentalTheoreticalStudies2008,zhangEffectHeteroatomFunctionality2018}. Only experimental oxidation potentials (first reaction in  Fig.~\ref{fig:states}) are compared to the theoretical predictions.  Indeed, the reduced form (hydroxylamine anion) is generally not found in solution \cite{israeliKineticsMechanismComproportionation2005}, as further proton additions (depending on the pH) are involved to form the hydroxylamine or the hydroxylamonium cation.
 
 This paper is organized as follows: Section \ref{sec:theory} introduces key concepts and models. The methodology used in this study is detailed in Section \ref{sec:methodo}. The results are then presented in four parts: the impact of substituents on the redox properties is discussed in Section \ref{sec:sar}, followed by an analysis of the effects of solvents in Section \ref{sec:solv}, and the influence of electrolytes in Section \ref{sec:elect}. Finally, a comparison between theoretical predictions and experimental results is provided in Section \ref{sec:exp}. Conclusions and future outlooks are presented in Section \ref{sec:conclusion}.
 
@@ -303,7 +305,7 @@ Insight into the formation of ion pairs ($K_{01}$ and $K_{21}$ in Fig.~\ref{fig:
 	\Delta G_{\text{pair}}^\star &= \frac{1}{4\pi\varepsilon_0}\,\bigg\{\overbrace{\left[\frac{q_1^2}{2a_1}+\frac{q_2^2}{2a_2}\right]\,\left[1-\frac{1}{\varepsilon_r}\right]}^{\Delta G^\star_{Born}}\nonumber\\
 	&\hspace{6em}+\underbrace{\frac{q_1\,q_2\,|q_1-q_2|}{2\,\mu}}_{\Delta G^0_{pair}}\underbrace{-\frac{\varepsilon_r-1}{2\varepsilon_r+1}\,\frac{\mu^2}{a^3}}_{\Delta G^\star_{Onsager}}\bigg\},\label{eq:pair}
 \end{align}
-where $a_1$, $a_2$, and $a=s_2\,( a_1^3+a_2^3)^{1/3}$ are the radii of the spherical cavities corresponding to ion 1 of charge $q_1$, to ion 2 of charge $q_2$, and to the dipole, respectively, defined as $\mu = \frac{s_1}{2}\,|q_2-q_1|\,(a_1+a_2)$.  $s_1$ and $s_2$ are scaling factors, which account for the electrostatic attraction between the two charges forming the dipole ($s_1\leq 1$) and the fact that the cavity might not be spherical ($s_2\geq 1$).
+where $a_1$, $a_2$, and $a=s_2\,( a_1^3+a_2^3)^{1/3}$ are the radii of the spherical cavities corresponding to ion 1 of charge $q_1$, to ion 2 of charge $q_2$, and to the dipole, respectively, defined as $\mu = r_\mu\,|q_2-q_1|$, with $r_\mu= \frac{s_1}{2}\,(a_1+a_2)$.  $s_1$ and $s_2$ are scaling factors, which account for the electrostatic attraction between the two charges forming the dipole ($s_1\leq 1$) and the fact that the cavity might not be spherical ($s_2\geq 1$).
 
 \begin{figure}[!h]
 	\centering
@@ -410,7 +412,6 @@ The value of $\kappa^2$  [Eq.~\eqref{eq:kappa2}] is obtained assuming  $c_{ox} =
 
 Oxidation and reduction potentials of the nitroxide radicals in water, grouped by family, are plotted in Fig.~\ref{fig:family} (see also Table S1). In comparison to the most simple compound, \textbf{1}, modifying the molecular structure and/or adding substituents generally increases both the oxidation and reduction potentials. Regarding structural impacts, six-membered ring compounds (P6O and APO) exhibit higher reduction potentials than their five-membered ring counterparts (P5O and IIO). Additionally, the incorporation of one or two aromatic rings (IIO and APO) enhances both the oxidation and reduction potentials.
 
-
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=.9\linewidth]{Figure8}
@@ -427,7 +428,7 @@ Regarding the impact of substituents, it is noteworthy that non-substituted nitr
 \end{inparaenum}
 As a consequence, \textbf{55} exhibits the highest oxidation and reduction potentials among all the compounds studied in this paper.
 
-To elucidate these effects, attempts are made to correlate both potentials with Hammett constants for P5O and P6O, but the correlations are found to be very weak, especially for reduction (Fig.~S5). 
+To elucidate these effects, attempts are made to correlate both potentials with Hammett constants for P5O ($\sigma_m$) and P6O ($\sigma_p$), but the correlations are found to be very weak, especially for reduction.  A better correlation, especially for reduction, is obtained using the inductive constants ($\sigma_I$) derived by Taft \cite{hanschSurveyHammettSubstituent1991}, thought on a limited subset of compounds  (Fig.~S5).
 
 The electrostatic interaction model [Eq.~\eqref{eq:Er}] provides more insights. Results are presented in Fig.~\ref{fig:corr} (see also Table S4). It should be noted that this model fails to account for the effect of substituting methyl groups with ethyl groups. Moreover, including the disubstituted compounds (e.g., \textbf{9}, \textbf{10}, \textbf{20}, ...) worsens the correlation ($R^2 \sim 0.5$ and 0.3 for oxidation and reduction, respectively). Compounds \textbf{56} and \textbf{58} remain outliers for reduction. Therefore, all these sets of compounds are treated as outliers in the following discussion.
 Though the correlation is poorer for reduction than for oxidation (probably because the electron delocalization means that the nitrogen atom is not the atom that should be used to define the origin in that case), this model helps explaining the general trends. For instance, the increase in oxidation (and reduction) potential for aromatic compounds correlates with an increase in quadrupole moment ($Q_{xx} > \SI{5}{\elementarycharge\bohr\squared}$ for most members of IIO or APO). Additionally, modifications due to donor/acceptor substituents are linked to changes in the dipole moment. For example, aromatic compounds with \ce{NH2} as a substituent (\textit{e.g.}, \textbf{51}) are characterized by $\mu_{x} < 0$, which increases for compounds with \ce{COOH} (\textit{e.g.}, \textbf{39}) or \ce{NO2} (\textit{e.g.}, \textbf{54}). Furthermore, members of P5O generally present a smaller value of $U_q$ than P6O (\textit{e.g.}, \textbf{17} versus \textbf{5}), which correlates with the increase in oxidation potential observed between these two families. The same trend is observed between APO and IIO.
@@ -597,7 +598,7 @@ The calculations were performed on: \begin{inparaenum}[(i)]
 
 \section*{Data availability}
 
-Computational results (checkpoint files) are available at \url{https://dx.doi.org/10.5281/zenodo.12751130}.
+Computational results (text-formatted Gaussian checkpoint files) are available at \url{https://dx.doi.org/10.5281/zenodo.12751130}.
 Curated data and analyses scripts are available at \url{https://github.com/pierre-24/publi-nitroxides/}.
 Further data will be available from the corresponding author upon reasonable request.
 	
