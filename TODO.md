@@ -37,3 +37,7 @@ For v3.0 (to be submitted):
 - [x] Data availability
 - [x] Update SI (!!)
 - [x] Address last comments
+
+For v4.0:
+
+- [ ] Metadata for all column of CSVs
