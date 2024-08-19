@@ -38,6 +38,6 @@ For v3.0 (to be submitted):
 - [x] Update SI (!!)
 - [x] Address last comments
 
-For v4.0:
+For v4.0 (first round of comments from reviewers):
 
 - [ ] Metadata for all column of CSVs
