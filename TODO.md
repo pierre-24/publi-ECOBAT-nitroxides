@@ -40,4 +40,6 @@ For v3.0 (to be submitted):
 
 For v4.0 (first round of comments from reviewers):
 
+- [x] Update SI
 - [ ] Metadata for all column of CSVs
+- [ ] Update Zenodo
