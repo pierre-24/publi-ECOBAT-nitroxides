@@ -12,6 +12,9 @@
 %% \documentclass[final,5p,times]{elsarticle}
 %% \documentclass[final,5p,times,twocolumn]{elsarticle}
 
+
+\usepackage[]{changes}
+
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -56,7 +59,7 @@
 			country={Belgium}}
 		
 		\begin{abstract}
-			This paper investigates the impact of solute-solvent effects on the redox potentials of nitroxides, with a focus on ionic interactions caused by the presence of electrolytes found in different environment such as batteries. The analysis of various nitroxide families shows that ion-substituent interactions, especially in aromatic systems, significantly influence complex stability. In particular, in acetonitrile, the hydroxylamine anion and its cation exhibit strong interactions near the nitroxyl moiety, but only if the nitroxyl is well positioned. The study also confirm that an electrostatic interaction model can predict the effects of substituents, aromaticity, and ring size on redox potentials of nitroxides. Concerning the impact of the environment, solute-ion interactions and ion-pairs formation play a crucial role in modulating the redox potential.
+			This paper investigates the impact of solute-solvent effects on the redox potentials of nitroxides, with a focus on ionic interactions caused by the presence of electrolytes found in different environment such as batteries. The analysis of various nitroxide families shows that ion-substituent interactions, especially in aromatic systems, significantly influence complex stability. In particular, in acetonitrile, the hydroxylamine anion and its cation exhibit strong interactions near the nitroxyl moiety, but only if the nitroxyl is well positioned. The study also confirm that an electrostatic interaction model can predict the effects of substituents, aromaticity, and ring size on redox potentials of nitroxides. Concerning the impact of the environment, solute-ion interactions  \replaced{and ion-pairs formation play a crucial role in modulating the redox potential.}{play a crucial role. This study reveals that moderate electrolyte concentrations stabilize charged compounds as described by the the Debye-Hückel (DH) model, and higher concentrations lead to ion-pair formation, both affecting redox properties. }
 		\end{abstract}
 		
 		
@@ -516,13 +519,13 @@ In particular, in water, the equilibrium constants $K_{01}$ are one order of mag
 		& $pK_{01}$ & $pK_{11}$ & $pK_{21}$ \\
 		\hline
 		AMO & 4.13 & 3.37 & 3.88  \\
-P6O & 3.29 $\pm$ 0.67 & 4.25 $\pm$ 0.71 & 6.24 $\pm$ 1.36 \\
-P5O & 4.37 $\pm$ 1.82 & 4.32 $\pm$ 1.65 & 2.37 $\pm$ 1.88 \\
+P6O & 3.23 $\pm$ 0.67 & 4.25 $\pm$ 0.71 & 6.24 $\pm$ 1.36 \\
+P5O & 4.37 $\pm$ 1.82 & 4.32 $\pm$ 1.65 & 2.33 $\pm$ 1.84 \\
 IIO & 3.24 $\pm$ 0.54 & 3.36 $\pm$ 0.38 & 1.69 $\pm$ 0.52 \\
-APO & 3.19 $\pm$ 0.40 & 3.48 $\pm$ 1.01 & 1.12 $\pm$ 1.18 \\
+APO & 3.12 $\pm$ 0.42 & 3.48 $\pm$ 1.01 & 1.12 $\pm$ 1.18 \\
 		\hline
 	\end{tblr}
-	\caption{Mean value of the cologarithm ($pK = -\log_{10}K$) of the complexation equilibrium constants for each family (reported as mean $\pm$ standard deviation), as computed at the $\omega$B97X-D/6-311+G(d) level in water using SMD and $[X]=\SI{1}{\mole\per\liter}$.}
+	\caption{Mean value of the cologarithm ($pK = -\log_{10}K$) of the complexation equilibrium constants \added{for ion-pair formation in} each family (reported as mean $\pm$ standard deviation), as computed at the $\omega$B97X-D/6-311+G(d) level in water using SMD and $[X]=\SI{1}{\mole\per\liter}$.}
 	\label{tab:Kx1}
 \end{table}
 
@@ -540,7 +543,25 @@ Finally, the complexations of the nitroxides to the \ce{AC} pair (forming an ion
 \label{fig:Kx2}
 \end{figure}
 
-As expected, the equilibrium constants are smaller by about four orders of magnitude ($\Delta G^\star_{cplx} \sim \SI{40}{\kilo\joule\per\mole}$) than those previously discussed. In water, the general order is $K_{22} \leq K_{02} < K_{12}$. However, for many compounds in the IIO and APO families, $K_{02}$ is larger than $K_{22}$, which is attributed to the interaction between the \ce{NMe4+} cation and the aromatic moiety present in these compounds. In acetonitrile, the \ce{N^-AC} complexes are again more stable than the others, consistently with previous observations \cite{wylieImprovedPerformanceAllOrganic2019a}. Thus, the dielectric constant significantly impacts the equilibrium constants of these ion-triplets. This is further confirmed by the observation that the stabilization of \ce{N^.AC} is less pronounced in this study than in Ref.~\citenum{wylieImprovedPerformanceAllOrganic2019a}, which employed a solvent with an even lower dielectric constant.
+As expected, the equilibrium constants are smaller by about four orders of magnitude ($\Delta G^\star_{cplx} \sim \SI{40}{\kilo\joule\per\mole}$) than those previously discussed. In water \added{(Table }\ref{tab:Kx2}\added{)}, the general order is $K_{22}\added{<} K_{02} < K_{12} \added{ < 1}$. However, for many compounds in the IIO and APO families, $K_{02}$ is larger than $K_{22}$, which is attributed to the interaction between the \ce{NMe4+} cation and the aromatic moiety present in these compounds. In acetonitrile, the \ce{N^-AC} complexes are again more stable than the others, consistently with previous observations \cite{wylieImprovedPerformanceAllOrganic2019a}. Thus, the dielectric constant significantly impacts the equilibrium constants of these ion-triplets. This is further confirmed by the observation that the stabilization of \ce{N^.AC} is less pronounced in this study than in Ref.~\citenum{wylieImprovedPerformanceAllOrganic2019a}, which employed a solvent with an even lower dielectric constant.
+
+
+\begin{table}[!h]
+	\centering
+	\begin{tblr}{lccc}
+		\hline
+		& $pK_{02}$ & $pK_{12}$ & $pK_{22}$ \\
+		\hline
+		AMO & 7.07& 7.63 & 7.61\\
+		P6O & 7.34 $\pm$ 0.45 & 7.20 $\pm$ 0.62 & 10.88 $\pm$ 1.55 \\
+		P5O & 8.13 $\pm$ 1.52 & 8.17 $\pm$ 1.84 & 7.33 $\pm$ 1.95 \\
+		IIO & 6.02 $\pm$ 0.62 & 6.94 $\pm$ 0.55 & 7.37 $\pm$ 0.77 \\
+		APO & 4.91 $\pm$ 1.14 & 6.87 $\pm$ 1.08 & 6.63 $\pm$ 1.05 \\
+		\hline
+	\end{tblr}
+	\caption{\added{Mean value of the cologarithm ($pK = -\log_{10}K$) of the complexation equilibrium constants for ion-triplet formation in each family (reported as mean $\pm$ standard deviation), as computed at the $\omega$B97X-D/6-311+G(d) level in water using SMD and $[X]=\SI{1}{\mole\per\liter}$.}}
+	\label{tab:Kx2}
+\end{table}
 
 
 \clearpage

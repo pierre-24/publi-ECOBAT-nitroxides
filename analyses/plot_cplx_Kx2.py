@@ -37,9 +37,16 @@ def plot_Kx2(ax, data: pandas.DataFrame, family: str, color: str):
     
     x = [int(x.replace('mol_', '')) for x in subdata['name']]
     
+    pK02 = -numpy.log10(subdata['k02'])
+    pK12 = -numpy.log10(subdata['k12'])
+    pK22 = -numpy.log10(subdata['k22'])
+    
     ax.plot(x, -numpy.log10(subdata['k02']), 'o', color=color, label=family.replace('Family.', ''))
     ax.plot(x, -numpy.log10(subdata['k12']), '^', color=color)
     ax.plot(x, -numpy.log10(subdata['k22']), 's', color=color)
+    
+    print('{} & {:.2f} $\\pm$ {:.2f} & {:.2f} $\\pm$ {:.2f} & {:.2f} $\\pm$ {:.2f} \\\\'.format(family, numpy.mean(pK02), numpy.std(pK02), numpy.mean(pK12), numpy.std(pK12), numpy.mean(pK22), numpy.std(pK22)))
+    
 
 def plot_helpline(ax, data):
     x = [int(x.replace('mol_', '')) for x in data['name']]

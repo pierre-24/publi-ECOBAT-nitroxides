@@ -52,12 +52,9 @@ def plot_helpline(ax, data):
     x = [int(x.replace('mol_', '')) for x in data['name']]
     
     pK01 = -numpy.log10(data['k01'])
-    pK11 = -numpy.log10(data['k11'])
-    pK21 = -numpy.log10(data['k21'])
     
     ax.plot(x, pK01, '--', color='black', linewidth=0.8)
-    print('{} & {:.2f} $\\pm$ {:.2f} & {:.2f} $\\pm$ {:.2f} & {:.2f} $\\pm$ {:.2f} \\\\'.format('Total', numpy.mean(pK01), numpy.std(pK01), numpy.mean(pK11), numpy.std(pK11), numpy.mean(pK21), numpy.std(pK21)))
-
+   
 def make_table(f, data: pandas.DataFrame, solvent: str):
     subdata = data[data['solvent'] == solvent]
     
