@@ -149,7 +149,7 @@ positioner = LabelPositioner.from_file(
 )
 
 if args.reposition_labels:
-    positioner.optimize(dx=1e-3, beta=1e4, krep=1, kspring=1000, c=0.05, b0=0.015, scale=[0.5, 1])
+    positioner.optimize(dx=1e-3, beta=1e3, krep=1, kspring=1000, c=0.05, b0=0.015, scale=[0.5, 1])
     positioner.save(LABELS_PATH['acetonitrile'])
 
 positioner.add_labels(ax2)

@@ -44,4 +44,4 @@ For v4.0 (first round of comments from reviewers):
 - [x] Metadata for all column of CSVs
 - [x] Update Zenodo
 - [x] Mark change properly!
-- [ ] Move point in graphs
+- [x] Move point in graphs
