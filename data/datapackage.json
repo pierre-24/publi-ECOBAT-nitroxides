@@ -1,0 +1,556 @@
+{
+  "resources": [
+    {
+      "name": "data_cplx_kx1",
+      "type": "table",
+      "path": "./Data_cplx_Kx1.csv",
+      "scheme": "file",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "description": "Data for the analyses concerning ion-pairs",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "title": "Data record id",
+            "description": "Unique id for the data record",
+            "constraints": {
+                "required": true,
+                "unique": true
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "title": "Molecule number",
+            "description": "Number of the molecule in this dataset, as defined in Fig. 7 of the paper",
+            "constraints": { "pattern": "mol_\\d*" }
+          },
+          {
+            "name": "family",
+            "type": "string",
+            "title": "Family",
+            "description": "The family in which the nitroxide belongs, as defined in Fig. 2 of the paper",
+            "constraints": { "enum": ["Family.P5O", "Family.P6O", "Family.IIO", "Family.APO", "Family.AMO"] }
+          },
+          {
+            "name": "z",
+            "type": "integer",
+            "title": "Charge",
+            "description": "Formal charge of the free species"
+          },
+          {
+            "name": "solvent_model",
+            "type": "string",
+            "title": "Solvent model",
+            "description": "Indicate which solvent model have been used",
+            "constraints": { "enum": ["gas", "SMD"] }
+          },
+          {
+            "name": "solvent",
+            "type": "string",
+            "title": "Solvent",
+            "description": "Indicate which solvent model have been used in the calculation",
+            "constraints": { "enum": ["gas", "water", "acetonitrile"] }
+          },
+          {
+            "name": "nelect",
+            "type": "integer",
+            "title": "Number of electrons",
+            "description": "Number of electrons in free species (linked to its oxidation state)",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "H_cplx_ox",
+            "type": "number",
+            "title": "Enthalpy of the oxoamonium cation",
+            "description": "Value of the enthalpy thermodynamic state function (in Ha) change for complexation (N+ → N+A-), obtained from frequency calculations",
+            "constraints": { "maximum": 0.0 }
+          },
+          {
+            "name": "S_cplx_ox",
+            "type": "number",
+            "title": "Entropy of the oxoamonium cation",
+            "description": "Value of the entropy thermodynamic state function (in Ha/K) change for complexation (N+ → N+A-), obtained from frequency calculations",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "G_cplx_ox",
+            "type": "number",
+            "title": "Free Gibbs energy of the oxoamonium cation",
+            "description": "Value of the free Gibbs energy thermodynamic state function (in Ha) change for complexation (N+ → N+A-), obtained from frequency calculations",
+            "constraints": { "maximum": 0.0 }
+          },
+          {
+            "name": "r_A_ox",
+            "type": "number",
+            "title": "Radius of the free species",
+            "description": "Radius (in Angstrom) of the free species (N-), measured as specified in Section 3 of the paper",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "r_AX_ox",
+            "type": "number",
+            "title": "Radius of the ion-pair",
+            "description": "Radius (in Angstrom) of the ion-pair (N+A-), measured as specified in Section 3 of the paper",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "H_cplx_rad",
+            "type": "number",
+            "title": "Enthalpy of the radical",
+            "description": "Value of the enthalpy thermodynamic state function (in Ha) change for complexation (N* → N*C+), obtained from frequency calculations",
+            "constraints": { "maximum": 0.0 }
+          },
+          {
+            "name": "S_cplx_rad",
+            "type": "number",
+            "title": "Entropy of the radical",
+            "description": "Value of the entropy thermodynamic state function (in Ha/K) change for complexation (N* → N*C+), obtained from frequency calculations",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "G_cplx_rad",
+            "type": "number",
+            "title": "Free Gibbs energy of the radical",
+            "description": "Value of the free Gibbs energy thermodynamic state function (in Ha) change for complexation (N* → N*C+), obtained from frequency calculations",
+            "constraints": { "maximum": 0.0 }
+          },
+          {
+            "name": "r_A_rad",
+            "type": "number",
+            "title": "Radius of the free species",
+            "description": "Radius (in Angstrom) of the free species (N*), measured as specified in Section 3 of the paper",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "r_AX_rad",
+            "type": "number",
+            "title": "Radius of the ion-pair",
+            "description": "Radius (in Angstrom) of the ion-pair (N*C+), measured as specified in Section 3 of the paper",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "H_cplx_red",
+            "type": "number",
+            "title": "Enthalpy of the hydroxylamine anion",
+            "description": "Value of the enthalpy thermodynamic state function (in Ha) change for complexation (N- → N+C+), obtained from frequency calculations",
+            "constraints": { "maximum": 0.0 }
+          },
+          {
+            "name": "S_cplx_red",
+            "type": "number",
+            "title": "Entropy of the hydroxylamine anion",
+            "description": "Value of the entropy thermodynamic state function (in Ha/K) change for complexation (N- → N+C+), obtained from frequency calculations",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "G_cplx_red",
+            "type": "number",
+            "title": "Free Gibbs energy of the hydroxylamine anion",
+            "description": "Value of the free Gibbs energy thermodynamic state function (in Ha) change for complexation (N- → N+C+), obtained from frequency calculations",
+            "constraints": { "maximum": 0.0 }
+          },
+          {
+            "name": "r_A_red",
+            "type": "number",
+            "title": "Radius of the free species",
+            "description": "Radius (in Angstrom) of the free species (N-), measured as specified in Section 3 of the paper",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "r_AX_red",
+            "type": "number",
+            "title": "Radius of the ion-pair",
+            "description": "Radius (in Angstrom) of the ion-pair (N-C+), measured as specified in Section 3 of the paper",
+            "constraints": { "minimum": 0.0 }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data_cplx_kx2",
+      "type": "table",
+      "path": "./Data_cplx_Kx2.csv",
+      "scheme": "file",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "description": "Data for the analyses concerning ion-triplets",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "title": "Data record id",
+            "description": "Unique id for the data record",
+            "constraints": {
+                "required": true,
+                "unique": true
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "title": "Molecule number",
+            "description": "Number of the molecule in this dataset, as defined in Fig. 7 of the paper",
+            "constraints": { "pattern": "mol_\\d*" }
+          },
+          {
+            "name": "family",
+            "type": "string",
+            "title": "Family",
+            "description": "The family in which the nitroxide belongs, as defined in Fig. 2 of the paper",
+            "constraints": { "enum": ["Family.P5O", "Family.P6O", "Family.IIO", "Family.APO", "Family.AMO"] }
+          },
+          {
+            "name": "z",
+            "type": "integer",
+            "title": "Charge",
+            "description": "Formal charge of the free species"
+          },
+          {
+            "name": "solvent_model",
+            "type": "string",
+            "title": "Solvent model",
+            "description": "Indicate which solvent model have been used",
+            "constraints": { "enum": ["gas", "SMD"] }
+          },
+          {
+            "name": "solvent",
+            "type": "string",
+            "title": "Solvent",
+            "description": "Indicate which solvent model have been used in the calculation",
+            "constraints": { "enum": ["gas", "water", "acetonitrile"] }
+          },
+          {
+            "name": "nelect",
+            "type": "integer",
+            "title": "Number of electrons",
+            "description": "Number of electrons in free species (linked to its oxidations state)",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "H_cplx_ox",
+            "type": "number",
+            "title": "Enthalpy of the oxoamonium cation",
+            "description": "Value of the enthalpy thermodynamic state function (in Ha) change for complexation (N+ → N+AC), obtained from frequency calculations",
+            "constraints": { "maximum": 0.0 }
+          },
+          {
+            "name": "S_cplx_ox",
+            "type": "number",
+            "title": "Entropy of the oxoamonium cation",
+            "description": "Value of the entropy thermodynamic state function (in Ha/K) change for complexation (N+ → N+AC), obtained from frequency calculations",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "G_cplx_ox",
+            "type": "number",
+            "title": "Free Gibbs energy of the oxoamonium cation",
+            "description": "Value of the free Gibbs energy thermodynamic state function (in Ha) change for complexation (N+ → N+AC), obtained from frequency calculations",
+            "constraints": { "maximum": 0.0 }
+          },
+          {
+            "name": "r_A_ox",
+            "type": "number",
+            "title": "Radius of the free species",
+            "description": "Radius (in Angstrom) of the free species (N-), measured as specified in Section 3 of the paper",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "r_AX_ox",
+            "type": "number",
+            "title": "Radius of the ion-pair",
+            "description": "Radius (in Angstrom) of the ion-triplet (N+AC), measured as specified in Section 3 of the paper",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "H_cplx_rad",
+            "type": "number",
+            "title": "Enthalpy of the radical",
+            "description": "Value of the enthalpy thermodynamic state function (in Ha) change for complexation (N* → N*AC), obtained from frequency calculations",
+            "constraints": { "maximum": 0.0 }
+          },
+          {
+            "name": "S_cplx_rad",
+            "type": "number",
+            "title": "Entropy of the radical",
+            "description": "Value of the entropy thermodynamic state function (in Ha/K) change for complexation (N* → N*AC), obtained from frequency calculations",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "G_cplx_rad",
+            "type": "number",
+            "title": "Free Gibbs energy of the radical",
+            "description": "Value of the free Gibbs energy thermodynamic state function (in Ha) change for complexation (N* → N*AC), obtained from frequency calculations",
+            "constraints": { "maximum": 0.0 }
+          },
+          {
+            "name": "r_A_rad",
+            "type": "number",
+            "title": "Radius of the free species",
+            "description": "Radius (in Angstrom) of the free species (N*), measured as specified in Section 3 of the paper",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "r_AX_rad",
+            "type": "number",
+            "title": "Radius of the ion-pair",
+            "description": "Radius (in Angstrom) of the ion-triplet (N*AC), measured as specified in Section 3 of the paper",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "H_cplx_red",
+            "type": "number",
+            "title": "Enthalpy of the hydroxylamine anion",
+            "description": "Value of the enthalpy thermodynamic state function (in Ha) change for complexation (N- → N-AC), obtained from frequency calculations",
+            "constraints": { "maximum": 0.0 }
+          },
+          {
+            "name": "S_cplx_red",
+            "type": "number",
+            "title": "Entropy of the hydroxylamine anion",
+            "description": "Value of the entropy thermodynamic state function (in Ha/K) change for complexation (N- → N-AC), obtained from frequency calculations",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "G_cplx_red",
+            "type": "number",
+            "title": "Free Gibbs energy of the hydroxylamine anion",
+            "description": "Value of the free Gibbs energy thermodynamic state function (in Ha) change for complexation (N- → N-AC), obtained from frequency calculations",
+            "constraints": { "maximum": 0.0 }
+          },
+          {
+            "name": "r_A_red",
+            "type": "number",
+            "title": "Radius of the free species",
+            "description": "Radius (in Angstrom) of the free species (N-), measured as specified in Section 3 of the paper",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "r_AX_red",
+            "type": "number",
+            "title": "Radius of the ion-pair",
+            "description": "Radius (in Angstrom) of the ion-triplet (N-AC), measured as specified in Section 3 of the paper",
+            "constraints": { "minimum": 0.0 }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data_pot",
+      "type": "table",
+      "path": "./Data_pot.csv",
+      "scheme": "file",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "description": "Data for the analyses of the impact of subsituents and solvents",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "title": "Data record id",
+            "description": "Unique id for the data record",
+            "constraints": {
+                "required": true,
+                "unique": true
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "title": "Molecule number",
+            "description": "Number of the molecule in this dataset, as defined in Fig. 7 of the paper",
+            "constraints": { "pattern": "mol_\\d*" }
+          },
+          {
+            "name": "family",
+            "type": "string",
+            "title": "Family",
+            "description": "The family in which the nitroxide belongs, as defined in Fig. 2 of the paper",
+            "constraints": { "enum": ["Family.P5O", "Family.P6O", "Family.IIO", "Family.APO", "Family.AMO"] }
+          },
+          {
+            "name": "z",
+            "type": "integer",
+            "title": "Charge",
+            "description": "Formal charge of the whole molecule"
+          },
+          {
+            "name": "hammet",
+            "type": "number",
+            "title": "Hammet constant",
+            "description": "Value of the meta (P5O) or para (P6O) Hammet constant, as defined in Table I of 10.1021/cr00002a004."
+          },
+          {
+            "name": "inductive",
+            "type": "number",
+            "title": "Inductive hammet constant",
+            "description": "Value of the inductive Hammet constant, as defined in Table II 10.1021/cr00002a004."
+          },
+          {
+            "name": "r",
+            "type": "number",
+            "title": "Substituent-redox center distance",
+            "description": "Distance (in Angstrom) between the substituent and the redox center, as defined in Section 2.3 of the paper",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "px",
+            "type": "number",
+            "title": "Dipole moment",
+            "description": "Dipole moment of the model nitroxide, as defined in Section 2.3 of the paper"
+          },
+          {
+            "name": "Qxx",
+            "type": "number",
+            "title": "Quadrupole moment",
+            "description": "Quadrupole moment of the model nitroxide, as defined in Section 2.3 of the paper"
+          },
+          {
+            "name": "method",
+            "type": "string",
+            "title": "Calculation method",
+            "description": "Functional/basis set used to optimize the system and compute the different quantities"
+          },
+          {
+            "name": "has_cation",
+            "type": "boolean",
+            "title": "Has C+?",
+            "description": "Describe whether this system contains a countercation"
+          },
+          {
+            "name": "has_anion",
+            "type": "boolean",
+            "title": "Has A-?",
+            "description": "Describe whether this system contains a counteranion"
+          },
+          {
+            "name": "solvent_model",
+            "type": "string",
+            "title": "Solvent model",
+            "description": "Indicate which solvent model have been used",
+            "constraints": { "enum": ["gas", "SMD"] }
+          },
+          {
+            "name": "solvent",
+            "type": "string",
+            "title": "Solvent",
+            "description": "Indicate which solvent model have been used in the calculation",
+            "constraints": { "enum": ["gas", "water", "acetonitrile"] }
+          },
+          {
+            "name": "E_ox",
+            "type": "number",
+            "title": "Absolute oxidation potential",
+            "description": "Absolute oxidation potential of the radical, corresponding to the reaction N+ + e- → N*, in volt.",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "E_red",
+            "type": "number",
+            "title": "Absolute reduction potential",
+            "description": "Absolute reduction potential of the radical, corresponding to the reaction N* + e- → N-, in volt.",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "r_ox",
+            "type": "number",
+            "title": "Radius of the oxoammonium cation state",
+            "description": "Radius (in Angstrom) of the oxidized (N+) form",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "r_rad",
+            "type": "number",
+            "title": "Radius of the radical state",
+            "description": "Radius (in Angstrom) of the radical (N*) form",
+            "constraints": { "minimum": 0.0 }
+          },
+          {
+            "name": "r_red",
+            "type": "number",
+            "title": "Radius of the hydroxylamine anion",
+            "description": "Radius (in Angstrom) of the reduced (N-) form",
+            "constraints": { "minimum": 0.0 }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data_pot_hodgson",
+      "type": "table",
+      "path": "./Data_pot_Hodgson.csv",
+      "scheme": "file",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "description": "Relative potentials (in mV) from theoretical calculations of Hodgson et al. (10.1021/jp074250e), extracted from Table 5",
+      "schema": {
+        "fields": [
+          {
+            "name": "compound",
+            "type": "integer",
+            "title": "Molecule number",
+            "description": "Number of the molecule in this dataset, as defined in Fig. 7 of the paper",
+            "constraints": { "minimum": 1 }
+          },
+          {
+            "name": "E_ox",
+            "type": "number",
+            "title": "Relative oxidation potential",
+            "description": "Relative (vs SHE) oxidation potential of the radical (in mV), corresponding to the reaction N+ + e- → N*",
+            "constraints": { "minimum": 0 }
+          },
+          {
+            "name": "E_red",
+            "type": "number",
+            "title": "Relative reduction potential",
+            "description": "Relative (vs SHE) reduction potential of the radical (in mV), corresponding to the reaction N* + e- → N-",
+            "constraints": { "maximum": 0 }
+          }
+        ]
+      }
+    },
+    {
+      "name": "data_pot_ox_exp",
+      "type": "table",
+      "path": "./Data_pot_ox_exp.csv",
+      "scheme": "file",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "description": "Relative oxidation potentials (in mV) from experimental sources (see Table S11 of this paper).",
+      "schema": {
+        "fields": [
+          {
+            "name": "compound",
+            "type": "integer",
+            "title": "Molecule number",
+            "description": "Number of the molecule in this dataset, as defined in Fig. 7 of the paper",
+            "constraints": { "minimum": 1 }
+          },
+          {
+            "name": "E_ox_exp_water",
+            "type": "integer",
+            "title": "Relative oxidation potential in water",
+            "description": "Relative (vs SHE) oxidation potential of the radical (in mV), measured in water",
+            "constraints": { "minimum": 0 }
+          },
+          {
+            "name": "E_ox_exp_acetonitrile",
+            "type": "integer",
+            "title": "Relative oxidation potential in acetonitrile",
+            "description": "Relative (vs SHE) oxidation potential of the radical (in mV), measured in acetonitrile",
+            "constraints": { "minimum": 0 }
+          }
+        ]
+      }
+    }
+  ]
+}

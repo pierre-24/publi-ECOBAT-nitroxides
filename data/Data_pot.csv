@@ -1,4 +1,4 @@
-,name,family,z,hammet,inductive,r,px,Qxx,method,has_cation,has_anion,solvent_model,solvent,E_ox,E_red,r_ox,r_rad,r_red
+id,name,family,z,hammet,inductive,r,px,Qxx,method,has_cation,has_anion,solvent_model,solvent,E_ox,E_red,r_ox,r_rad,r_red
 0,mol_02,Family.P6O,0,,,2.87,-0.1172,-0.0856,wB97XD/6-311+G(d),False,False,SMD,acetonitrile,4.99063120812876,2.3210944512185,3.32916564365692,3.29958300239661,3.34822905687088
 1,mol_03,Family.P6O,0,0.45,,2.866,0.7391,4.5213,wB97XD/6-311+G(d),False,False,SMD,acetonitrile,5.14774539378464,2.37074296708237,3.91778024431751,3.90516091331277,3.89547245951191
 2,mol_04,Family.P6O,0,-0.66,,2.886,0.8377,-1.6942,wB97XD/6-311+G(d),False,False,SMD,acetonitrile,5.05779606571344,2.34339010076674,3.36476433489891,3.35557615001879,3.35161722281654

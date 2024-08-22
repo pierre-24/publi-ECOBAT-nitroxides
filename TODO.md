@@ -41,6 +41,7 @@ For v3.0 (to be submitted):
 For v4.0 (first round of comments from reviewers):
 
 - [x] Update SI
-- [ ] Metadata for all column of CSVs
-- [ ] Update Zenodo
-- [ ] Mark change properly!
+- [x] Metadata for all column of CSVs
+- [x] Update Zenodo
+- [x] Mark change properly!
+- [ ] Move point in graphs
