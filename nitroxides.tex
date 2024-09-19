@@ -13,7 +13,7 @@
 %% \documentclass[final,5p,times,twocolumn]{elsarticle}
 
 
-\usepackage[final]{changes}
+\usepackage[]{changes}
 
 \usepackage{hyperref}
 \usepackage{amsmath}
@@ -70,10 +70,10 @@
 		
 		%%Research highlights
 \begin{highlights}
-	\item Electrostatic interactions between the redox center and substituents strongly affect nitroxide redox potentials.
-	\item The nitroxide skeleton has a moderate influence.
-	\item Electrolytes stabilize charged nitroxide species, leading to shifts in their redox potentials.
-	\item Ion-substituent interactions, especially in aromatic systems, play a key role in ion-pair stability.
+	\item  \replaced{Electrostatics of the substituents drives the nitroxide redox behavior}{Electrostatic interactions between the redox center and substituents strongly affect nitroxide redox potentials.}
+	\item \replaced{The nitroxide skeleton has a moderate influence (0.1 V) on the redox behavior}{The nitroxide skeleton has a moderate influence.}
+	\item \replaced{Electrolytes stabilize charged nitroxides and shift their redox potentials}{Electrolytes stabilize charged nitroxide species, leading to shifts in their redox potentials.}
+	\item \replaced{Ion-substituent (especially when aromatic) interactions enhance ion-pair stability}{Ion-substituent interactions, especially in aromatic systems, play a key role in ion-pair stability.}
 \end{highlights}
 
 		
@@ -562,7 +562,7 @@ As expected, the equilibrium constants are smaller by about four orders of magni
 		APO & 4.91 $\pm$ 1.14 & 6.87 $\pm$ 1.08 & 6.63 $\pm$ 1.05 \\
 		\hline
 	\end{tblr}
-	\caption{Mean value of the cologarithm ($pK = -\log_{10K}$) of the complexation equilibrium constants for ion-triplet formation in each family (reported as mean $\pm$ standard deviation), as computed at the $\omega$B97X-D/6-311+G(d) level in water using SMD and $[X]=\SI{1}{\mole\per\liter}$.}
+	\caption{Mean value of the cologarithm ($pK = -\log_{10}K$) of the complexation equilibrium constants for ion-triplet formation in each family (reported as mean $\pm$ standard deviation), as computed at the $\omega$B97X-D/6-311+G(d) level in water using SMD and $[X]=\SI{1}{\mole\per\liter}$.}
 	\label{tab:Kx2}
 \end{table}
 
@@ -609,7 +609,7 @@ Their  impact is twofold:
 Both effects have been scrutinized using our improved QC methodology: when the charge of the compound and of the electrolyte constituents is moderate  the correction proposed by the Debye-Hückel model is sufficient. However, the formation of pairs depends on the redox state of the nitroxide and the nature of the intermolecular interactions, which goes beyond a simple pair formation model (such as the one found in Fig.~\ref{fig:ionpair}). Indeed, two positions are possible for the ion: near the redox center of the nitroxide, and closer to its substituent, if any. The ion-substituent interaction (in the second position) generally leads to more favorable complexes (especially when the molecule contains aromatic moieties). However, in acetonitrile, the interaction between the reduced form (hydroxylamine anion) and its cation, positioned near the $>$\ce{N-O-} moiety, is the strongest. This seems to be the case in other low-dielectric environments, as noted by others in an even less polar solvent (using methanol, $\varepsilon_r$ = 25, in Ref.~\citenum{wylieImprovedPerformanceAllOrganic2019a}).
 It was, however, not possible to correlate the impact of the substitution on the formation of ion-pairs, but it was noticed that the favorable interactions between \ce{N-} and \ce{C+} was systematically hampered by the nitroxyl in an axial position in P6O. Altogether, this second part provides better understanding of the interaction between nitroxides and electrolytes, again helping in designing improved devices..
 
-Finally, a comparison with the experiment has been performed. It results in an excellent correlation, but the impact of the corrections presented above is small in the solvents considered here (water and acetonitrile) and with the concentrations of electrolytes used experimentally. It would be valuable to compare redox potentials measured under different conditions, such as in less polar solvents or ionic liquids. Experimental redox potentials for other nitroxides in battery-relevant environments have already been reported in the literature \cite{bergnerTEMPOMobileCatalyst2014,tkachevaTEMPOIonicLiquidsRedox2020}. Another factor that should be investigated is the temperature, which would affect both the DH correction (through $\kappa$, Eq.~\eqref{eq:kappa2}) and the complexation equilibrium constant (though the entropic contribution). For example, conventional lithium-ion batteries can operate up to \SI{60}{\degreeCelsius} \cite{maTemperatureEffectThermal2018}, and ionic liquids are stable over extended temperature ranges \cite{tkachevaTEMPOIonicLiquidsRedox2020}. The modification of the dielectric constant of the solution with increasing electrolyte concentration \cite{kontogeorgisDebyeHuckelTheoryIts2018, silvaTrueHuckelEquation2022}, is another point that should be considered in future studies.
+Finally, a comparison with the experiment has been performed. It results in an excellent correlation, but the impact of the corrections presented above is small in the solvents considered here (water and acetonitrile) and with the concentrations of electrolytes used experimentally. It would be valuable to compare redox potentials measured \replaced{in other solvents, either}{under different conditions, such as in} less polar solvents or ionic liquids. Experimental redox potentials for other nitroxides in battery-relevant environments have already been reported in the literature \cite{bergnerTEMPOMobileCatalyst2014,tkachevaTEMPOIonicLiquidsRedox2020}. Another factor that should be investigated is the temperature, which would affect both the DH correction (through $\kappa$, Eq.~\eqref{eq:kappa2}) and the complexation equilibrium constant (though the entropic contribution). For example, conventional lithium-ion batteries can operate up to \SI{60}{\degreeCelsius} \cite{maTemperatureEffectThermal2018}, and ionic liquids are stable over extended temperature ranges \cite{tkachevaTEMPOIonicLiquidsRedox2020}. The modification of the dielectric constant of the solution with increasing electrolyte concentration \cite{kontogeorgisDebyeHuckelTheoryIts2018, silvaTrueHuckelEquation2022}, is another point that should be considered in future studies.
 	
 \section*{Notes}
 The author declare no competing financial interest.
