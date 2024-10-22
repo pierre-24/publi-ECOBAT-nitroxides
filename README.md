@@ -2,7 +2,7 @@
 
 A publication about nitroxides (aminoxyls) and their redox potential in solution (including electrolytes and ion-pairs), by Dr. [P. Beaujean](https://pierrebeaujean.net).
 
-**Citation:** P. Beaujean, *J. Mol. Liq.*, <https://doi.org/10.1016/j.molliq.2024.126207>.
+**Citation:** P. Beaujean, *J. Mol. Liq.* **2024**, *414*, 126207 ([10.1016/j.molliq.2024.126207](https://doi.org/10.1016/j.molliq.2024.126207)).
 
 This repository contains the [structures](./structures), the [curated data](./data), the [analysis scripts](./analyses), [the source for other images](./im), and the text.
 The original data set (frequency calculations) is available at <https://dx.doi.org/10.5281/zenodo.12751129>.
